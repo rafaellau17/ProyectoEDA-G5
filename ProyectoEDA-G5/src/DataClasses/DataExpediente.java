@@ -55,49 +55,28 @@ public class DataExpediente {
         return dni;
     }
 
-    public void setDni(int dni) {
-        this.dni = dni;
-    }
 
     public String getNombres() {
         return nombres;
-    }
-
-    public void setNombres(String nombres) {
-        this.nombres = nombres;
     }
 
     public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
     public int getTelefono() {
         return telefono;
-    }
-
-    public void setTelefono(int telefono) {
-        this.telefono = telefono;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     public String getAsunto() {
         return asunto;
     }
 
-    public void setAsunto(String asunto) {
-        this.asunto = asunto;
-    }
 
     public Cola<Documento> getDocsRef() {
         return docsRef;
