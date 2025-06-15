@@ -34,8 +34,8 @@ public class DataExpediente {
         this.telefono = telefono;
         this.email = email;
         this.asunto = asunto;
-        docsRef = new Cola<>();
-        listaTramites = new Lista<>();
+        docsRef = new Cola();
+        listaTramites = new Lista();
     }
     
     //getters y setters
