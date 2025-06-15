@@ -158,4 +158,18 @@ public class Lista<T> {
         
         System.out.println("Instancias de " + item.toString() + ": " + count);
     }
+
+    public Nodo<T> getCabeza() {
+        return cabeza;
+    }
+    
+    public Nodo<T> getUltimo() {
+        return ultimo;
+    }
+
+    public void setUltimo(Nodo<T> ultimo) {
+        this.ultimo = ultimo;
+    }
+    
+    
 }

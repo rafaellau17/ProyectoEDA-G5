@@ -35,17 +35,6 @@ public class Fecha {
         return dia+"/"+mes+"/"+annio;
     }
     
-    // Leer datos del teclado
-    public void leer() {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Ingrese el dia: ");
-        dia = sc.nextInt();
-        System.out.print("Ingrese el mes: ");
-        mes = sc.nextInt();
-        System.out.print("Ingrese el ano: ");
-        annio = sc.nextInt();        
-    }
-     
     //getters y setters
 
     public int getDia() {
