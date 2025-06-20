@@ -41,7 +41,7 @@ public class AdminScreen extends javax.swing.JFrame {
 
         jLabel1.setText("DNI: ");
 
-        buscarTram_boton.setText("BUSCAR TRAMITE");
+        buscarTram_boton.setText("BUSCAR EXPEDIENTE");
 
         tablaExp.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -73,8 +73,8 @@ public class AdminScreen extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(dni_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(buscarTram_boton, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(37, 37, 37)
+                        .addComponent(buscarTram_boton))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
