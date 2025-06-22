@@ -24,7 +24,7 @@ public class DataTramite {
         this.fechaIni = fechaIni;
         this.fechaFin = new Fecha();
         this.descripcion = descripcion;
-        this.documentos = new Cola<>();
+        this.documentos = new Cola();
         this.estado = estado;
         this.terminado = false;
     }
@@ -32,10 +32,6 @@ public class DataTramite {
     //getters y setters
     public Fecha getFechaIni() {
         return fechaIni;
-    }
-
-    public void setFechaIni(Fecha fechaIni) {
-        this.fechaIni = fechaIni;
     }
 
     public Fecha getFechaFin() {
@@ -50,16 +46,8 @@ public class DataTramite {
         return descripcion;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
     public Cola<Documento> getDocumentos() {
         return documentos;
-    }
-
-    public void setDocumentos(Cola<Documento> documentos) {
-        this.documentos = documentos;
     }
 
     public String getEstado() {

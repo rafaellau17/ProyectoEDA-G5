@@ -22,13 +22,8 @@ public class Documento {
     //metodos
     @Override
     public String toString() {
-        return "Documento item: " + item;
+        return "Nombre Documento: " + item;
     }
     
-    //leer del teclado
-    public void leer() {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Ingrese el item del Documento: ");
-        item = sc.next();   
-    }
+    
 }
