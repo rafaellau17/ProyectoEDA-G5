@@ -6,6 +6,7 @@ package DataManagers;
 
 import DataClasses.DataTramite;
 import DataClasses.DataExpediente;
+import DataClasses.Documento;
 import tda.*;
 
 /**
@@ -14,9 +15,14 @@ import tda.*;
  */
 public class ExpedienteManager {
     
-    public static void agregarTramite(DataExpediente expediente, DataTramite tramite) {
-        Lista<DataTramite> listaAux = expediente.getListaTramites();
-        listaAux.agregar(tramite);
+    public void registrarTramite(DataExpediente expediente, DataTramite tramiteNuevo) {
+        Lista<DataTramite> lista = expediente.getListaTramites();
+        if (lista.getUltimo().getItem().isTerminado()) {
+            lista.agregar(tramiteNuevo);
+        }
+        else {
+            System.out.println("El último trámite no ha sido finalizado.");
+        }
     }
     
     public static void terminarTramite(DataExpediente expediente) {
@@ -27,6 +33,10 @@ public class ExpedienteManager {
     else {
         System.out.println("No hay tramites. ");
         }
+    }
+    
+    public static Lista<DataTramite> mostrarTramites(DataExpediente expediente) {
+        return expediente.getListaTramites();
     }
 
 
