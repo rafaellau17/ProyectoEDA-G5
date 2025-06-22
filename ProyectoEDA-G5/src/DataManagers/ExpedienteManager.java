@@ -15,7 +15,7 @@ import tda.*;
  */
 public class ExpedienteManager {
     
-    public void registrarTramite(DataExpediente expediente, DataTramite tramiteNuevo) {
+    public static void agregarTramite(DataExpediente expediente, DataTramite tramiteNuevo) {
         Lista<DataTramite> lista = expediente.getListaTramites();
         if (lista.getUltimo().getItem().isTerminado()) {
             lista.agregar(tramiteNuevo);

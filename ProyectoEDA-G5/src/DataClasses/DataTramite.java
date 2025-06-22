@@ -50,16 +50,8 @@ public class DataTramite {
         return descripcion;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
     public Cola<Documento> getDocumentos() {
         return documentos;
-    }
-
-    public void setDocumentos(Cola<Documento> documentos) {
-        this.documentos = documentos;
     }
 
     public String getEstado() {
