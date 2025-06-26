@@ -4,6 +4,8 @@
  */
 package Screens;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author MARIEL
@@ -26,13 +28,14 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        finTramPopUp_OptionPane = new javax.swing.JOptionPane();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        finTram_boton = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -58,7 +61,12 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setText("FINALIZAR TRAMITE");
+        finTram_boton.setText("FINALIZAR TRAMITE");
+        finTram_boton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                finTram_botonActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("¿TERMINADO?: ");
 
@@ -70,7 +78,7 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1))
+                        .addComponent(finTram_boton))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -100,12 +108,22 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
                         .addGap(9, 9, 9)
                         .addComponent(jLabel5)))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addComponent(finTram_boton)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void finTram_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finTram_botonActionPerformed
+        int response = JOptionPane.showConfirmDialog(rootPane, "¿Desea finalizar el tramite?", "Confirmacion", JOptionPane.YES_NO_OPTION);
+        if (response == JOptionPane.YES_OPTION) {
+            //finalizar tramite
+        }
+        else{
+            //no hacer nada
+        }
+    }//GEN-LAST:event_finTram_botonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -143,7 +161,8 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JOptionPane finTramPopUp_OptionPane;
+    private javax.swing.JButton finTram_boton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
