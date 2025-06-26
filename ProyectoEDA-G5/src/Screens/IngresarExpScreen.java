@@ -75,8 +75,10 @@ public class IngresarExpScreen extends javax.swing.JFrame {
 
         jLabel7.setText("INGRESAR EXPEDIENTE");
 
+        botonGroup_tipo.add(tipoULIMA_radioBoton);
         tipoULIMA_radioBoton.setText("Usuario ULIMA");
 
+        botonGroup_tipo.add(tipoExterno_radioBoton);
         tipoExterno_radioBoton.setText("Usuario externo");
         tipoExterno_radioBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

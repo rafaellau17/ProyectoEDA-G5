@@ -12,6 +12,7 @@ import tda.Cola;
  */
 public class DataTramite {
     //atributos
+    private static int id=1;
     private Fecha fechaIni;
     private Fecha fechaFin;
     private String descripcion;
@@ -27,6 +28,7 @@ public class DataTramite {
         this.documentos = new Cola();
         this.estado = estado;
         this.terminado = false;
+        id = id +1;
     }
     
     //getters y setters

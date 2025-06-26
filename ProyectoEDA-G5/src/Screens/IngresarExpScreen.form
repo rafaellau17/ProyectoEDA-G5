@@ -206,11 +206,17 @@
     </Component>
     <Component class="javax.swing.JRadioButton" name="tipoULIMA_radioBoton">
       <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="botonGroup_tipo"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Usuario ULIMA"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="tipoExterno_radioBoton">
       <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="botonGroup_tipo"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Usuario externo"/>
       </Properties>
       <Events>
