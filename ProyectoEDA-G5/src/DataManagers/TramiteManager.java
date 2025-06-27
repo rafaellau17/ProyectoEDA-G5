@@ -18,9 +18,8 @@ public class TramiteManager {
         colaAux.encolar(doc);
     }
     
-    
-    public static void cambiarDependencia(DataTramite tramite, String estado) {
-        tramite.setEstado(estado);
+    public static void cambiarDependencia(DataTramite tramite, String dependencia) {
+        tramite.setDependencia(dependencia);
     }
     
     public static Cola<Documento> mostrarDocumentos(DataTramite tramite) {

@@ -29,7 +29,7 @@ public class DataTramite {
         this.documentos = new Cola();
         this.dependencia = dependencia;
         this.terminado = false;
-        id = contadorId;
+        this.id = contadorId;
         contadorId++;
     }
     
@@ -54,14 +54,6 @@ public class DataTramite {
         return documentos;
     }
 
-    public String getEstado() {
-        return dependencia;
-    }
-
-    public void setEstado(String estado) {
-        this.dependencia = estado;
-    }
-
     public boolean isTerminado() {
         return terminado;
     }
@@ -69,7 +61,18 @@ public class DataTramite {
     public void setTerminado(boolean terminado) {
         this.terminado = terminado;
     }
-    
+
+    public int getId() {
+        return id;
+    }
+
+    public String getDependencia() {
+        return dependencia;
+    }
+
+    public void setDependencia(String dependencia) {
+        this.dependencia = dependencia;
+    }
     
     
 }

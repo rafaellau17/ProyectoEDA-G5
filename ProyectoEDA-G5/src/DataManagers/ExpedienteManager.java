@@ -36,17 +36,35 @@ public class ExpedienteManager {
         System.out.println("No hay tramites. ");
         }
     }    
-    
-    
-    public static void agregarDocumento(DataExpediente expediente, Documento doc) {
-        Cola<Documento> colaAux = expediente.getDocsRef();
-        colaAux.encolar(doc);
+
+    public static DataTramite buscarTramite(DataExpediente expediente, int id) {
+        Lista<DataTramite> lista = expediente.getListaTramites();
+        Nodo<DataTramite> aux = lista.getCabeza();
+        while (aux!=null){
+            if (aux.getItem().getId() == id){
+                return aux.getItem();
+            }
+            aux = aux.getSgteNodo();
+        }
+        throw new RuntimeException("No se encontró el tramite. ");
     }
+    
+    
+    public static boolean revisarEstadoUltimoTramite(DataExpediente expediente) {
+        Lista<DataTramite> lista = expediente.getListaTramites();
+        return lista.getUltimo().getItem().isTerminado();
+    }
+    
     
     public static Lista<DataTramite> mostrarTramites(DataExpediente expediente) {
         return expediente.getListaTramites();
     }
 
+    public static void agregarDocumento(DataExpediente expediente, Documento doc) {
+        Cola<Documento> colaAux = expediente.getDocsRef();
+        colaAux.encolar(doc);
+    }
+    
     public static Cola<Documento> mostrarDocumentos(DataExpediente expediente) {
         return expediente.getDocsRef();
     }
