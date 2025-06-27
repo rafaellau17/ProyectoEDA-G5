@@ -5,7 +5,6 @@
 package DataManagers;
 
 import DataClasses.DataTramite;
-import DataClasses.DataExpediente;
 import DataClasses.Documento;
 import tda.*;
 /**
@@ -19,7 +18,8 @@ public class TramiteManager {
         colaAux.encolar(doc);
     }
     
-    public static void cambiarEstado(DataTramite tramite, String estado) {
+    
+    public static void cambiarDependencia(DataTramite tramite, String estado) {
         tramite.setEstado(estado);
     }
     

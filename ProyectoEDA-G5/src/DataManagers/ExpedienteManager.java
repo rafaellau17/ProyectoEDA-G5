@@ -35,7 +35,7 @@ public class ExpedienteManager {
     else {
         System.out.println("No hay tramites. ");
         }
-    }
+    }    
     
     
     public static void agregarDocumento(DataExpediente expediente, Documento doc) {
@@ -47,5 +47,8 @@ public class ExpedienteManager {
         return expediente.getListaTramites();
     }
 
-
+    public static Cola<Documento> mostrarDocumentos(DataExpediente expediente) {
+        return expediente.getDocsRef();
+    }
+    
 }
