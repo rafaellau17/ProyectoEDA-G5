@@ -9,6 +9,16 @@ public class ListaCircularSimple<T> {
         cabeza = null;
         ultimo = null;
     }
+    
+    // Getters
+
+    public Nodo<T> getCabeza() {
+        return cabeza;
+    }
+
+    public Nodo<T> getUltimo() {
+        return ultimo;
+    }
 
     public boolean esVacia() {
         return cabeza == null;

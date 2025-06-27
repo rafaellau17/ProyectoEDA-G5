@@ -9,6 +9,16 @@ public class ListaDoble<T> {
         cabeza = null;
         ultimo = null;
     }
+    
+    // Getters
+
+    public NodoDoble<T> getCabeza() {
+        return cabeza;
+    }
+
+    public NodoDoble<T> getUltimo() {
+        return ultimo;
+    }
 
     public boolean esVacia() {
         return cabeza == null;
