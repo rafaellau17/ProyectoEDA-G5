@@ -12,23 +12,25 @@ import tda.Cola;
  */
 public class DataTramite {
     //atributos
-    private static int id=1;
+    private static int contadorId = 1;
+    private int id;
     private Fecha fechaIni;
     private Fecha fechaFin;
     private String descripcion;
     private Cola<Documento> documentos;
-    private String estado;
+    private String dependencia;
     private boolean terminado;
     
     //constructores
-    public DataTramite(Fecha fechaIni, String descripcion, String estado) {
+    public DataTramite(Fecha fechaIni, String descripcion, String dependencia) {
         this.fechaIni = fechaIni;
-        this.fechaFin = new Fecha();
+        this.fechaFin = null;
         this.descripcion = descripcion;
         this.documentos = new Cola();
-        this.estado = estado;
+        this.dependencia = dependencia;
         this.terminado = false;
-        id = id +1;
+        this.id = contadorId;
+        contadorId++;
     }
     
     //getters y setters
@@ -52,14 +54,6 @@ public class DataTramite {
         return documentos;
     }
 
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
     public boolean isTerminado() {
         return terminado;
     }
@@ -67,7 +61,18 @@ public class DataTramite {
     public void setTerminado(boolean terminado) {
         this.terminado = terminado;
     }
-    
+
+    public int getId() {
+        return id;
+    }
+
+    public String getDependencia() {
+        return dependencia;
+    }
+
+    public void setDependencia(String dependencia) {
+        this.dependencia = dependencia;
+    }
     
     
 }
