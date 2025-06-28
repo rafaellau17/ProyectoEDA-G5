@@ -5,6 +5,7 @@
 package Screens;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.*;
 
 /**
  *
@@ -15,8 +16,19 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
     /**
      * Creates new form TramiteBuscadoScreen
      */
+    private DefaultTableModel modelo_1;
+    private DefaultTableModel modelo_2;
     public TramiteBuscadoScreen() {
         initComponents();
+        
+        modelo_1 = new DefaultTableModel();
+        modelo_1.addColumn("Nombre de Documento");
+        
+        modelo_2 = new DefaultTableModel();
+        modelo_2.addColumn("Dependencia");
+        
+        this.documentosTable.setModel(modelo_1);
+        this.dependenciasTable.setModel(modelo_2);        
     }
 
     /**
@@ -34,13 +46,13 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        dependenciasTable = new javax.swing.JTable();
         finTram_boton = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        documentosTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -55,7 +67,7 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
 
         jLabel4.setText("ULTIMA DEPENDENCIA: ");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        dependenciasTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -66,7 +78,7 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(dependenciasTable);
 
         finTram_boton.setText("FINALIZAR TRAMITE");
         finTram_boton.addActionListener(new java.awt.event.ActionListener() {
@@ -85,14 +97,14 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
         });
 
         jButton2.setText("AGREGAR \nDEPENDENCIA");
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        documentosTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -103,7 +115,7 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(documentosTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -220,6 +232,8 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable dependenciasTable;
+    private javax.swing.JTable documentosTable;
     private javax.swing.JOptionPane finTramPopUp_OptionPane;
     private javax.swing.JButton finTram_boton;
     private javax.swing.JButton jButton1;
@@ -231,7 +245,5 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
 }

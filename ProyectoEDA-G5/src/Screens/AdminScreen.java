@@ -205,7 +205,6 @@ private DefaultTableModel modelo = new DefaultTableModel() {
         catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(rootPane, "DNI no es válido.", "Error", JOptionPane.WARNING_MESSAGE);
         }        
-
     }//GEN-LAST:event_buscarTram_botonActionPerformed
 
     /**

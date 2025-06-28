@@ -18,7 +18,10 @@ public class Documento {
     public Documento(String item){
         this.item = item;
     }
-    
+
+    public String getItem() {
+        return item;
+    }
     //metodos
     @Override
     public String toString() {
