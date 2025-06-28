@@ -149,15 +149,6 @@ public class LoginScreen extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_salir_botonActionPerformed
 
-    private void salir_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salir_botonActionPerformed
-
-    }//GEN-LAST:event_salir_botonActionPerformed
-
-    private void iniSesion_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniSesion_botonActionPerformed
-        AdminScreen adminScreen = new AdminScreen();
-        ScreensManager.nuevaPantalla(this, adminScreen);
-    }//GEN-LAST:event_iniSesion_botonActionPerformed
-
     /**
      * @param args the command line arguments
      */

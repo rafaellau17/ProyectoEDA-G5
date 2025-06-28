@@ -4,8 +4,6 @@
  */
 package Screens;
 
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author MARIEL
@@ -56,18 +54,8 @@ public class IngresarTramScreen extends javax.swing.JFrame {
         });
 
         listo_boton.setText("LISTO");
-        listo_boton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                listo_botonActionPerformed(evt);
-            }
-        });
 
         regresar_boton.setText("REGRESAR");
-        regresar_boton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                regresar_botonActionPerformed(evt);
-            }
-        });
 
         dni_label.setText("DNI: ########");
 
@@ -136,14 +124,9 @@ public class IngresarTramScreen extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void regresar_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresar_botonActionPerformed
-        ScreensManager.irAtras(this);
-    }//GEN-LAST:event_regresar_botonActionPerformed
-
-    private void listo_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listo_botonActionPerformed
-        JOptionPane.showMessageDialog(rootPane, "Tramite ingresado correctamente");
-        ScreensManager.irAtras(this);
-    }//GEN-LAST:event_listo_botonActionPerformed
+    private void estado_txtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estado_txtFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_estado_txtFieldActionPerformed
 
     /**
      * @param args the command line arguments
