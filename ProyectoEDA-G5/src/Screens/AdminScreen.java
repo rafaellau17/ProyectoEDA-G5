@@ -133,8 +133,7 @@ public class AdminScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_ingresarExp_botonActionPerformed
 
     private void buscarTram_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarTram_botonActionPerformed
-        ExpedienteBuscadoScreen exBuscado_pantalla = new ExpedienteBuscadoScreen();
-        ScreensManager.nuevaPantalla(this, exBuscado_pantalla);
+
     }//GEN-LAST:event_buscarTram_botonActionPerformed
 
     /**

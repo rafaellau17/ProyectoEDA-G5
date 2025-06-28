@@ -3,11 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Screens;
-import DataClasses.DataExpediente;
-import DataClasses.Documento;
+import DataClasses.*;
+import DataManagers.ExpedienteManager;
 import DataManagers.ListaExpedientesManager;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import tda.Cola;
+import tda.*;
 /**
  *
  * @author MARIEL
@@ -20,11 +22,12 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
     private DefaultTableModel modelo_1;
     private DefaultTableModel modelo_2;
     private DataExpediente expediente;
-    public ExpedienteBuscadoScreen() {
+    public ExpedienteBuscadoScreen(DataExpediente exp) {
         initComponents();
-        expediente = ListaExpedientesManager.buscarExpediente(123); //falta dni
+        this.expediente = exp;
         
         modelo_1 = new DefaultTableModel();
+        modelo_1.addColumn("Nro");
         modelo_1.addColumn("Nombre de documento");
         
         modelo_2 = new DefaultTableModel();
@@ -33,12 +36,15 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
         modelo_2.addColumn("Fecha de inicio");
         
         this.docsTabla.setModel(modelo_1);
-        this.tramitesTabla.setModel(modelo_2);        
+        this.tramitesTabla.setModel(modelo_2);     
+        
+        iniciarDocsTable();
+        iniciarTramiteTable();
     }
     
-    public void iniciarDocsTable(){
+    private void iniciarDocsTable(){
         DefaultTableModel tabla = (DefaultTableModel)docsTabla.getModel();
-        Cola<Documento> cola = expediente.getDocsRef();
+        Cola<Documento> cola = ExpedienteManager.mostrarDocumentos(expediente);
         Cola<Documento> aux = new Cola<>();
         
         int conta = 1;
@@ -54,9 +60,17 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
         }
     }
     
-    public void iniciarTramiteTable(){
+    private void iniciarTramiteTable(){
         DefaultTableModel table = (DefaultTableModel)tramitesTabla.getModel();
+        Lista<DataTramite> lista = ExpedienteManager.mostrarTramites(expediente);
+        Nodo<DataTramite> aux = lista.getCabeza();
         
+        while(!lista.esVacia()){
+            DataTramite temp = aux.getItem();
+            table.addRow(new Object[] {temp.getId(), temp.getDescripcion(), temp.getFechaIni()});
+            
+            aux = aux.getSgteNodo();
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -77,7 +91,7 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         docsTabla = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        addDoc_botton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -119,10 +133,10 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(docsTabla);
 
-        jButton1.setText("AGREGAR DOCUMENTO");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        addDoc_botton.setText("AGREGAR DOCUMENTO");
+        addDoc_botton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                addDoc_bottonActionPerformed(evt);
             }
         });
 
@@ -145,7 +159,7 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 477, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                        .addComponent(addDoc_botton)
                         .addGap(18, 18, 18)))
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -154,7 +168,7 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1)
+                    .addComponent(addDoc_botton)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGap(69, 69, 69)
@@ -175,7 +189,7 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton1.getAccessibleContext().setAccessibleName("");
+        addDoc_botton.getAccessibleContext().setAccessibleName("");
 
         jTabbedPane1.addTab("DATOS DEL EXPEDIENTE", jPanel1);
 
@@ -292,10 +306,19 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
         ScreensManager.nuevaPantalla(this, tramiteBuscado_pantalla);
     }//GEN-LAST:event_accTram_botonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
+    private void addDoc_bottonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDoc_bottonActionPerformed
+        String dependencias[] = {"DUSAR", "Facultad de Ingeniería", "Facultad de Derecho", "Facultad de Psicología", "Facultad de Ciencias Empresariales y Económicas", "Facultad de Comunicación", "Instituto de Investigación Científica", "Oficina de Innovación y Calidad Educativa", "Centro de Empleabilidad", "Centro de Idiomas", "Departamento de Orientación Psicopedagógica"};
+        JComboBox combobox = new JComboBox(dependencias);
+        
+        int input = JOptionPane.showConfirmDialog(this, combobox, "Seleccione una dependencia", JOptionPane.DEFAULT_OPTION);
+        
+        if(input == JOptionPane.OK_OPTION){
+            String str = (String)combobox.getSelectedItem();
+            
+            Documento aux = new Documento(str);
+            ExpedienteManager.agregarDocumento(expediente, aux);
+        }
+    }//GEN-LAST:event_addDoc_bottonActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -326,18 +349,19 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ExpedienteBuscadoScreen().setVisible(true);
+                DataExpediente exp = null;
+                new ExpedienteBuscadoScreen(exp).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton accTram_boton;
+    private javax.swing.JButton addDoc_botton;
     private javax.swing.JButton addTram_button;
     private javax.swing.JButton atras_button;
     private javax.swing.JTable docsTabla;
     private javax.swing.JTextField id_txtField;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
