@@ -15,9 +15,9 @@ import tda.*;
  * @author MARIEL
  */
 public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
-
     /**
      * Creates new form ExpedienteBuscadoScreen
+     * @param exp
      */
     private DefaultTableModel modelo_1;
     private DefaultTableModel modelo_2;

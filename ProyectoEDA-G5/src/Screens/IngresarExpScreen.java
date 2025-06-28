@@ -4,6 +4,7 @@
  */
 package Screens;
 
+import DataClasses.DataExpediente;
 import javax.swing.JOptionPane;
 
 /**
@@ -37,10 +38,8 @@ public class IngresarExpScreen extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         telefono_txtField = new javax.swing.JTextField();
         email_txtField = new javax.swing.JTextField();
-        asunto_txtField = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         tipoULIMA_radioBoton = new javax.swing.JRadioButton();
         tipoExterno_radioBoton = new javax.swing.JRadioButton();
@@ -48,10 +47,16 @@ public class IngresarExpScreen extends javax.swing.JFrame {
         cancel_boton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Ingresar Expediente");
+        setLocationByPlatform(true);
+        setMinimumSize(new java.awt.Dimension(850, 500));
+        setPreferredSize(new java.awt.Dimension(850, 500));
         setResizable(false);
         setSize(new java.awt.Dimension(850, 500));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("PRIORIDAD:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 83, 22));
 
         prioridad_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
         prioridad_comboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -59,33 +64,42 @@ public class IngresarExpScreen extends javax.swing.JFrame {
                 prioridad_comboBoxActionPerformed(evt);
             }
         });
+        getContentPane().add(prioridad_comboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, -1, 22));
 
         jLabel2.setText("DNI: ");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 37, -1));
+        getContentPane().add(dni_txtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 140, -1));
+        getContentPane().add(nombres_txtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, 140, -1));
 
         jLabel3.setText("NOMBRES:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
 
         telefono_txtField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 telefono_txtFieldActionPerformed(evt);
             }
         });
+        getContentPane().add(telefono_txtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 140, -1));
 
         email_txtField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 email_txtFieldActionPerformed(evt);
             }
         });
+        getContentPane().add(email_txtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, 140, -1));
 
         jLabel4.setText("TELEFONO:");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
 
         jLabel5.setText("EMAIL:");
-
-        jLabel6.setText("ASUNTO:");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, -1, -1));
 
         jLabel7.setText("INGRESAR EXPEDIENTE");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 146, -1));
 
         botonGroup_tipo.add(tipoULIMA_radioBoton);
         tipoULIMA_radioBoton.setText("Usuario ULIMA");
+        getContentPane().add(tipoULIMA_radioBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 112, -1));
 
         botonGroup_tipo.add(tipoExterno_radioBoton);
         tipoExterno_radioBoton.setText("Usuario externo");
@@ -94,6 +108,7 @@ public class IngresarExpScreen extends javax.swing.JFrame {
                 tipoExterno_radioBotonActionPerformed(evt);
             }
         });
+        getContentPane().add(tipoExterno_radioBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 280, 112, -1));
 
         listo_boton.setText("LISTO");
         listo_boton.addActionListener(new java.awt.event.ActionListener() {
@@ -101,6 +116,7 @@ public class IngresarExpScreen extends javax.swing.JFrame {
                 listo_botonActionPerformed(evt);
             }
         });
+        getContentPane().add(listo_boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 400, -1, -1));
 
         cancel_boton.setText("CANCELAR");
         cancel_boton.addActionListener(new java.awt.event.ActionListener() {
@@ -108,92 +124,7 @@ public class IngresarExpScreen extends javax.swing.JFrame {
                 cancel_botonActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel5)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(nombres_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(telefono_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(asunto_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(email_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(dni_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(prioridad_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 452, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(tipoExterno_radioBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(tipoULIMA_radioBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(cancel_boton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(listo_boton))))
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel7)
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(asunto_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(prioridad_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(16, 16, 16)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(dni_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel2)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(tipoULIMA_radioBoton)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(tipoExterno_radioBoton)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(nombres_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(telefono_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel4))
-                        .addGap(18, 18, 18)
-                        .addComponent(email_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancel_boton)
-                    .addComponent(listo_boton))
-                .addGap(29, 29, 29))
-        );
+        getContentPane().add(cancel_boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -212,10 +143,15 @@ public class IngresarExpScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_tipoExterno_radioBotonActionPerformed
 
     private void cancel_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_botonActionPerformed
-        ScreensManager.irAtras(this);
+        int btnRegresar = JOptionPane.showConfirmDialog(rootPane, "Estás seguro de regresar?\nPerderás todo tu progreso.", "Advertencia", 0);
+        if (btnRegresar == 0) {
+            ScreensManager.irAtras(this);        
+        }
+        
     }//GEN-LAST:event_cancel_botonActionPerformed
 
     private void listo_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listo_botonActionPerformed
+
         JOptionPane.showMessageDialog(rootPane, "Expediente ingresado correctamente");
         ScreensManager.irAtras(this);
     }//GEN-LAST:event_listo_botonActionPerformed
@@ -260,7 +196,6 @@ public class IngresarExpScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField asunto_txtField;
     private javax.swing.ButtonGroup botonGroup_tipo;
     private javax.swing.JButton cancel_boton;
     private javax.swing.JTextField dni_txtField;
@@ -270,7 +205,6 @@ public class IngresarExpScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JButton listo_boton;
     private javax.swing.JTextField nombres_txtField;

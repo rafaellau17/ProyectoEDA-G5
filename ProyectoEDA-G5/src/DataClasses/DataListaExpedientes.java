@@ -11,6 +11,6 @@ import tda.ListaDoble;
  * @author rafae
  */
 public class DataListaExpedientes {
-    public static ListaDoble<DataExpediente> listaExpedientes;
+    public static ListaDoble<DataExpediente> listaExpedientes = new ListaDoble();
     
 }

@@ -14,7 +14,7 @@ import tda.NodoDoble;
  */
 public class ListaExpedientesManager {
     
-    public void agregarExpediente(DataExpediente expediente) {
+    public static void agregarExpediente(DataExpediente expediente) {
         listaExpedientes.agregar(expediente);
     }
     

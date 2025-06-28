@@ -4,19 +4,69 @@
  */
 package Screens;
 
+import DataClasses.DataExpediente;
+import static DataClasses.DataListaExpedientes.listaExpedientes;
+import javax.swing.table.DefaultTableModel;
+import tda.ListaDoble;
+import tda.NodoDoble;
+import static DataManagers.ListaExpedientesManager.*;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author MARIEL
  */
 public class AdminScreen extends javax.swing.JFrame {
 
+private DefaultTableModel modelo = new DefaultTableModel() {
+    // Hace que la celdas no sean editables
+    @Override
+    public boolean isCellEditable(int row, int column) {
+        return false;
+        }
+    };    
+    
     /**
      * Creates new form AdminScreen
      */
     public AdminScreen() {
         initComponents();
+        modelo = new DefaultTableModel();
+        modelo.addColumn("ID");
+        modelo.addColumn("DNI");
+        modelo.addColumn("TIPO");
+        modelo.addColumn("PRIORIDAD");
+        modelo.addColumn("DESCRIPCION");
+        this.tablaExp.setModel(modelo);
+        if (!listaExpedientes.esVacia()) {
+            Poblar();
+        }
     }
 
+ private void Poblar()
+    {
+        int filas = this.tablaExp.getRowCount();
+        for(int i=0;i<filas;i++)
+        {
+            modelo.removeRow(0);
+        }
+        
+       ListaDoble<DataExpediente> listaAux = listaExpedientes;
+       NodoDoble<DataExpediente> nodoAux = listaAux.getCabeza();
+       String[] datos = new String[5];
+       
+       for(int i = 0; i < listaAux.longitud()-1; i++)
+       {
+           datos[0] = String.valueOf(nodoAux.getItem().getId());
+           datos[1] = String.valueOf(nodoAux.getItem().getDni());
+           datos[2] = String.valueOf(nodoAux.getItem().getTipo());
+           datos[3] = String.valueOf(nodoAux.getItem().getPrioridad());
+           datos[4] = String.valueOf(nodoAux.getItem().getPrioridad());
+           modelo.addRow(datos);
+       }
+    }    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -53,17 +103,18 @@ public class AdminScreen extends javax.swing.JFrame {
             }
         });
 
+        tablaExp.setAutoCreateRowSorter(true);
         tablaExp.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
+        tablaExp.setFillsViewportHeight(true);
+        tablaExp.getTableHeader().setResizingAllowed(false);
+        tablaExp.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tablaExp);
 
         ingresarExp_boton.setText("INGRESAR EXPEDIENTE");
@@ -73,7 +124,8 @@ public class AdminScreen extends javax.swing.JFrame {
             }
         });
 
-        bienvenidoUser_label.setText("BIENVENIDO");
+        bienvenidoUser_label.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        bienvenidoUser_label.setText("BIENVENIDO, admin");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -82,38 +134,41 @@ public class AdminScreen extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(fin_sesion_boton)
-                        .addGap(549, 549, 549))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(bienvenidoUser_label, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45)
+                        .addComponent(bienvenidoUser_label, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(dni_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(buscarTram_boton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(ingresarExp_boton))
-                            .addComponent(jScrollPane1))))
+                            .addComponent(jScrollPane1)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(fin_sesion_boton)
+                        .addGap(549, 549, 549)))
                 .addGap(41, 41, 41))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bienvenidoUser_label))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addComponent(bienvenidoUser_label)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ingresarExp_boton)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1)
                         .addComponent(dni_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(buscarTram_boton, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(buscarTram_boton, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addComponent(fin_sesion_boton)
                 .addGap(25, 25, 25))
@@ -133,7 +188,23 @@ public class AdminScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_ingresarExp_botonActionPerformed
 
     private void buscarTram_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarTram_botonActionPerformed
+        try {
+            int dni = Integer.parseInt(dni_txtField.getText().trim());
+            DataExpediente exp;
+            exp = buscarExpediente(dni);
 
+            if (exp != null) {
+                ExpedienteBuscadoScreen exBuscado_pantalla = new ExpedienteBuscadoScreen(exp);
+                ScreensManager.nuevaPantalla(this, exBuscado_pantalla);
+            }
+            else {
+                JOptionPane.showMessageDialog(rootPane, "DNI no encontrado.", "Advertencia", JOptionPane.INFORMATION_MESSAGE);
+            }
+        
+        } 
+        catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(rootPane, "DNI no es válido.", "Error", JOptionPane.WARNING_MESSAGE);
+        }        
     }//GEN-LAST:event_buscarTram_botonActionPerformed
 
     /**
