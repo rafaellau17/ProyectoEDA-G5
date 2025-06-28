@@ -9,6 +9,8 @@ import static DataClasses.DataListaExpedientes.listaExpedientes;
 import javax.swing.table.DefaultTableModel;
 import tda.ListaDoble;
 import tda.NodoDoble;
+import static DataManagers.ListaExpedientesManager.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,8 +18,13 @@ import tda.NodoDoble;
  */
 public class AdminScreen extends javax.swing.JFrame {
 
-    private DefaultTableModel modelo = new DefaultTableModel();
-    
+private DefaultTableModel modelo = new DefaultTableModel() {
+    // Hace que la celdas no sean editables
+    @Override
+    public boolean isCellEditable(int row, int column) {
+        return false;
+        }
+    };    
     
     /**
      * Creates new form AdminScreen
@@ -96,17 +103,18 @@ public class AdminScreen extends javax.swing.JFrame {
             }
         });
 
+        tablaExp.setAutoCreateRowSorter(true);
         tablaExp.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
+        tablaExp.setFillsViewportHeight(true);
+        tablaExp.getTableHeader().setResizingAllowed(false);
+        tablaExp.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tablaExp);
 
         ingresarExp_boton.setText("INGRESAR EXPEDIENTE");
@@ -180,8 +188,24 @@ public class AdminScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_ingresarExp_botonActionPerformed
 
     private void buscarTram_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarTram_botonActionPerformed
-        ExpedienteBuscadoScreen exBuscado_pantalla = new ExpedienteBuscadoScreen();
-        ScreensManager.nuevaPantalla(this, exBuscado_pantalla);
+        try {
+            int dni = Integer.parseInt(dni_txtField.getText().trim());
+            DataExpediente exp;
+            exp = buscarExpediente(dni);
+
+            if (exp != null) {
+                ExpedienteBuscadoScreen exBuscado_pantalla = new ExpedienteBuscadoScreen(exp);
+                ScreensManager.nuevaPantalla(this, exBuscado_pantalla);
+            }
+            else {
+                JOptionPane.showMessageDialog(rootPane, "DNI no encontrado.", "Advertencia", JOptionPane.INFORMATION_MESSAGE);
+            }
+        
+        } 
+        catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(rootPane, "DNI no es válido.", "Error", JOptionPane.WARNING_MESSAGE);
+        }        
+
     }//GEN-LAST:event_buscarTram_botonActionPerformed
 
     /**

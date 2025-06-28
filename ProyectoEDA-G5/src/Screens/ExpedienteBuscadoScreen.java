@@ -4,17 +4,21 @@
  */
 package Screens;
 
+import DataClasses.DataExpediente;
 /**
  *
  * @author MARIEL
  */
 public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
-
     /**
      * Creates new form ExpedienteBuscadoScreen
+     * @param exp
      */
-    public ExpedienteBuscadoScreen() {
+    private DataExpediente expediente;
+    
+    public ExpedienteBuscadoScreen(DataExpediente exp) {
         initComponents();
+        this.expediente = exp;
     }
 
     /**
@@ -283,7 +287,8 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ExpedienteBuscadoScreen().setVisible(true);
+                DataExpediente exp = null;
+                new ExpedienteBuscadoScreen(exp).setVisible(true);
             }
         });
     }
