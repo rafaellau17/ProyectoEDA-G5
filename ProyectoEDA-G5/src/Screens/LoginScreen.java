@@ -20,8 +20,10 @@ public class LoginScreen extends javax.swing.JFrame {
      */
     public LoginScreen() {
         initComponents();
-        DataExpediente aux = new DataExpediente(1, 10210303, "hola", "ULIMA", 444, "hola");
+        DataExpediente aux = new DataExpediente(1, 10210303, "Juan", "ULIMA", 444, "juan@gmail.com");
+        DataExpediente aux2 = new DataExpediente(2, 20235843, "Pepe", "EXTERNO", 555, "pepe@hotmail.com");
         agregarExpediente(aux);
+        agregarExpediente(aux2);
     }
 
     /**
@@ -174,6 +176,8 @@ public class LoginScreen extends javax.swing.JFrame {
 
     private void iniSesion_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniSesion_botonActionPerformed
         if (user_txtField.getText().equals(user) && new String(password_txtField.getPassword()).equals(password)) {
+            user_txtField.setText("");
+            password_txtField.setText("");
             AdminScreen adminScreen = new AdminScreen();
             ScreensManager.nuevaPantalla(this, adminScreen);
         }
