@@ -53,7 +53,7 @@ public class LoginScreen extends javax.swing.JFrame {
         jPanel1.setRequestFocusEnabled(false);
         jPanel1.setVerifyInputWhenFocusTarget(false);
 
-        iniSesion_boton.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Grey"));
+        iniSesion_boton.setBackground(java.awt.Color.white);
         iniSesion_boton.setText("INICIAR SESION");
         iniSesion_boton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,7 +71,7 @@ public class LoginScreen extends javax.swing.JFrame {
 
         jLabel2.setText("CONTRASEÑA:");
 
-        salir_boton.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Grey"));
+        salir_boton.setBackground(java.awt.Color.white);
         salir_boton.setText("SALIR");
         salir_boton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -153,6 +153,8 @@ public class LoginScreen extends javax.swing.JFrame {
         }
         else {
             JOptionPane.showMessageDialog(rootPane, "Usuario y/o contraseña incorrecto", "ERROR", JOptionPane.WARNING_MESSAGE);
+            user_txtField.setText(null);
+            password_txtField.setText(null);
         }
     }//GEN-LAST:event_iniSesion_botonActionPerformed
 

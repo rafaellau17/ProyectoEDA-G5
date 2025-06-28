@@ -114,7 +114,7 @@
         <Component class="javax.swing.JButton" name="iniSesion_boton">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="b3" green="b1" id="Actions.Grey" palette="3" red="af" type="palette"/>
+              <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
             </Property>
             <Property name="text" type="java.lang.String" value="INICIAR SESION"/>
           </Properties>
@@ -140,7 +140,7 @@
         <Component class="javax.swing.JButton" name="salir_boton">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="b3" green="b1" id="Actions.Grey" palette="3" red="af" type="palette"/>
+              <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
             </Property>
             <Property name="text" type="java.lang.String" value="SALIR"/>
           </Properties>
