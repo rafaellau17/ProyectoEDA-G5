@@ -4,6 +4,8 @@
  */
 package Screens;
 
+import DataClasses.DataExpediente;
+import static DataManagers.ListaExpedientesManager.agregarExpediente;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,6 +20,8 @@ public class LoginScreen extends javax.swing.JFrame {
      */
     public LoginScreen() {
         initComponents();
+        DataExpediente aux = new DataExpediente(1, 10210303, "hola", "ULIMA", 444, "hola");
+        agregarExpediente(aux);
     }
 
     /**
@@ -36,6 +40,7 @@ public class LoginScreen extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         salir_boton = new javax.swing.JButton();
         password_txtField = new javax.swing.JPasswordField();
+        jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -128,9 +133,30 @@ public class LoginScreen extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(546, 0, 310, -1));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Screens/LoginImage.jpg"))); // NOI18N
-        jLabel3.setText("jLabel3");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jPanel2.setBackground(java.awt.Color.white);
+
+        jLabel3.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("UNIVERSIDAD DE LIMA");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(122, 122, 122)
+                .addComponent(jLabel3)
+                .addContainerGap(141, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(190, 190, 190)
+                .addComponent(jLabel3)
+                .addContainerGap(250, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 470));
 
         getAccessibleContext().setAccessibleName("");
 
@@ -203,6 +229,7 @@ public class LoginScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField password_txtField;
     private javax.swing.JButton salir_boton;
     private javax.swing.JTextField user_txtField;
