@@ -40,6 +40,7 @@ public class LoginScreen extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
+        setLocationByPlatform(true);
         setMaximumSize(new java.awt.Dimension(850, 500));
         setPreferredSize(new java.awt.Dimension(850, 500));
         setResizable(false);
