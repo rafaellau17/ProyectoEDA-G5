@@ -3,6 +3,7 @@
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="title" type="java.lang.String" value="Admin"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -35,7 +36,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="dni_txtField" min="-2" pref="108" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="buscarTram_boton" min="-2" max="-2" attributes="0"/>
+                              <Component id="buscarExp_boton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="ingresarExp_boton" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -70,7 +71,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="dni_txtField" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="buscarTram_boton" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                      <Component id="buscarExp_boton" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="54" max="32767" attributes="0"/>
@@ -96,12 +97,12 @@
     </Component>
     <Component class="javax.swing.JTextField" name="dni_txtField">
     </Component>
-    <Component class="javax.swing.JButton" name="buscarTram_boton">
+    <Component class="javax.swing.JButton" name="buscarExp_boton">
       <Properties>
         <Property name="text" type="java.lang.String" value="BUSCAR EXPEDIENTE"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buscarTram_botonActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buscarExp_botonActionPerformed"/>
       </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">

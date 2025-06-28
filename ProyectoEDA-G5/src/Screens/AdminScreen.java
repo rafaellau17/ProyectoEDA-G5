@@ -10,6 +10,7 @@ import javax.swing.table.DefaultTableModel;
 import tda.ListaDoble;
 import tda.NodoDoble;
 import static DataManagers.ListaExpedientesManager.*;
+import java.util.HashSet;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,25 +19,25 @@ import javax.swing.JOptionPane;
  */
 public class AdminScreen extends javax.swing.JFrame {
 
-private DefaultTableModel modelo = new DefaultTableModel() {
-    // Hace que la celdas no sean editables
-    @Override
-    public boolean isCellEditable(int row, int column) {
-        return false;
-        }
-    };    
+private DefaultTableModel modelo;    
     
     /**
      * Creates new form AdminScreen
      */
     public AdminScreen() {
+        this.modelo = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+            return false;
+        }
+            
+        };
         initComponents();
-        modelo = new DefaultTableModel();
         modelo.addColumn("ID");
+        modelo.addColumn("NOMBRES");
         modelo.addColumn("DNI");
         modelo.addColumn("TIPO");
         modelo.addColumn("PRIORIDAD");
-        modelo.addColumn("DESCRIPCION");
         this.tablaExp.setModel(modelo);
         if (!listaExpedientes.esVacia()) {
             Poblar();
@@ -51,18 +52,18 @@ private DefaultTableModel modelo = new DefaultTableModel() {
             modelo.removeRow(0);
         }
         
-       ListaDoble<DataExpediente> listaAux = listaExpedientes;
-       NodoDoble<DataExpediente> nodoAux = listaAux.getCabeza();
+       NodoDoble<DataExpediente> nodoAux = listaExpedientes.getCabeza();
        String[] datos = new String[5];
        
-       for(int i = 0; i < listaAux.longitud()-1; i++)
+       for(int i = 0; i < listaExpedientes.longitud(); i++)
        {
            datos[0] = String.valueOf(nodoAux.getItem().getId());
-           datos[1] = String.valueOf(nodoAux.getItem().getDni());
-           datos[2] = String.valueOf(nodoAux.getItem().getTipo());
-           datos[3] = String.valueOf(nodoAux.getItem().getPrioridad());
+           datos[1] = String.valueOf(nodoAux.getItem().getNombres());
+           datos[2] = String.valueOf(nodoAux.getItem().getDni());
+           datos[3] = String.valueOf(nodoAux.getItem().getTipo());
            datos[4] = String.valueOf(nodoAux.getItem().getPrioridad());
            modelo.addRow(datos);
+           nodoAux = nodoAux.getSgteNodo();
        }
     }    
     
@@ -79,13 +80,14 @@ private DefaultTableModel modelo = new DefaultTableModel() {
         fin_sesion_boton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         dni_txtField = new javax.swing.JTextField();
-        buscarTram_boton = new javax.swing.JButton();
+        buscarExp_boton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaExp = new javax.swing.JTable();
         ingresarExp_boton = new javax.swing.JButton();
         bienvenidoUser_label = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Admin");
 
         fin_sesion_boton.setText("CERRAR SESION");
         fin_sesion_boton.addActionListener(new java.awt.event.ActionListener() {
@@ -96,10 +98,10 @@ private DefaultTableModel modelo = new DefaultTableModel() {
 
         jLabel1.setText("DNI: ");
 
-        buscarTram_boton.setText("BUSCAR EXPEDIENTE");
-        buscarTram_boton.addActionListener(new java.awt.event.ActionListener() {
+        buscarExp_boton.setText("BUSCAR EXPEDIENTE");
+        buscarExp_boton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscarTram_botonActionPerformed(evt);
+                buscarExp_botonActionPerformed(evt);
             }
         });
 
@@ -143,7 +145,7 @@ private DefaultTableModel modelo = new DefaultTableModel() {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(dni_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buscarTram_boton)
+                                .addComponent(buscarExp_boton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(ingresarExp_boton))
                             .addComponent(jScrollPane1)))
@@ -168,7 +170,7 @@ private DefaultTableModel modelo = new DefaultTableModel() {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1)
                         .addComponent(dni_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(buscarTram_boton, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(buscarExp_boton, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addComponent(fin_sesion_boton)
                 .addGap(25, 25, 25))
@@ -187,13 +189,14 @@ private DefaultTableModel modelo = new DefaultTableModel() {
         ScreensManager.nuevaPantalla(this, ingresarExp_pantalla);
     }//GEN-LAST:event_ingresarExp_botonActionPerformed
 
-    private void buscarTram_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarTram_botonActionPerformed
+    private void buscarExp_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarExp_botonActionPerformed
         try {
             int dni = Integer.parseInt(dni_txtField.getText().trim());
             DataExpediente exp;
             exp = buscarExpediente(dni);
 
             if (exp != null) {
+                dni_txtField.setText("");
                 ExpedienteBuscadoScreen exBuscado_pantalla = new ExpedienteBuscadoScreen(exp);
                 ScreensManager.nuevaPantalla(this, exBuscado_pantalla);
             }
@@ -205,7 +208,7 @@ private DefaultTableModel modelo = new DefaultTableModel() {
         catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(rootPane, "DNI no es válido.", "Error", JOptionPane.WARNING_MESSAGE);
         }        
-    }//GEN-LAST:event_buscarTram_botonActionPerformed
+    }//GEN-LAST:event_buscarExp_botonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -244,7 +247,7 @@ private DefaultTableModel modelo = new DefaultTableModel() {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bienvenidoUser_label;
-    private javax.swing.JButton buscarTram_boton;
+    private javax.swing.JButton buscarExp_boton;
     private javax.swing.JTextField dni_txtField;
     private javax.swing.JButton fin_sesion_boton;
     private javax.swing.JButton ingresarExp_boton;
