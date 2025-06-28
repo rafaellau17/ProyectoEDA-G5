@@ -38,10 +38,20 @@ public class AdminScreen extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         fin_sesion_boton.setText("CERRAR SESION");
+        fin_sesion_boton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fin_sesion_botonActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("DNI: ");
 
         buscarTram_boton.setText("BUSCAR EXPEDIENTE");
+        buscarTram_boton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarTram_botonActionPerformed(evt);
+            }
+        });
 
         tablaExp.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -57,6 +67,11 @@ public class AdminScreen extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tablaExp);
 
         ingresarExp_boton.setText("INGRESAR EXPEDIENTE");
+        ingresarExp_boton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ingresarExp_botonActionPerformed(evt);
+            }
+        });
 
         bienvenidoUser_label.setText("BIENVENIDO");
 
@@ -105,7 +120,22 @@ public class AdminScreen extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void fin_sesion_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fin_sesion_botonActionPerformed
+        ScreensManager.irAtras(this);
+    }//GEN-LAST:event_fin_sesion_botonActionPerformed
+
+    private void ingresarExp_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarExp_botonActionPerformed
+        IngresarExpScreen ingresarExp_pantalla = new IngresarExpScreen();
+        ScreensManager.nuevaPantalla(this, ingresarExp_pantalla);
+    }//GEN-LAST:event_ingresarExp_botonActionPerformed
+
+    private void buscarTram_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarTram_botonActionPerformed
+        ExpedienteBuscadoScreen exBuscado_pantalla = new ExpedienteBuscadoScreen();
+        ScreensManager.nuevaPantalla(this, exBuscado_pantalla);
+    }//GEN-LAST:event_buscarTram_botonActionPerformed
 
     /**
      * @param args the command line arguments

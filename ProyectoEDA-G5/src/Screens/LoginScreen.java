@@ -52,8 +52,18 @@ public class LoginScreen extends javax.swing.JFrame {
         });
 
         iniSesion_boton.setText("INICIAR SESION");
+        iniSesion_boton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                iniSesion_botonActionPerformed(evt);
+            }
+        });
 
         salir_boton.setText("SALIR");
+        salir_boton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salir_botonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -97,6 +107,7 @@ public class LoginScreen extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void user_txtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_user_txtFieldActionPerformed
@@ -106,6 +117,15 @@ public class LoginScreen extends javax.swing.JFrame {
     private void password_txtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_password_txtFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_password_txtFieldActionPerformed
+
+    private void salir_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salir_botonActionPerformed
+
+    }//GEN-LAST:event_salir_botonActionPerformed
+
+    private void iniSesion_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniSesion_botonActionPerformed
+        AdminScreen adminScreen = new AdminScreen();
+        ScreensManager.nuevaPantalla(this, adminScreen);
+    }//GEN-LAST:event_iniSesion_botonActionPerformed
 
     /**
      * @param args the command line arguments

@@ -4,6 +4,8 @@
  */
 package Screens;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author MARIEL
@@ -87,8 +89,18 @@ public class IngresarExpScreen extends javax.swing.JFrame {
         });
 
         listo_boton.setText("LISTO");
+        listo_boton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listo_botonActionPerformed(evt);
+            }
+        });
 
         cancel_boton.setText("CANCELAR");
+        cancel_boton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancel_botonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -177,6 +189,7 @@ public class IngresarExpScreen extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void telefono_txtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefono_txtFieldActionPerformed
@@ -190,6 +203,15 @@ public class IngresarExpScreen extends javax.swing.JFrame {
     private void tipoExterno_radioBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoExterno_radioBotonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tipoExterno_radioBotonActionPerformed
+
+    private void cancel_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_botonActionPerformed
+        ScreensManager.irAtras(this);
+    }//GEN-LAST:event_cancel_botonActionPerformed
+
+    private void listo_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listo_botonActionPerformed
+        JOptionPane.showMessageDialog(rootPane, "Expediente ingresado correctamente");
+        ScreensManager.irAtras(this);
+    }//GEN-LAST:event_listo_botonActionPerformed
 
     /**
      * @param args the command line arguments
