@@ -13,7 +13,7 @@ import tda.Nodo;
  * @author Daniel
  */
 public class TramitesPendientes {
-    private static ListaCircularSimple<DataTramite> listaPendientes = new ListaCircularSimple<>();
+    public static ListaCircularSimple<DataTramite> listaPendientes = new ListaCircularSimple<>();
     
     public static void agregarTramitePendiente(DataTramite tramite) {
         listaPendientes.agregar(tramite);
