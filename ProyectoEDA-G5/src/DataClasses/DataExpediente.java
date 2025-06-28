@@ -20,6 +20,7 @@ public class DataExpediente {
     private String tipo;
     private int telefono;
     private String email;
+    private String asunto;
     private Cola<Documento> docsRef;
     private Lista<DataTramite> listaTramites;
     
@@ -32,6 +33,7 @@ public class DataExpediente {
         this.tipo = tipo;
         this.telefono = telefono;
         this.email = email;
+        this.asunto = asunto;
         docsRef = new Cola();
         listaTramites = new Lista();
     }
@@ -69,6 +71,12 @@ public class DataExpediente {
     public String getEmail() {
         return email;
     }
+
+
+    public String getAsunto() {
+        return asunto;
+    }
+
 
     public Cola<Documento> getDocsRef() {
         return docsRef;
