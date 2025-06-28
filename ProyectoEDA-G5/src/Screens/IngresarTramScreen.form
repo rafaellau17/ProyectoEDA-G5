@@ -126,11 +126,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="LISTO"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="listo_botonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="regresar_boton">
       <Properties>
         <Property name="text" type="java.lang.String" value="REGRESAR"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="regresar_botonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="dni_label">
       <Properties>
