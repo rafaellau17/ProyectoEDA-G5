@@ -5,7 +5,6 @@
 package Screens;
 import DataClasses.*;
 import DataManagers.ExpedienteManager;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import tda.*;
@@ -24,32 +23,53 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
     public ExpedienteBuscadoScreen(DataExpediente exp) {
         initComponents();
         this.expediente = exp;
+        id_label.setText("ID: "+expediente.getId());
+        prioridad_label.setText("PRIORIDAD: " + expediente.getPrioridad());
+        nombres_label.setText("NOMBRES: "+expediente.getNombres());
+        tipo_label.setText("TIPO: "+expediente.getTipo());
+        telefono_label.setText("TELEFONO: "+expediente.getTelefono());
+        email_label.setText("EMAIL: : "+expediente.getEmail());
+        
         
         modelo_1 = new DefaultTableModel();
-        modelo_1.addColumn("Nro");
-        modelo_1.addColumn("Nombre de documento");
+        modelo_1.addColumn("NRO");
+        modelo_1.addColumn("NOMBRE DEL DOCUMENTO");
         
         modelo_2 = new DefaultTableModel();
         modelo_2.addColumn("ID");
-        modelo_2.addColumn("Descripcion");
-        modelo_2.addColumn("Fecha de inicio");
+        modelo_2.addColumn("DESCRIPCION");
+        modelo_2.addColumn("FECHA DE INICIO");
         
         this.docsTabla.setModel(modelo_1);
         this.tramitesTabla.setModel(modelo_2);     
         
-        iniciarDocsTable();
-        iniciarTramiteTable();
+        if (!expediente.getDocsRef().esVacia()) {
+            poblarDocsTable();
+            
+        }
+        if (!ExpedienteManager.mostrarTramites(expediente).esVacia()) {
+            poblarTramTable();
+        }
+        
     }
     
-    private void iniciarDocsTable(){
-        DefaultTableModel tabla = (DefaultTableModel)docsTabla.getModel();
+    private void poblarDocsTable(){
+        int filas = this.docsTabla.getRowCount();
+        for(int i=0;i<filas;i++)
+        {
+            modelo_1.removeRow(0);
+        }
+        
         Cola<Documento> cola = ExpedienteManager.mostrarDocumentos(expediente);
         Cola<Documento> aux = new Cola<>();
-        
+        String[] datos = new String[2];
+
         int conta = 1;
         while (!cola.esVacia()){
             Documento doc = cola.desencolar();
-            tabla.addRow(new Object[] {conta, doc.getItem()});
+            datos[0] = conta+"";
+            datos[1] = doc.getItem();
+            modelo_1.addRow(datos);
             conta++;
             aux.encolar(doc);
         }
@@ -59,15 +79,20 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
         }
     }
     
-    private void iniciarTramiteTable(){
-        DefaultTableModel table = (DefaultTableModel)tramitesTabla.getModel();
+    private void poblarTramTable(){
+        int filas = this.tramitesTabla.getRowCount();
+        for(int i=0;i<filas;i++)
+        {
+            modelo_2.removeRow(0);
+        }
+        
         Lista<DataTramite> lista = ExpedienteManager.mostrarTramites(expediente);
         Nodo<DataTramite> aux = lista.getCabeza();
+
         
-        while(!lista.esVacia()){
+        while(aux.getSgteNodo()!=null){
             DataTramite temp = aux.getItem();
-            table.addRow(new Object[] {temp.getId(), temp.getDescripcion(), temp.getFechaIni()});
-            
+            modelo_2.addRow(new Object[] {temp.getId(), temp.getDescripcion(), temp.getFechaIni()});
             aux = aux.getSgteNodo();
         }
     }
@@ -82,14 +107,15 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        id_label = new javax.swing.JLabel();
+        prioridad_label = new javax.swing.JLabel();
+        nombres_label = new javax.swing.JLabel();
+        tipo_label = new javax.swing.JLabel();
+        telefono_label = new javax.swing.JLabel();
+        email_label = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         docsTabla = new javax.swing.JTable();
+        addDoc_botton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -99,26 +125,24 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
         id_txtField = new javax.swing.JTextField();
         accTram_boton = new javax.swing.JButton();
         atras_button = new javax.swing.JButton();
-        addDoc_botton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
         setMinimumSize(new java.awt.Dimension(850, 500));
-        setPreferredSize(new java.awt.Dimension(850, 500));
         setResizable(false);
         setSize(new java.awt.Dimension(850, 500));
 
-        jLabel1.setText("ID:");
+        id_label.setText("ID:");
 
-        jLabel2.setText("PRIORIDAD:");
+        prioridad_label.setText("PRIORIDAD:");
 
-        jLabel3.setText("NOMBRES:");
+        nombres_label.setText("NOMBRES:");
 
-        jLabel4.setText("TIPO: ");
+        tipo_label.setText("TIPO: ");
 
-        jLabel5.setText("TELEFONO: ");
+        telefono_label.setText("TELEFONO: ");
 
-        jLabel6.setText("EMAIL:");
+        email_label.setText("EMAIL:");
 
         docsTabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -133,6 +157,13 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(docsTabla);
 
+        addDoc_botton.setText("AGREGAR DOCUMENTO");
+        addDoc_botton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addDoc_bottonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -140,38 +171,46 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(67, 67, 67)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(id_label, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 391, Short.MAX_VALUE)
+                        .addComponent(email_label, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(telefono_label, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+                        .addComponent(tipo_label, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(nombres_label, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(prioridad_label, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 341, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(56, 56, 56))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(addDoc_botton)
+                .addGap(118, 118, 118))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(69, 69, 69)
-                .addComponent(jLabel1)
+                .addComponent(id_label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
+                .addComponent(prioridad_label)
                 .addGap(11, 11, 11)
-                .addComponent(jLabel3)
+                .addComponent(nombres_label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
+                .addComponent(tipo_label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5)
+                .addComponent(telefono_label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6)
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addComponent(email_label)
+                .addContainerGap(109, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(addDoc_botton)
+                .addGap(22, 22, 22))
         );
+
+        addDoc_botton.getAccessibleContext().setAccessibleName("");
 
         jTabbedPane1.addTab("DATOS DEL EXPEDIENTE", jPanel1);
 
@@ -235,7 +274,7 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
                     .addComponent(id_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
                     .addComponent(accTram_boton))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("TRAMITES DEL EXPEDIENTE", jPanel2);
@@ -244,13 +283,6 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
         atras_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 atras_buttonActionPerformed(evt);
-            }
-        });
-
-        addDoc_botton.setText("AGREGAR DOCUMENTO");
-        addDoc_botton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addDoc_bottonActionPerformed(evt);
             }
         });
 
@@ -265,32 +297,24 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(atras_button)))
-                .addContainerGap(14, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(addDoc_botton)
-                .addGap(85, 85, 85))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(5, 5, 5)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(addDoc_botton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addComponent(atras_button)
                 .addGap(30, 30, 30))
         );
-
-        addDoc_botton.getAccessibleContext().setAccessibleName("");
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void addTram_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTram_buttonActionPerformed
-        IngresarTramScreen ingresarTram_pantalla = new IngresarTramScreen();
+        IngresarTramScreen ingresarTram_pantalla = new IngresarTramScreen(expediente);
         ScreensManager.nuevaPantalla(this, ingresarTram_pantalla);
     }//GEN-LAST:event_addTram_buttonActionPerformed
 
@@ -299,22 +323,16 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_atras_buttonActionPerformed
 
     private void accTram_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accTram_botonActionPerformed
-        TramiteBuscadoScreen tramiteBuscado_pantalla = new TramiteBuscadoScreen();
+        TramiteBuscadoScreen tramiteBuscado_pantalla = new TramiteBuscadoScreen(expediente);
         ScreensManager.nuevaPantalla(this, tramiteBuscado_pantalla);
     }//GEN-LAST:event_accTram_botonActionPerformed
 
     private void addDoc_bottonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDoc_bottonActionPerformed
-        String dependencias[] = {"DUSAR", "Facultad de Ingeniería", "Facultad de Derecho", "Facultad de Psicología", "Facultad de Ciencias Empresariales y Económicas", "Facultad de Comunicación", "Instituto de Investigación Científica", "Oficina de Innovación y Calidad Educativa", "Centro de Empleabilidad", "Centro de Idiomas", "Departamento de Orientación Psicopedagógica"};
-        JComboBox combobox = new JComboBox(dependencias);
-        
-        int input = JOptionPane.showConfirmDialog(this, combobox, "Seleccione una dependencia", JOptionPane.DEFAULT_OPTION);
-        
-        if(input == JOptionPane.OK_OPTION){
-            String str = (String)combobox.getSelectedItem();
-            
-            Documento aux = new Documento(str);
-            ExpedienteManager.agregarDocumento(expediente, aux);
-        }
+        String nombre_doc = JOptionPane.showInputDialog(this, "Ingrese el nombre del documento");
+        Documento aux = new Documento(nombre_doc);
+        ExpedienteManager.agregarDocumento(expediente, aux);
+        JOptionPane.showMessageDialog(this, "Documento ingresado");
+        poblarDocsTable();
     }//GEN-LAST:event_addDoc_bottonActionPerformed
     /**
      * @param args the command line arguments
@@ -358,13 +376,9 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
     private javax.swing.JButton addTram_button;
     private javax.swing.JButton atras_button;
     private javax.swing.JTable docsTabla;
+    private javax.swing.JLabel email_label;
+    private javax.swing.JLabel id_label;
     private javax.swing.JTextField id_txtField;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -372,6 +386,10 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel nombres_label;
+    private javax.swing.JLabel prioridad_label;
+    private javax.swing.JLabel telefono_label;
+    private javax.swing.JLabel tipo_label;
     private javax.swing.JTable tramitesTabla;
     // End of variables declaration//GEN-END:variables
 }

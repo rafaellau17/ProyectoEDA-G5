@@ -18,12 +18,7 @@ public class ExpedienteManager {
     
     public static void agregarTramite(DataExpediente expediente, DataTramite tramiteNuevo) {
         Lista<DataTramite> lista = expediente.getListaTramites();
-        if (lista.getUltimo().getItem().isTerminado()) {
             lista.agregar(tramiteNuevo);
-        }
-        else {
-            System.out.println("El último trámite no ha sido finalizado.");
-        }
     }
     
     public static void terminarTramite(DataExpediente expediente, Fecha fechaFin) {
@@ -68,5 +63,5 @@ public class ExpedienteManager {
     public static Cola<Documento> mostrarDocumentos(DataExpediente expediente) {
         return expediente.getDocsRef();
     }
-    
+      
 }
