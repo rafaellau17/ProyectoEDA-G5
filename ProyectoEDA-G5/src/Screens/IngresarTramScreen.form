@@ -41,26 +41,33 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                      <Component id="dni_label" min="-2" pref="95" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="dni_label" pref="95" max="32767" attributes="0"/>
+                          <Component id="nombre_txtLabel" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jLabel3" max="32767" attributes="0"/>
                           <Component id="jLabel2" max="32767" attributes="0"/>
-                          <Component id="jLabel1" min="-2" pref="105" max="-2" attributes="0"/>
-                          <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jLabel4" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
+                          <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="fechaIni_txtField" min="-2" pref="71" max="-2" attributes="0"/>
-                          <Component id="desc_txtField" max="32767" attributes="0"/>
-                          <Component id="estado_txtField1" min="-2" pref="120" max="-2" attributes="0"/>
-                          <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="dia_txtField" min="-2" pref="40" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="mes_txtField" min="-2" pref="40" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="annio_txtField" min="-2" pref="40" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="dependencias_comboBox" max="32767" attributes="0"/>
+                          <Component id="desc_txtField" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="479" max="32767" attributes="0"/>
+              <EmptySpace pref="215" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -69,38 +76,31 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
               <Component id="dni_label" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="nombre_txtLabel" min="-2" pref="16" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="fechaIni_txtField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="dia_txtField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="mes_txtField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="annio_txtField" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="desc_txtField" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="listo_boton" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="regresar_boton" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="estado_txtField1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="212" max="32767" attributes="0"/>
-                  </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="dependencias_comboBox" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace pref="147" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="listo_boton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="regresar_boton" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -108,10 +108,8 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="FECHA DE INICIO:"/>
+        <Property name="text" type="java.lang.String" value="FECHA DE INICIO (DD/MM/AAAA):"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="fechaIni_txtField">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
@@ -119,11 +117,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="desc_txtField">
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel3">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="ESTADO:"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="listo_boton">
       <Properties>
@@ -151,28 +144,44 @@
         <Property name="text" type="java.lang.String" value="DEPENDENCIA:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="estado_txtField1">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="estado_txtField1ActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBox1">
+    <Component class="javax.swing.JComboBox" name="dependencias_comboBox">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
+          <StringArray count="11">
+            <StringItem index="0" value="DUSAR"/>
+            <StringItem index="1" value="Facultad de Ingenier&#xed;a"/>
+            <StringItem index="2" value="Facultad de Derecho"/>
+            <StringItem index="3" value="Facultad de Psicolog&#xed;a"/>
+            <StringItem index="4" value="Facultad de Ciencias Empresariales y Econ&#xf3;micas"/>
+            <StringItem index="5" value="Facultad de Comunicaci&#xf3;n"/>
+            <StringItem index="6" value="Instituto de Investigaci&#xf3;n Cient&#xed;fica"/>
+            <StringItem index="7" value="Oficina de Innovaci&#xf3;n y Calidad Educativa"/>
+            <StringItem index="8" value="Centro de Empleabilidad"/>
+            <StringItem index="9" value="Centro de Idiomas"/>
+            <StringItem index="10" value="Departamento de Orientaci&#xf3;n Psicopedag&#xf3;gica"/>
           </StringArray>
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dependencias_comboBoxActionPerformed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="nombre_txtLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="NOMBRE: "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="dia_txtField">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dia_txtFieldActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="mes_txtField">
+    </Component>
+    <Component class="javax.swing.JTextField" name="annio_txtField">
     </Component>
   </SubComponents>
 </Form>

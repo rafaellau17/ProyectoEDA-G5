@@ -4,6 +4,10 @@
  */
 package Screens;
 
+import DataClasses.DataExpediente;
+import DataClasses.Documento;
+import DataManagers.ExpedienteManager;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.*;
 
@@ -16,10 +20,12 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
     /**
      * Creates new form TramiteBuscadoScreen
      */
+    private DataExpediente expediente;
     private DefaultTableModel modelo_1;
     private DefaultTableModel modelo_2;
-    public TramiteBuscadoScreen() {
+    public TramiteBuscadoScreen(DataExpediente exp) {
         initComponents();
+        this.expediente = exp;
         
         modelo_1 = new DefaultTableModel();
         modelo_1.addColumn("Nombre de Documento");
@@ -182,11 +188,12 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
         int response = JOptionPane.showConfirmDialog(rootPane, "¿Desea finalizar el tramite?", "Confirmacion", JOptionPane.YES_NO_OPTION);
         if (response == JOptionPane.YES_OPTION) {
             //finalizar tramite
+            ScreensManager.irAtras(this);
         }
         else{
             //no hacer nada
         }
-        ScreensManager.irAtras(this);
+        
     }//GEN-LAST:event_finTram_botonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -194,7 +201,15 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        String dependencias[] = {"DUSAR", "Facultad de Ingeniería", "Facultad de Derecho", "Facultad de Psicología", "Facultad de Ciencias Empresariales y Económicas", "Facultad de Comunicación", "Instituto de Investigación Científica", "Oficina de Innovación y Calidad Educativa", "Centro de Empleabilidad", "Centro de Idiomas", "Departamento de Orientación Psicopedagógica"};
+        JComboBox combobox = new JComboBox(dependencias);
+        
+        int input = JOptionPane.showConfirmDialog(this, combobox, "Seleccione una dependencia", JOptionPane.DEFAULT_OPTION);
+        
+        if(input == JOptionPane.OK_OPTION){
+            String str = (String)combobox.getSelectedItem();
+            //falta cambiar la dependencia
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
     /**
      * @param args the command line arguments
@@ -226,7 +241,8 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TramiteBuscadoScreen().setVisible(true);
+                DataExpediente aux = new DataExpediente(0, 0000, "NULL", "NULL", 0, "NULL");
+                new TramiteBuscadoScreen(aux).setVisible(true);
             }
         });
     }

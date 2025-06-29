@@ -4,6 +4,11 @@
  */
 package Screens;
 
+import DataClasses.DataExpediente;
+import DataClasses.DataTramite;
+import DataClasses.Fecha;
+import DataManagers.ExpedienteManager;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,8 +20,15 @@ public class IngresarTramScreen extends javax.swing.JFrame {
     /**
      * Creates new form IngresarTramScreen
      */
-    public IngresarTramScreen() {
+    private DataExpediente expediente;
+    public IngresarTramScreen(DataExpediente exp) {
         initComponents();
+        this.expediente = exp;
+        dni_label.setText("DNI: "+expediente.getDni());
+        nombre_txtLabel.setText("NOMBRES: "+expediente.getNombres());
+
+        
+       
     }
 
     /**
@@ -29,27 +41,26 @@ public class IngresarTramScreen extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        fechaIni_txtField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         desc_txtField = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
         listo_boton = new javax.swing.JButton();
         regresar_boton = new javax.swing.JButton();
         dni_label = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        estado_txtField1 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        dependencias_comboBox = new javax.swing.JComboBox<>();
+        nombre_txtLabel = new javax.swing.JLabel();
+        dia_txtField = new javax.swing.JTextField();
+        mes_txtField = new javax.swing.JTextField();
+        annio_txtField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(850, 500));
         setResizable(false);
         setSize(new java.awt.Dimension(850, 500));
 
-        jLabel1.setText("FECHA DE INICIO:");
+        jLabel1.setText("FECHA DE INICIO (DD/MM/AAAA):");
 
         jLabel2.setText("DESCRIPCION:");
-
-        jLabel3.setText("ESTADO:");
 
         listo_boton.setText("LISTO");
         listo_boton.addActionListener(new java.awt.event.ActionListener() {
@@ -69,16 +80,18 @@ public class IngresarTramScreen extends javax.swing.JFrame {
 
         jLabel4.setText("DEPENDENCIA:");
 
-        estado_txtField1.addActionListener(new java.awt.event.ActionListener() {
+        dependencias_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DUSAR", "Facultad de Ingeniería", "Facultad de Derecho", "Facultad de Psicología", "Facultad de Ciencias Empresariales y Económicas", "Facultad de Comunicación", "Instituto de Investigación Científica", "Oficina de Innovación y Calidad Educativa", "Centro de Empleabilidad", "Centro de Idiomas", "Departamento de Orientación Psicopedagógica" }));
+        dependencias_comboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                estado_txtField1ActionPerformed(evt);
+                dependencias_comboBoxActionPerformed(evt);
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        nombre_txtLabel.setText("NOMBRE: ");
+
+        dia_txtField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                dia_txtFieldActionPerformed(evt);
             }
         });
 
@@ -96,51 +109,53 @@ public class IngresarTramScreen extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(14, 14, 14)
-                        .addComponent(dni_label, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(dni_label, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+                            .addComponent(nombre_txtLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(73, 73, 73)
+                        .addGap(70, 70, 70)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(fechaIni_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(desc_txtField)
-                            .addComponent(estado_txtField1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(479, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(dia_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(mes_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(annio_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(dependencias_comboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(desc_txtField))))
+                .addContainerGap(215, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(dni_label)
-                .addGap(42, 42, 42)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(nombre_txtLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(fechaIni_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dia_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mes_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(annio_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(desc_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(listo_boton)
-                            .addComponent(regresar_boton))
-                        .addGap(21, 21, 21))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(estado_txtField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(212, Short.MAX_VALUE))))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(dependencias_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(listo_boton)
+                    .addComponent(regresar_boton))
+                .addGap(21, 21, 21))
         );
 
         pack();
@@ -148,21 +163,51 @@ public class IngresarTramScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void regresar_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresar_botonActionPerformed
-        ScreensManager.irAtras(this);
+        int response = JOptionPane.showConfirmDialog(rootPane, "¿Desea regresar? Todo su progreso se perderá", "Confirmacion", JOptionPane.YES_NO_OPTION);
+        if (response == JOptionPane.YES_OPTION) {
+            dia_txtField.setText("");
+            mes_txtField.setText("");
+            annio_txtField.setText("");
+            ScreensManager.irAtras(this);
+        }
+        else{
+            //no hacer nada
+        }
+        
     }//GEN-LAST:event_regresar_botonActionPerformed
 
     private void listo_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listo_botonActionPerformed
-        JOptionPane.showMessageDialog(rootPane, "Tramite ingresado correctamente");
-        ScreensManager.irAtras(this);
+        int dia = Integer.parseInt(dia_txtField.getText());
+        int mes = Integer.parseInt(mes_txtField.getText());
+        int annio = Integer.parseInt(annio_txtField.getText());
+        String desc = desc_txtField.getText();
+        String depend = dependencias_comboBox.getSelectedItem().toString();
+        
+        if ((dia<31 && dia > 0) && (mes>0 && mes<13) && (annio>1899 && annio<2026)) {
+            Fecha fechaIni = new Fecha(dia, mes, annio);
+            DataTramite tramite = new DataTramite(fechaIni, desc, depend);
+            ExpedienteManager.agregarTramite(expediente, tramite);
+            JOptionPane.showMessageDialog(rootPane, "Tramite ingresado correctamente");
+            ScreensManager.irAtras(this);
+            
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Ingrese una fecha valida");
+        }
+        
+        
+        
+        
+        
     }//GEN-LAST:event_listo_botonActionPerformed
 
-    private void estado_txtField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estado_txtField1ActionPerformed
+    private void dependencias_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dependencias_comboBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_estado_txtField1ActionPerformed
+    }//GEN-LAST:event_dependencias_comboBoxActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void dia_txtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dia_txtFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_dia_txtFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -194,22 +239,24 @@ public class IngresarTramScreen extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new IngresarTramScreen().setVisible(true);
+                DataExpediente aux = new DataExpediente(0, 0000, "NULL", "NULL", 0, "NULL");
+                new IngresarTramScreen(aux).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField annio_txtField;
+    private javax.swing.JComboBox<String> dependencias_comboBox;
     private javax.swing.JTextField desc_txtField;
+    private javax.swing.JTextField dia_txtField;
     private javax.swing.JLabel dni_label;
-    private javax.swing.JTextField estado_txtField1;
-    private javax.swing.JTextField fechaIni_txtField;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JButton listo_boton;
+    private javax.swing.JTextField mes_txtField;
+    private javax.swing.JLabel nombre_txtLabel;
     private javax.swing.JButton regresar_boton;
     // End of variables declaration//GEN-END:variables
 }
