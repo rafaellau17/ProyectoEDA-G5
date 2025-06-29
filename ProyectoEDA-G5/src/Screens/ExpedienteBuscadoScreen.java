@@ -24,7 +24,7 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
         initComponents();
         this.expediente = exp;
         id_label.setText("ID: "+expediente.getId());
-        prioridad_label.setText("PRIORIDAD: " + expediente.getPrioridad());
+        prioridad_label.setText("PRIORIDAD: " + String.valueOf(expediente.getPrioridad()));
         nombres_label.setText("NOMBRES: "+expediente.getNombres());
         tipo_label.setText("TIPO: "+expediente.getTipo());
         telefono_label.setText("TELEFONO: "+expediente.getTelefono());
@@ -334,8 +334,21 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_atras_buttonActionPerformed
 
     private void accTram_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accTram_botonActionPerformed
-        TramiteBuscadoScreen tramiteBuscado_pantalla = new TramiteBuscadoScreen(expediente);
-        ScreensManager.nuevaPantalla(this, tramiteBuscado_pantalla);
+        try{
+            int id = Integer.parseInt(id_txtField.getText());
+            DataTramite tramite = ExpedienteManager.buscarTramite(expediente, id);
+            if (tramite!=null) {
+                id_txtField.setText("");
+                TramiteBuscadoScreen tramiteBuscado_pantalla = new TramiteBuscadoScreen(tramite);
+                ScreensManager.nuevaPantalla(this, tramiteBuscado_pantalla);
+            }
+            else{
+                JOptionPane.showMessageDialog(rootPane, "ID no encontrado.", "Advertencia", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+        catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(rootPane, "ID no es válido.", "Error", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_accTram_botonActionPerformed
 
     private void addDoc_bottonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDoc_bottonActionPerformed

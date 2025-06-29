@@ -41,7 +41,7 @@ public class ExpedienteManager {
             }
             aux = aux.getSgteNodo();
         }
-        throw new RuntimeException("No se encontró el tramite. ");
+        return null;
     }
     
     

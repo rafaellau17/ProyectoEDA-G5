@@ -19,6 +19,8 @@ public class TramiteManager {
     }
     
     public static void cambiarDependencia(DataTramite tramite, String dependencia) {
+        Documento doc = new Documento(dependencia+".doc");
+        ingresarDocumento(tramite, doc);
         tramite.setDependencia(dependencia);
     }
     
