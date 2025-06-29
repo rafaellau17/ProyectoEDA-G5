@@ -163,7 +163,7 @@ public class IngresarTramScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void regresar_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresar_botonActionPerformed
-        int response = JOptionPane.showConfirmDialog(rootPane, "¿Desea regresar? Todo su progreso se perderá", "Confirmacion", JOptionPane.YES_NO_OPTION);
+        int response = JOptionPane.showConfirmDialog(rootPane, "¿Desea regresar?", "Confirmacion", JOptionPane.YES_NO_OPTION);
         if (response == JOptionPane.YES_OPTION) {
             dia_txtField.setText("");
             mes_txtField.setText("");
@@ -188,7 +188,6 @@ public class IngresarTramScreen extends javax.swing.JFrame {
             DataTramite tramite = new DataTramite(fechaIni, desc, depend);
             ExpedienteManager.agregarTramite(expediente, tramite);
             JOptionPane.showMessageDialog(rootPane, "Tramite ingresado correctamente");
-            ScreensManager.irAtras(this);
             
         }
         else{
