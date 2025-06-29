@@ -13,7 +13,7 @@ import tda.Lista;
  */
 public class DataExpediente {
     //atributos
-    private static int contadorId = 0;
+    private static int contadorId = 1;
     private int id;
     private int prioridad;
     private int dni;

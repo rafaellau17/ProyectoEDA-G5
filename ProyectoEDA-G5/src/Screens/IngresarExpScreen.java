@@ -5,6 +5,7 @@
 package Screens;
 
 import DataClasses.DataExpediente;
+import static DataManagers.ListaExpedientesManager.agregarExpediente;
 import javax.swing.JOptionPane;
 
 /**
@@ -48,6 +49,8 @@ public class IngresarExpScreen extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ingresar Expediente");
+        setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Yellow"));
+        setIconImages(null);
         setLocationByPlatform(true);
         setMinimumSize(new java.awt.Dimension(850, 500));
         setPreferredSize(new java.awt.Dimension(850, 500));
@@ -56,40 +59,51 @@ public class IngresarExpScreen extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("PRIORIDAD:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 83, 22));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 83, 22));
 
         prioridad_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
-        prioridad_comboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                prioridad_comboBoxActionPerformed(evt);
-            }
-        });
-        getContentPane().add(prioridad_comboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, -1, 22));
+        getContentPane().add(prioridad_comboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, -1, 22));
 
         jLabel2.setText("DNI: ");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 37, -1));
-        getContentPane().add(dni_txtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 140, -1));
-        getContentPane().add(nombres_txtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, 140, -1));
+
+        dni_txtField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                dni_txtFieldFocusLost(evt);
+            }
+        });
+        dni_txtField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dni_txtFieldActionPerformed(evt);
+            }
+        });
+        getContentPane().add(dni_txtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 170, -1));
+        getContentPane().add(nombres_txtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 170, -1));
 
         jLabel3.setText("NOMBRES:");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
 
+        telefono_txtField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                telefono_txtFieldFocusLost(evt);
+            }
+        });
         telefono_txtField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 telefono_txtFieldActionPerformed(evt);
             }
         });
-        getContentPane().add(telefono_txtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 140, -1));
+        getContentPane().add(telefono_txtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 170, -1));
 
         email_txtField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 email_txtFieldActionPerformed(evt);
             }
         });
-        getContentPane().add(email_txtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, 140, -1));
+        getContentPane().add(email_txtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, 170, -1));
 
         jLabel4.setText("TELEFONO:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, -1));
 
         jLabel5.setText("EMAIL:");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, -1, -1));
@@ -102,13 +116,13 @@ public class IngresarExpScreen extends javax.swing.JFrame {
         getContentPane().add(tipoULIMA_radioBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 112, -1));
 
         botonGroup_tipo.add(tipoExterno_radioBoton);
-        tipoExterno_radioBoton.setText("Usuario externo");
+        tipoExterno_radioBoton.setText("Usuario Externo");
         tipoExterno_radioBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tipoExterno_radioBotonActionPerformed(evt);
             }
         });
-        getContentPane().add(tipoExterno_radioBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 280, 112, -1));
+        getContentPane().add(tipoExterno_radioBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, 112, -1));
 
         listo_boton.setText("LISTO");
         listo_boton.addActionListener(new java.awt.event.ActionListener() {
@@ -151,14 +165,75 @@ public class IngresarExpScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_cancel_botonActionPerformed
 
     private void listo_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listo_botonActionPerformed
-
-        JOptionPane.showMessageDialog(rootPane, "Expediente ingresado correctamente");
+        int prioridad = Integer.parseInt(prioridad_comboBox.getSelectedItem().toString());
+        String tipoUsuario;
+        if (dni_txtField.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Ingrese el DNI.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;        
+        }
+        if (nombres_txtField.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Ingrese los nombres.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;        
+        }
+        if (telefono_txtField.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Ingrese el número de teléfono.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;        
+        }
+        if (email_txtField.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Ingrese el correo electronico.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;        
+        }        
+        if (tipoULIMA_radioBoton.isSelected()) {
+            tipoUsuario = "ULIMA";
+        }
+        else if (tipoExterno_radioBoton.isSelected()){
+            tipoUsuario = "EXTERNO";
+        }
+        else {
+            JOptionPane.showMessageDialog(rootPane, "Escoge el tipo de usuario.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        DataExpediente aux = new DataExpediente(prioridad, Integer.parseInt(dni_txtField.getText().trim()), nombres_txtField.getText().trim(), tipoUsuario, Integer.parseInt(telefono_txtField.getText().trim()), email_txtField.getText().trim());    
+        agregarExpediente(aux);
+        JOptionPane.showMessageDialog(rootPane, "Expediente ingresado correctamente.", "Correcto", JOptionPane.INFORMATION_MESSAGE);
         ScreensManager.irAtras(this);
     }//GEN-LAST:event_listo_botonActionPerformed
 
-    private void prioridad_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prioridad_comboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_prioridad_comboBoxActionPerformed
+    private void dni_txtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dni_txtFieldActionPerformed
+
+    }//GEN-LAST:event_dni_txtFieldActionPerformed
+
+    private void dni_txtFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dni_txtFieldFocusLost
+        if (dni_txtField.getText().length() != 8) {
+            JOptionPane.showMessageDialog(rootPane, "DNI no es válido.", "Error", JOptionPane.WARNING_MESSAGE);
+            dni_txtField.setText("");
+        }
+        else {
+            try {
+                int dni = Integer.parseInt(dni_txtField.getText().trim());
+            }
+            catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(rootPane, "DNI no es válido.", "Error", JOptionPane.WARNING_MESSAGE);
+                dni_txtField.setText("");
+            }
+        }
+    }//GEN-LAST:event_dni_txtFieldFocusLost
+
+    private void telefono_txtFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_telefono_txtFieldFocusLost
+        if (telefono_txtField.getText().length() != 9) {
+            JOptionPane.showMessageDialog(rootPane, "Telefono no es válido.", "Error", JOptionPane.WARNING_MESSAGE);
+            telefono_txtField.setText("");
+        }
+        else {
+            try {
+                int telefono = Integer.parseInt(telefono_txtField.getText().trim());
+            }
+            catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(rootPane, "Telefono no es válido.", "Error", JOptionPane.WARNING_MESSAGE);
+                telefono_txtField.setText("");
+            }
+        }
+    }//GEN-LAST:event_telefono_txtFieldFocusLost
 
     /**
      * @param args the command line arguments
