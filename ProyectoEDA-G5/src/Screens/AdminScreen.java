@@ -7,11 +7,10 @@ package Screens;
 import DataClasses.DataExpediente;
 import static DataClasses.DataListaExpedientes.listaExpedientes;
 import javax.swing.table.DefaultTableModel;
-import tda.ListaDoble;
 import tda.NodoDoble;
 import static DataManagers.ListaExpedientesManager.*;
-import java.util.HashSet;
 import javax.swing.JOptionPane;
+import static javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS;
 
 /**
  *
@@ -88,6 +87,13 @@ private DefaultTableModel modelo;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Admin");
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         fin_sesion_boton.setText("CERRAR SESION");
         fin_sesion_boton.addActionListener(new java.awt.event.ActionListener() {
@@ -114,7 +120,11 @@ private DefaultTableModel modelo;
 
             }
         ));
+        tablaExp.setCellSelectionEnabled(true);
+        tablaExp.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         tablaExp.setFillsViewportHeight(true);
+        tablaExp.setShowGrid(false);
+        tablaExp.setShowVerticalLines(true);
         tablaExp.getTableHeader().setResizingAllowed(false);
         tablaExp.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tablaExp);
@@ -133,13 +143,16 @@ private DefaultTableModel modelo;
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(bienvenidoUser_label, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(fin_sesion_boton)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(bienvenidoUser_label)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -148,11 +161,8 @@ private DefaultTableModel modelo;
                                 .addComponent(buscarExp_boton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(ingresarExp_boton))
-                            .addComponent(jScrollPane1)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(fin_sesion_boton)
-                        .addGap(549, 549, 549)))
-                .addGap(41, 41, 41))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 674, Short.MAX_VALUE))
+                        .addGap(41, 41, 41))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,7 +172,7 @@ private DefaultTableModel modelo;
                         .addGap(28, 28, 28)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
+                        .addGap(62, 62, 62)
                         .addComponent(bienvenidoUser_label)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,9 +181,9 @@ private DefaultTableModel modelo;
                         .addComponent(jLabel1)
                         .addComponent(dni_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(buscarExp_boton, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
                 .addComponent(fin_sesion_boton)
-                .addGap(25, 25, 25))
+                .addGap(26, 26, 26))
         );
 
         pack();
@@ -209,6 +219,10 @@ private DefaultTableModel modelo;
             JOptionPane.showMessageDialog(rootPane, "DNI no es válido.", "Error", JOptionPane.WARNING_MESSAGE);
         }        
     }//GEN-LAST:event_buscarExp_botonActionPerformed
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        Poblar();
+    }//GEN-LAST:event_formWindowGainedFocus
 
     /**
      * @param args the command line arguments
