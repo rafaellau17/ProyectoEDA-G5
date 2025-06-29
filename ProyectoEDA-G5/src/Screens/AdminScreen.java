@@ -9,8 +9,11 @@ import static DataClasses.DataListaExpedientes.listaExpedientes;
 import javax.swing.table.DefaultTableModel;
 import tda.NodoDoble;
 import static DataManagers.ListaExpedientesManager.*;
+import DataManagers.ListaTramitesPendientes;
+import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
 import static javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS;
+import javax.swing.Timer;
 
 /**
  *
@@ -18,7 +21,10 @@ import static javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS;
  */
 public class AdminScreen extends javax.swing.JFrame {
 
-private DefaultTableModel modelo;    
+private DefaultTableModel modelo;
+
+private Timer alertaTimer;
+private boolean alertaMostrada = false;
     
     /**
      * Creates new form AdminScreen
@@ -41,6 +47,31 @@ private DefaultTableModel modelo;
         if (!listaExpedientes.esVacia()) {
             Poblar();
         }
+        
+        ListaTramitesPendientes.actualizarTramitesPendientes();
+    }
+    
+    private void iniciarAlertaPendientesTimer() {
+        if (alertaTimer != null && alertaTimer.isRunning()) {
+            alertaTimer.stop();
+        }
+        
+        alertaTimer = new Timer(30000, e -> {
+            if (!alertaMostrada) {
+                ListaTramitesPendientes.actualizarTramitesPendientes();
+                
+                if (ListaTramitesPendientes.hayPendientes()) {
+                    new AlertaPendientesDialog(this, true).setVisible(true);
+                }
+                
+                alertaMostrada = true;
+            }
+            
+            alertaTimer.stop();
+        });
+        
+        alertaTimer.setRepeats(false);
+        alertaTimer.start();
     }
 
  private void Poblar()
@@ -66,6 +97,18 @@ private DefaultTableModel modelo;
        }
     }    
     
+    @Override
+    public void setVisible(boolean visible) {
+        super.setVisible(visible);
+        if (visible) {
+            alertaMostrada = false;
+            iniciarAlertaPendientesTimer();
+        } else {
+            if (alertaTimer != null && alertaTimer.isRunning()) {
+                alertaTimer.stop();
+            }
+        }
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -222,8 +265,16 @@ private DefaultTableModel modelo;
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         Poblar();
+        
+        if (!isDialogEvent(evt)) {
+            iniciarAlertaPendientesTimer();
+        }
     }//GEN-LAST:event_formWindowGainedFocus
 
+    private boolean isDialogEvent(WindowEvent evt) {
+        return evt.getOppositeWindow() instanceof javax.swing.JDialog;
+    }
+    
     /**
      * @param args the command line arguments
      */
