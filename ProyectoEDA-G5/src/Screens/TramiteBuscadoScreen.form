@@ -181,6 +181,7 @@
                     <Column editable="true" title="Title 4" type="java.lang.Object"/>
                   </Table>
                 </Property>
+                <Property name="autoResizeMode" type="int" value="4"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -208,6 +209,7 @@
                     <Column editable="true" title="Title 4" type="java.lang.Object"/>
                   </Table>
                 </Property>
+                <Property name="autoResizeMode" type="int" value="4"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -216,7 +218,7 @@
     </Container>
     <Component class="javax.swing.JToggleButton" name="mostrar_boton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="MOSTRAR"/>
+        <Property name="text" type="java.lang.String" value="ACTUALIZAR"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mostrar_botonActionPerformed"/>

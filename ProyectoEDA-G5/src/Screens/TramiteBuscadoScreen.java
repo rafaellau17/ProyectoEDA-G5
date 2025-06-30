@@ -8,10 +8,13 @@ import DataClasses.DataTramite;
 import DataClasses.Documento;
 import DataClasses.Fecha;
 import DataManagers.TramiteManager;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.*;
 import tda.Cola;
+import tda.Pila;
 
 /**
  *
@@ -29,24 +32,11 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
         initComponents();
         this.tramite = tram;
         fechaIni_label.setText("FECHA INICIAL: "+tramite.getFechaIni().toString());
-        Fecha fechaFin = tramite.getFechaFin();
-        if (fechaFin!=null) {
-            fechaFin_label.setText("FECHA FINAL: "+fechaFin.toString());
-        }
-        else{
-            fechaFin_label.setText("FECHA FINAL: NA");
-        }
-        depend_label.setText("ULTIMA DEPENDENCIA: "+tramite.getDependencia());
-        boolean terminado = tramite.isTerminado();
-        if (terminado) {
-            terminado_label.setText("TERMINADO: TRAMITE TERMINADO");
-        }
-        else{
-            terminado_label.setText("TERMINADO: TRAMITE NO TERMINADO");
-        }
+
         desc_label.setText("DESCRIPCION: "+tramite.getDescripcion());
         
         modelo_1 = new DefaultTableModel();
+        modelo_1.addColumn("NRO");
         modelo_1.addColumn("DOCUMENTO");
         
         modelo_2 = new DefaultTableModel();
@@ -58,7 +48,28 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
     }
     
     public void poblarDependenciasTable(){
-        modelo_2.addRow(new Object[]{tramite.getDependencia()});
+        int filas = this.dependenciasTable.getRowCount();
+        for(int i=0;i<filas;i++)
+        {
+            modelo_2.removeRow(0);
+        }
+        
+        Pila<String> pila = TramiteManager.mostrarDependencias(tramite);
+        Pila<String> aux = new Pila<>();
+        
+        while(!pila.esVacia()){
+            String dependencia = pila.desencolar();
+            aux.apilar(dependencia);
+        }
+        
+        int cont = 1;
+        while(!aux.esVacia()){
+            String dependencia = aux.desencolar();
+            depend_label.setText("ULTIMA DEPENDENCIA: "+dependencia);
+            modelo_2.addRow(new Object[]{cont, dependencia});
+            cont++;
+            pila.apilar(dependencia);
+        }
     }
     
     public void poblarDocumentosTable(){
@@ -71,10 +82,12 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
         Cola<Documento> cola = TramiteManager.mostrarDocumentos(tramite);
         Cola<Documento> aux = new Cola<>();
 
+        int cont = 1;
         while (!cola.esVacia()){
             Documento doc = cola.desencolar();
-            modelo_1.addRow(new Object[]{doc.getItem()});
+            modelo_1.addRow(new Object[]{cont,doc.getItem()});
             aux.encolar(doc);
+            cont++;
         }
         
         while (!aux.esVacia()){
@@ -156,6 +169,7 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        documentosTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         jScrollPane2.setViewportView(documentosTable);
 
         jScrollPane3.setViewportView(jScrollPane2);
@@ -171,11 +185,12 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        dependenciasTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         jScrollPane1.setViewportView(dependenciasTable);
 
         jScrollPane4.setViewportView(jScrollPane1);
 
-        mostrar_boton.setText("MOSTRAR");
+        mostrar_boton.setText("ACTUALIZAR");
         mostrar_boton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mostrar_botonActionPerformed(evt);
@@ -250,11 +265,11 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
     private void finTram_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finTram_botonActionPerformed
         int response = JOptionPane.showConfirmDialog(rootPane, "¿Desea finalizar el tramite?", "Confirmacion", JOptionPane.YES_NO_OPTION);
         if (response == JOptionPane.YES_OPTION) {
-            //finalizar tramite
-            ScreensManager.irAtras(this);
-        }
-        else{
-            //no hacer nada
+            tramite.setTerminado(true);
+            Calendar ahora = new GregorianCalendar();
+            ahora.setLenient(false);
+            Fecha fechafin = new Fecha(ahora.DAY_OF_MONTH, ahora.MONTH, ahora.YEAR);
+            tramite.setFechaFin(fechafin);
         }
         
     }//GEN-LAST:event_finTram_botonActionPerformed
@@ -271,7 +286,7 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
         
         if(input == JOptionPane.OK_OPTION){
             String str = (String)combobox.getSelectedItem();
-            TramiteManager.cambiarDependencia(tramite, str);
+            TramiteManager.ingresarDependencia(tramite, str);
             poblarDependenciasTable();
             poblarDocumentosTable();
         }
@@ -280,6 +295,19 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
     private void mostrar_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrar_botonActionPerformed
         poblarDependenciasTable();
         poblarDocumentosTable();
+        if (tramite.isTerminado()) {
+            terminado_label.setText("TERMINADO: TRAMITE TERMINADO");
+        }
+        else{
+            terminado_label.setText("TERMINADO: TRAMITE NO TERMINADO");
+        }
+        
+        if (tramite.getFechaFin()!=null) {
+            fechaFin_label.setText("FECHA FIN: " +tramite.getFechaFin().toString());
+        }
+        else{
+            fechaFin_label.setText("FECHA FIN: NA" );
+        }
     }//GEN-LAST:event_mostrar_botonActionPerformed
     /**
      * @param args the command line arguments
@@ -311,7 +339,7 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                DataTramite aux = new DataTramite(null, "", "");
+                DataTramite aux = new DataTramite(null, "", null);
                 new TramiteBuscadoScreen(aux).setVisible(true);
             }
         });
