@@ -10,6 +10,7 @@ import DataClasses.Fecha;
 import DataManagers.ExpedienteManager;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
+import tda.Pila;
 
 /**
  *
@@ -163,16 +164,8 @@ public class IngresarTramScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void regresar_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresar_botonActionPerformed
-        int response = JOptionPane.showConfirmDialog(rootPane, "¿Desea regresar? Todo su progreso se perderá", "Confirmacion", JOptionPane.YES_NO_OPTION);
-        if (response == JOptionPane.YES_OPTION) {
-            dia_txtField.setText("");
-            mes_txtField.setText("");
-            annio_txtField.setText("");
-            ScreensManager.irAtras(this);
-        }
-        else{
-            //no hacer nada
-        }
+        ScreensManager.irAtras(this);
+
         
     }//GEN-LAST:event_regresar_botonActionPerformed
 
@@ -182,13 +175,18 @@ public class IngresarTramScreen extends javax.swing.JFrame {
         int annio = Integer.parseInt(annio_txtField.getText());
         String desc = desc_txtField.getText();
         String depend = dependencias_comboBox.getSelectedItem().toString();
+        Pila<String> aux = new Pila<>();
+        aux.apilar(depend);
         
         if ((dia<31 && dia > 0) && (mes>0 && mes<13) && (annio>1899 && annio<2026)) {
             Fecha fechaIni = new Fecha(dia, mes, annio);
-            DataTramite tramite = new DataTramite(fechaIni, desc, depend);
+            DataTramite tramite = new DataTramite(fechaIni, desc, aux);
             ExpedienteManager.agregarTramite(expediente, tramite);
             JOptionPane.showMessageDialog(rootPane, "Tramite ingresado correctamente");
-            ScreensManager.irAtras(this);
+            dia_txtField.setText("");
+            mes_txtField.setText("");
+            annio_txtField.setText("");
+            desc_txtField.setText("");
             
         }
         else{

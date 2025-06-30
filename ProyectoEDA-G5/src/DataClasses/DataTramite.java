@@ -5,6 +5,7 @@
 package DataClasses;
 
 import tda.Cola;
+import tda.Pila;
 
 /**
  *
@@ -18,11 +19,11 @@ public class DataTramite {
     private Fecha fechaFin;
     private String descripcion;
     private Cola<Documento> documentos;
-    private String dependencia;
+    private Pila<String> dependencia;
     private boolean terminado;
     
     //constructores
-    public DataTramite(Fecha fechaIni, String descripcion, String dependencia) {
+    public DataTramite(Fecha fechaIni, String descripcion, Pila<String> dependencia) {
         this.fechaIni = fechaIni;
         this.fechaFin = null;
         this.descripcion = descripcion;
@@ -66,11 +67,11 @@ public class DataTramite {
         return id;
     }
 
-    public String getDependencia() {
+    public Pila<String> getDependencia() {
         return dependencia;
     }
 
-    public void setDependencia(String dependencia) {
+    public void setDependencia(Pila<String> dependencia) {
         this.dependencia = dependencia;
     }
     
