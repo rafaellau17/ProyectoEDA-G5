@@ -8,13 +8,14 @@ import DataClasses.DataTramite;
 import DataClasses.Documento;
 import DataClasses.Fecha;
 import DataManagers.TramiteManager;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.*;
 import tda.Cola;
 import tda.Pila;
+import java.util.Calendar;
+import static java.util.Calendar.*;
+import java.util.GregorianCalendar;
 
 /**
  *
@@ -266,9 +267,11 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
         int response = JOptionPane.showConfirmDialog(rootPane, "¿Desea finalizar el tramite?", "Confirmacion", JOptionPane.YES_NO_OPTION);
         if (response == JOptionPane.YES_OPTION) {
             tramite.setTerminado(true);
-            Calendar ahora = new GregorianCalendar();
-            ahora.setLenient(false);
-            Fecha fechafin = new Fecha(ahora.DAY_OF_MONTH, ahora.MONTH, ahora.YEAR);
+            Calendar calendar = new GregorianCalendar();
+            int aux = calendar.get(YEAR);
+            int aux2 = calendar.get(MONTH);
+            int aux3 = calendar.get(DATE);
+            Fecha fechafin = new Fecha(aux3, aux2, aux);
             tramite.setFechaFin(fechafin);
         }
         
