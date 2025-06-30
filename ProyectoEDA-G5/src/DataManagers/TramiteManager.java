@@ -22,7 +22,7 @@ public class TramiteManager {
         Documento doc = new Documento(dependencia+".doc");
         ingresarDocumento(tramite, doc);
         
-        Pila<String> pila_aux = tramite.getDependencia();
+        Pila<String> pila_aux = tramite.getDependencias();
         pila_aux.apilar(dependencia);
     }
     
@@ -31,6 +31,6 @@ public class TramiteManager {
     }
     
     public static Pila<String> mostrarDependencias(DataTramite tramite){
-        return tramite.getDependencia();
+        return tramite.getDependencias();
     }
 }

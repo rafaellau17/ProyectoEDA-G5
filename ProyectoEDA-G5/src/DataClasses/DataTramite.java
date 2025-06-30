@@ -19,16 +19,16 @@ public class DataTramite {
     private Fecha fechaFin;
     private String descripcion;
     private Cola<Documento> documentos;
-    private Pila<String> dependencia;
+    private Pila<String> dependencias = new Pila();
     private boolean terminado;
     
     //constructores
-    public DataTramite(Fecha fechaIni, String descripcion, Pila<String> dependencia) {
+    public DataTramite(Fecha fechaIni, String descripcion, String dependencia) {
         this.fechaIni = fechaIni;
         this.fechaFin = null;
         this.descripcion = descripcion;
         this.documentos = new Cola();
-        this.dependencia = dependencia;
+        this.dependencias.apilar(dependencia);
         this.terminado = false;
         this.id = contadorId;
         contadorId++;
@@ -67,12 +67,12 @@ public class DataTramite {
         return id;
     }
 
-    public Pila<String> getDependencia() {
-        return dependencia;
+    public Pila<String> getDependencias() {
+        return dependencias;
     }
 
-    public void setDependencia(Pila<String> dependencia) {
-        this.dependencia = dependencia;
+    public void setDependencias(Pila<String> dependencias) {
+        this.dependencias = dependencias;
     }
     
     

@@ -27,9 +27,6 @@ public class IngresarTramScreen extends javax.swing.JFrame {
         this.expediente = exp;
         dni_label.setText("DNI: "+expediente.getDni());
         nombre_txtLabel.setText("NOMBRES: "+expediente.getNombres());
-
-        
-       
     }
 
     /**
@@ -164,39 +161,68 @@ public class IngresarTramScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void regresar_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresar_botonActionPerformed
-        ScreensManager.irAtras(this);
 
-        
+        int response = JOptionPane.showConfirmDialog(rootPane, "¿Desea regresar? Todo su progreso se perderá", "Confirmacion", JOptionPane.YES_NO_OPTION);
+        if (response == JOptionPane.YES_OPTION) {
+            dia_txtField.setText("");
+            mes_txtField.setText("");
+            annio_txtField.setText("");
+            ScreensManager.irAtras(this);
+        }
+        else{
+            //no hacer nada
+        }
+
     }//GEN-LAST:event_regresar_botonActionPerformed
 
     private void listo_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listo_botonActionPerformed
-        int dia = Integer.parseInt(dia_txtField.getText());
-        int mes = Integer.parseInt(mes_txtField.getText());
-        int annio = Integer.parseInt(annio_txtField.getText());
-        String desc = desc_txtField.getText();
+        String diaStr = dia_txtField.getText().trim();
+        String mesStr = mes_txtField.getText().trim();
+        String annioStr = annio_txtField.getText().trim();
+        String desc = desc_txtField.getText().trim();
         String depend = dependencias_comboBox.getSelectedItem().toString();
         Pila<String> aux = new Pila<>();
         aux.apilar(depend);
         
-        if ((dia<31 && dia > 0) && (mes>0 && mes<13) && (annio>1899 && annio<2026)) {
-            Fecha fechaIni = new Fecha(dia, mes, annio);
-            DataTramite tramite = new DataTramite(fechaIni, desc, aux);
-            ExpedienteManager.agregarTramite(expediente, tramite);
-            JOptionPane.showMessageDialog(rootPane, "Tramite ingresado correctamente");
-            dia_txtField.setText("");
-            mes_txtField.setText("");
-            annio_txtField.setText("");
-            desc_txtField.setText("");
-            
+
+        // Evitar campos vacios
+        if (diaStr.isEmpty() || mesStr.isEmpty() || annioStr.isEmpty() || desc.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
-        else{
-            JOptionPane.showMessageDialog(this, "Ingrese una fecha valida");
+
+        
+        // Verificar contenido numerico
+        int dia, mes, annio;
+        
+        try {
+            dia = Integer.parseInt(diaStr);
+            mes = Integer.parseInt(mesStr);
+            annio = Integer.parseInt(annioStr);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "La fecha debe contener solo numeros.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
         
+        // Validar rangos de fecha
+        if (dia < 1 || dia > 31 || mes < 1 || mes > 12 || annio < 1900 || annio > 2025) {
+            JOptionPane.showMessageDialog(this, "Ingrese una fecha valida en formato DD/MM/AAAA.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;   
+        }
+
+        // Validar descripcion
+        if (desc.isBlank()) {
+            JOptionPane.showMessageDialog(this, "La descripcion no puede estar en blanco.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         
+        // Realizar el ingreso del tramite
+        Fecha fechaIni = new Fecha(dia, mes, annio);
+        DataTramite tramite = new DataTramite(fechaIni, desc, depend);
+        ExpedienteManager.agregarTramite(expediente, tramite);
         
-        
-        
+        JOptionPane.showMessageDialog(this, "Tramite ingresado correctamente.");
+        ScreensManager.irAtras(this);
     }//GEN-LAST:event_listo_botonActionPerformed
 
     private void dependencias_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dependencias_comboBoxActionPerformed
