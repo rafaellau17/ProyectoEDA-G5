@@ -20,8 +20,8 @@ public class LoginScreen extends javax.swing.JFrame {
      */
     public LoginScreen() {
         initComponents();
-        DataExpediente aux = new DataExpediente(1, 10210303, "Juan", "ULIMA", 444, "juan@gmail.com");
-        DataExpediente aux2 = new DataExpediente(2, 20235843, "Pepe", "EXTERNO", 555, "pepe@hotmail.com");
+        DataExpediente aux = new DataExpediente(1, 10216303, "Juan Torres", "ULIMA", 951963655, "juan@gmail.com");
+        DataExpediente aux2 = new DataExpediente(2, 20235843, "Pepe Valdivia", "EXTERNO", 957340583, "pepe@hotmail.com");
         agregarExpediente(aux);
         agregarExpediente(aux2);
     }

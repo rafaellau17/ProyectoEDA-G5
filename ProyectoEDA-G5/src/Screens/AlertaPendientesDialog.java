@@ -31,7 +31,7 @@ public class AlertaPendientesDialog extends javax.swing.JDialog {
         sb.append("ID: ").append(tramiteMasAntiguo.getId()).append("\n");
         sb.append("Fecha de inicio: ").append(tramiteMasAntiguo.getFechaIni()).append("\n");
         sb.append("Descripcion: ").append(tramiteMasAntiguo.getDescripcion()).append("\n");
-        sb.append("Dependencia: ").append(tramiteMasAntiguo.getDependencia()).append("\n");
+        sb.append("Dependencia: ").append(tramiteMasAntiguo.getDependencias()).append("\n");
 
         txtInfoTramite.setText(sb.toString());
     }

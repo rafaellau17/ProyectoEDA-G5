@@ -189,6 +189,7 @@ public class IngresarTramScreen extends javax.swing.JFrame {
         if (diaStr.isEmpty() || mesStr.isEmpty() || annioStr.isEmpty() || desc.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
+        }
 
         
         // Verificar contenido numerico
@@ -220,7 +221,7 @@ public class IngresarTramScreen extends javax.swing.JFrame {
         DataTramite tramite = new DataTramite(fechaIni, desc, depend);
         ExpedienteManager.agregarTramite(expediente, tramite);
         
-        JOptionPane.showMessageDialog(this, "Tramite ingresado de manera satisfactoria.");
+        JOptionPane.showMessageDialog(this, "Tramite ingresado correctamente.");
         ScreensManager.irAtras(this);
     }//GEN-LAST:event_listo_botonActionPerformed
 

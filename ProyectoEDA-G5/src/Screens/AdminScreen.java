@@ -12,7 +12,6 @@ import static DataManagers.ListaExpedientesManager.*;
 import DataManagers.ListaTramitesPendientes;
 import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
-import static javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS;
 import javax.swing.Timer;
 
 /**
@@ -34,9 +33,9 @@ private boolean alertaMostrada = false;
             @Override
             public boolean isCellEditable(int row, int column) {
             return false;
-        }
-            
+            }
         };
+        
         initComponents();
         modelo.addColumn("ID");
         modelo.addColumn("NOMBRES");
@@ -74,7 +73,7 @@ private boolean alertaMostrada = false;
         alertaTimer.start();
     }
 
- private void Poblar()
+    private void Poblar()
     {
         int filas = this.tablaExp.getRowCount();
         for(int i=0;i<filas;i++)
@@ -147,6 +146,12 @@ private boolean alertaMostrada = false;
 
         jLabel1.setText("DNI: ");
 
+        dni_txtField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dni_txtFieldActionPerformed(evt);
+            }
+        });
+
         buscarExp_boton.setText("BUSCAR EXPEDIENTE");
         buscarExp_boton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,8 +168,9 @@ private boolean alertaMostrada = false;
 
             }
         ));
+        tablaExp.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         tablaExp.setCellSelectionEnabled(true);
-        tablaExp.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        tablaExp.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tablaExp.setFillsViewportHeight(true);
         tablaExp.setShowGrid(false);
         tablaExp.setShowVerticalLines(true);
@@ -248,6 +254,12 @@ private boolean alertaMostrada = false;
             DataExpediente exp;
             exp = buscarExpediente(dni);
 
+            if (dni_txtField.getText().length() != 8) {
+                JOptionPane.showMessageDialog(rootPane, "DNI no es válido.", "Error", JOptionPane.WARNING_MESSAGE);
+                dni_txtField.setText("");
+                return;
+            }            
+            
             if (exp != null) {
                 dni_txtField.setText("");
                 ExpedienteBuscadoScreen exBuscado_pantalla = new ExpedienteBuscadoScreen(exp);
@@ -255,11 +267,13 @@ private boolean alertaMostrada = false;
             }
             else {
                 JOptionPane.showMessageDialog(rootPane, "DNI no encontrado.", "Advertencia", JOptionPane.INFORMATION_MESSAGE);
+                dni_txtField.setText("");
             }
         
         } 
         catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(rootPane, "DNI no es válido.", "Error", JOptionPane.WARNING_MESSAGE);
+            dni_txtField.setText("");
         }        
     }//GEN-LAST:event_buscarExp_botonActionPerformed
 
@@ -270,6 +284,10 @@ private boolean alertaMostrada = false;
             iniciarAlertaPendientesTimer();
         }
     }//GEN-LAST:event_formWindowGainedFocus
+
+    private void dni_txtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dni_txtFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dni_txtFieldActionPerformed
 
     private boolean isDialogEvent(WindowEvent evt) {
         return evt.getOppositeWindow() instanceof javax.swing.JDialog;
