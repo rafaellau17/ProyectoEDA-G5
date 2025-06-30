@@ -4,10 +4,13 @@
  */
 package DataManagers;
 
-import static DataClasses.DataListaTramite.listaTramites;
+import DataClasses.DataExpediente;
+import static DataClasses.DataListaExpedientes.listaExpedientes;
 import DataClasses.DataTramite;
+import tda.Lista;
 import tda.ListaCircularSimple;
 import tda.Nodo;
+import tda.NodoDoble;
 
 /**
  *
@@ -16,21 +19,35 @@ import tda.Nodo;
 public class ListaTramitesPendientes {
     private static ListaCircularSimple<DataTramite> listaPendientes = new ListaCircularSimple<>();
 
-    // Recalcula los trámites pendientes en base a la lista completa
+    // Recalcula los tramites pendientes recorriendo la lista de expedientes
     public static void actualizarTramitesPendientes() {
+        // Vaciar la lista
         listaPendientes = new ListaCircularSimple<>();
         
-        if (listaTramites.esVacia()) return;
-        
-        Nodo<DataTramite> aux = listaTramites.getCabeza();
-        
-        do {
-            DataTramite tramite = aux.getItem();
-            if (!tramite.isTerminado()) {
-                listaPendientes.agregar(tramite);
+        // Recorrer la lista doble de expedientes
+        NodoDoble<DataExpediente> nodoExpediente = listaExpedientes.getCabeza();
+        while (nodoExpediente != null) {
+            DataExpediente expediente = nodoExpediente.getItem();
+            Lista<DataTramite> listaTramites = expediente.getListaTramites();
+            
+            // Revisar que el expediente tenga tramites
+            if (!listaTramites.esVacia()) {
+                Nodo<DataTramite> nodoTramite = listaTramites.getCabeza();
+                
+                // Recorrer la lista simple de tramites
+                do {
+                    DataTramite tramite = nodoTramite.getItem();
+                    
+                    // Anadir a la lista los tramites pendientes
+                    if (!tramite.isTerminado()) {
+                        listaPendientes.agregar(tramite);
+                    }
+                    nodoTramite = nodoTramite.getSgteNodo();
+                } while (nodoTramite != listaTramites.getCabeza());
             }
-            aux = aux.getSgteNodo();
-        } while (aux != listaTramites.getCabeza());
+
+            nodoExpediente = nodoExpediente.getSgteNodo();
+        }
     }
 
     // Obtener lista de tramites pendientes
