@@ -24,7 +24,7 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
         initComponents();
         this.expediente = exp;
         id_label.setText("ID: "+expediente.getId());
-        prioridad_label.setText("PRIORIDAD: " + expediente.getPrioridad());
+        prioridad_label.setText("PRIORIDAD: " + String.valueOf(expediente.getPrioridad()));
         nombres_label.setText("NOMBRES: "+expediente.getNombres());
         tipo_label.setText("TIPO: "+expediente.getTipo());
         telefono_label.setText("TELEFONO: "+expediente.getTelefono());
@@ -43,13 +43,6 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
         this.docsTabla.setModel(modelo_1);
         this.tramitesTabla.setModel(modelo_2);     
         
-        if (!expediente.getDocsRef().esVacia()) {
-            poblarDocsTable();
-            
-        }
-        if (!ExpedienteManager.mostrarTramites(expediente).esVacia()) {
-            poblarTramTable();
-        }
         
     }
     
@@ -89,8 +82,7 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
         Lista<DataTramite> lista = ExpedienteManager.mostrarTramites(expediente);
         Nodo<DataTramite> aux = lista.getCabeza();
 
-        
-        while(aux.getSgteNodo()!=null){
+        for (int i = 0; i < lista.longitud(); i++) {
             DataTramite temp = aux.getItem();
             modelo_2.addRow(new Object[] {temp.getId(), temp.getDescripcion(), temp.getFechaIni()});
             aux = aux.getSgteNodo();
@@ -124,6 +116,7 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         id_txtField = new javax.swing.JTextField();
         accTram_boton = new javax.swing.JButton();
+        actualizar_boton = new javax.swing.JButton();
         atras_button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -168,23 +161,22 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(67, 67, 67)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(id_label, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(email_label, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(telefono_label, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
-                        .addComponent(tipo_label, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(nombres_label, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(prioridad_label, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 341, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(addDoc_botton)
                 .addGap(118, 118, 118))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(67, 67, 67)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(email_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(telefono_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(prioridad_label, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+                    .addComponent(nombres_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tipo_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(id_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(282, 282, 282)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,6 +237,13 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
             }
         });
 
+        actualizar_boton.setText("ACTUALIZAR");
+        actualizar_boton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actualizar_botonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -252,21 +251,30 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 826, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 826, Short.MAX_VALUE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(actualizar_boton)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
                         .addComponent(addTram_button, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(id_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(accTram_boton)))
-                .addContainerGap())
+                        .addComponent(accTram_boton)
+                        .addGap(44, 44, 44))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
+                .addGap(21, 21, 21)
+                .addComponent(actualizar_boton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -293,11 +301,13 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
-                        .addComponent(atras_button)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(atras_button)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -323,8 +333,21 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_atras_buttonActionPerformed
 
     private void accTram_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accTram_botonActionPerformed
-        TramiteBuscadoScreen tramiteBuscado_pantalla = new TramiteBuscadoScreen(expediente);
-        ScreensManager.nuevaPantalla(this, tramiteBuscado_pantalla);
+        try{
+            int id = Integer.parseInt(id_txtField.getText());
+            DataTramite tramite = ExpedienteManager.buscarTramite(expediente, id);
+            if (tramite!=null) {
+                id_txtField.setText("");
+                TramiteBuscadoScreen tramiteBuscado_pantalla = new TramiteBuscadoScreen(tramite);
+                ScreensManager.nuevaPantalla(this, tramiteBuscado_pantalla);
+            }
+            else{
+                JOptionPane.showMessageDialog(rootPane, "ID no encontrado.", "Advertencia", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+        catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(rootPane, "ID no es válido.", "Error", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_accTram_botonActionPerformed
 
     private void addDoc_bottonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDoc_bottonActionPerformed
@@ -334,6 +357,10 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Documento ingresado");
         poblarDocsTable();
     }//GEN-LAST:event_addDoc_bottonActionPerformed
+
+    private void actualizar_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizar_botonActionPerformed
+        poblarTramTable();
+    }//GEN-LAST:event_actualizar_botonActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -372,6 +399,7 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton accTram_boton;
+    private javax.swing.JButton actualizar_boton;
     private javax.swing.JButton addDoc_botton;
     private javax.swing.JButton addTram_button;
     private javax.swing.JButton atras_button;

@@ -18,12 +18,19 @@ public class TramiteManager {
         colaAux.encolar(doc);
     }
     
-    public static void cambiarDependencia(DataTramite tramite, String dependencia) {
-        tramite.setDependencia(dependencia);
+    public static void ingresarDependencia(DataTramite tramite, String dependencia) {
+        Documento doc = new Documento(dependencia+".doc");
+        ingresarDocumento(tramite, doc);
+        
+        Pila<String> pila_aux = tramite.getDependencia();
+        pila_aux.apilar(dependencia);
     }
     
     public static Cola<Documento> mostrarDocumentos(DataTramite tramite) {
         return tramite.getDocumentos();
     }
     
+    public static Pila<String> mostrarDependencias(DataTramite tramite){
+        return tramite.getDependencia();
+    }
 }

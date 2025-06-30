@@ -10,6 +10,7 @@ import DataClasses.Fecha;
 import DataManagers.ExpedienteManager;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
+import tda.Pila;
 
 /**
  *
@@ -160,6 +161,7 @@ public class IngresarTramScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void regresar_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresar_botonActionPerformed
+
         int response = JOptionPane.showConfirmDialog(rootPane, "¿Desea regresar? Todo su progreso se perderá", "Confirmacion", JOptionPane.YES_NO_OPTION);
         if (response == JOptionPane.YES_OPTION) {
             dia_txtField.setText("");
@@ -170,6 +172,7 @@ public class IngresarTramScreen extends javax.swing.JFrame {
         else{
             //no hacer nada
         }
+
     }//GEN-LAST:event_regresar_botonActionPerformed
 
     private void listo_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listo_botonActionPerformed
@@ -178,12 +181,15 @@ public class IngresarTramScreen extends javax.swing.JFrame {
         String annioStr = annio_txtField.getText().trim();
         String desc = desc_txtField.getText().trim();
         String depend = dependencias_comboBox.getSelectedItem().toString();
+        Pila<String> aux = new Pila<>();
+        aux.apilar(depend);
         
+
         // Evitar campos vacios
         if (diaStr.isEmpty() || mesStr.isEmpty() || annioStr.isEmpty() || desc.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
-        }
+
         
         // Verificar contenido numerico
         int dia, mes, annio;
