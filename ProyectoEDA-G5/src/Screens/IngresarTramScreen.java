@@ -111,7 +111,12 @@ public class IngresarTramScreen extends javax.swing.JFrame {
         annio_txtField.setBackground(new java.awt.Color(239, 241, 243));
         annio_txtField.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         annio_txtField.setForeground(new java.awt.Color(34, 56, 67));
-        jPanel1.add(annio_txtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 150, 40, -1));
+        annio_txtField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                annio_txtFieldActionPerformed(evt);
+            }
+        });
+        jPanel1.add(annio_txtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 150, 60, -1));
 
         mes_txtField.setBackground(new java.awt.Color(239, 241, 243));
         mes_txtField.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -252,15 +257,9 @@ public class IngresarTramScreen extends javax.swing.JFrame {
         
         // Fecha ingresada no puede ser mayor a la actual (dia de hoy)
         if (annio == cal1) {
-            if (mes > cal2) {
+            if (mes > cal2 && dia > cal3) {
                 JOptionPane.showMessageDialog(this, "Ingrese una fecha valida antes de la fecha actual.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;              
-            }
-            else {
-                if (dia > cal3) {
-                JOptionPane.showMessageDialog(this, "Ingrese una fecha valida antes de la fecha actual.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;              
-                }
+                return; 
             }
         }
         
@@ -292,6 +291,10 @@ public class IngresarTramScreen extends javax.swing.JFrame {
     private void dia_txtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dia_txtFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_dia_txtFieldActionPerformed
+
+    private void annio_txtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_annio_txtFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_annio_txtFieldActionPerformed
 
     /**
      * @param args the command line arguments

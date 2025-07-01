@@ -21,17 +21,6 @@ public class ExpedienteManager {
             lista.agregar(tramiteNuevo);
     }
     
-    public static void terminarTramite(DataExpediente expediente, Fecha fechaFin) {
-    Nodo<DataTramite> nodoUltimo = expediente.getListaTramites().getUltimo();
-    if (nodoUltimo != null) {
-        nodoUltimo.getItem().setTerminado(true);
-        nodoUltimo.getItem().setFechaFin(fechaFin);
-        }
-    else {
-        System.out.println("No hay tramites. ");
-        }
-    }    
-
     public static DataTramite buscarTramite(DataExpediente expediente, int id) {
         Lista<DataTramite> lista = expediente.getListaTramites();
         Nodo<DataTramite> aux = lista.getCabeza();
@@ -42,14 +31,7 @@ public class ExpedienteManager {
             aux = aux.getSgteNodo();
         }
         return null;
-    }
-    
-    
-    public static boolean revisarEstadoUltimoTramite(DataExpediente expediente) {
-        Lista<DataTramite> lista = expediente.getListaTramites();
-        return lista.getUltimo().getItem().isTerminado();
-    }
-    
+    }   
     
     public static Lista<DataTramite> mostrarTramites(DataExpediente expediente) {
         return expediente.getListaTramites();
