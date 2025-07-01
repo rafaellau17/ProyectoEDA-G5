@@ -25,6 +25,7 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
         this.expediente = exp;
         id_label.setText("ID: "+expediente.getId());
         prioridad_label.setText("PRIORIDAD: " + String.valueOf(expediente.getPrioridad()));
+        dni_label.setText("DNI: "+expediente.getDni());
         nombres_label.setText("NOMBRES: "+expediente.getNombres());
         tipo_label.setText("TIPO: "+expediente.getTipo());
         telefono_label.setText("TELEFONO: "+expediente.getTelefono());
@@ -43,7 +44,12 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
         this.docsTabla.setModel(modelo_1);
         this.tramitesTabla.setModel(modelo_2);     
         
+        this.docsTabla.getColumnModel().getColumn(0).setPreferredWidth(60);
+        this.docsTabla.getColumnModel().getColumn(1).setPreferredWidth(230);
         
+        if (!expediente.getListaTramites().esVacia()) {
+            poblarTramTable();   
+        }    
     }
     
     private void poblarDocsTable(){
@@ -97,32 +103,37 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        bg = new javax.swing.JPanel();
+        atras_button = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
-        id_label = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        docsTabla = new javax.swing.JTable();
+        addDoc_botton = new javax.swing.JButton();
         prioridad_label = new javax.swing.JLabel();
+        id_label = new javax.swing.JLabel();
+        dni_label = new javax.swing.JLabel();
         nombres_label = new javax.swing.JLabel();
         tipo_label = new javax.swing.JLabel();
         telefono_label = new javax.swing.JLabel();
         email_label = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        docsTabla = new javax.swing.JTable();
-        addDoc_botton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         tramitesTabla = new javax.swing.JTable();
-        addTram_button = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         id_txtField = new javax.swing.JTextField();
         accTram_boton = new javax.swing.JButton();
-        atras_button = new javax.swing.JButton();
+        addTram_button = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setLocationByPlatform(true);
-        setMinimumSize(new java.awt.Dimension(850, 500));
+        setMinimumSize(new java.awt.Dimension(850, 550));
+        setPreferredSize(new java.awt.Dimension(850, 550));
         setResizable(false);
-        setSize(new java.awt.Dimension(850, 500));
+        setSize(new java.awt.Dimension(850, 550));
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
                 formWindowGainedFocus(evt);
@@ -131,20 +142,32 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
             }
         });
 
-        jTabbedPane1.setFocusCycleRoot(true);
+        bg.setBackground(new java.awt.Color(239, 241, 243));
+        bg.setMinimumSize(new java.awt.Dimension(850, 500));
+        bg.setPreferredSize(new java.awt.Dimension(850, 500));
+        bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        id_label.setText("ID:");
+        atras_button.setBackground(new java.awt.Color(255, 159, 28));
+        atras_button.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        atras_button.setForeground(new java.awt.Color(239, 241, 243));
+        atras_button.setText("REGRESAR");
+        atras_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atras_buttonActionPerformed(evt);
+            }
+        });
+        bg.add(atras_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, 140, 40));
 
-        prioridad_label.setText("PRIORIDAD:");
+        jTabbedPane1.setBackground(new java.awt.Color(239, 241, 243));
+        jTabbedPane1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jTabbedPane1.setForeground(new java.awt.Color(34, 56, 67));
+        jTabbedPane1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
 
-        nombres_label.setText("NOMBRES:");
+        jPanel1.setBackground(new java.awt.Color(239, 241, 243));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        tipo_label.setText("TIPO: ");
-
-        telefono_label.setText("TELEFONO: ");
-
-        email_label.setText("EMAIL:");
-
+        docsTabla.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        docsTabla.setForeground(new java.awt.Color(34, 56, 67));
         docsTabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -158,62 +181,62 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(docsTabla);
 
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 20, 310, 280));
+
+        addDoc_botton.setBackground(new java.awt.Color(255, 159, 28));
+        addDoc_botton.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        addDoc_botton.setForeground(new java.awt.Color(239, 241, 243));
         addDoc_botton.setText("AGREGAR DOCUMENTO");
         addDoc_botton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addDoc_bottonActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(addDoc_botton)
-                .addGap(118, 118, 118))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(67, 67, 67)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(email_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(telefono_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(prioridad_label, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
-                    .addComponent(nombres_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tipo_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(id_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(282, 282, 282)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addComponent(id_label)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(prioridad_label)
-                .addGap(11, 11, 11)
-                .addComponent(nombres_label)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tipo_label)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(telefono_label)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(email_label)
-                .addContainerGap(109, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(addDoc_botton)
-                .addGap(22, 22, 22))
-        );
-
+        jPanel1.add(addDoc_botton, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 310, -1, 30));
         addDoc_botton.getAccessibleContext().setAccessibleName("");
+
+        prioridad_label.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        prioridad_label.setForeground(new java.awt.Color(34, 56, 67));
+        prioridad_label.setText("PRIORIDAD:");
+        jPanel1.add(prioridad_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 190, -1));
+
+        id_label.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        id_label.setForeground(new java.awt.Color(34, 56, 67));
+        id_label.setText("ID:");
+        jPanel1.add(id_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 160, -1));
+
+        dni_label.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        dni_label.setForeground(new java.awt.Color(34, 56, 67));
+        dni_label.setText("DNI: ");
+        jPanel1.add(dni_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 170, -1));
+
+        nombres_label.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        nombres_label.setForeground(new java.awt.Color(34, 56, 67));
+        nombres_label.setText("NOMBRES:");
+        jPanel1.add(nombres_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 270, -1));
+
+        tipo_label.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        tipo_label.setForeground(new java.awt.Color(34, 56, 67));
+        tipo_label.setText("TIPO: ");
+        jPanel1.add(tipo_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 230, -1));
+
+        telefono_label.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        telefono_label.setForeground(new java.awt.Color(34, 56, 67));
+        telefono_label.setText("TELEFONO: ");
+        jPanel1.add(telefono_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 230, -1));
+
+        email_label.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        email_label.setForeground(new java.awt.Color(34, 56, 67));
+        email_label.setText("EMAIL:");
+        jPanel1.add(email_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 210, -1));
 
         jTabbedPane1.addTab("DATOS DEL EXPEDIENTE", jPanel1);
 
+        jPanel2.setBackground(new java.awt.Color(239, 241, 243));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tramitesTabla.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        tramitesTabla.setForeground(new java.awt.Color(34, 56, 67));
         tramitesTabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -229,87 +252,59 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
 
         jScrollPane2.setViewportView(jScrollPane1);
 
-        addTram_button.setText("AÑADIR TRAMITE");
-        addTram_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addTram_buttonActionPerformed(evt);
-            }
-        });
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 800, 160));
 
+        jLabel8.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(34, 56, 67));
         jLabel8.setText("ID: ");
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 25, -1));
 
+        id_txtField.setBackground(new java.awt.Color(239, 241, 243));
+        id_txtField.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        id_txtField.setForeground(new java.awt.Color(34, 56, 67));
+        id_txtField.setBorder(null);
+        jPanel2.add(id_txtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 150, 30));
+
+        accTram_boton.setBackground(new java.awt.Color(255, 159, 28));
+        accTram_boton.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        accTram_boton.setForeground(new java.awt.Color(239, 241, 243));
         accTram_boton.setText("ACCEDER A TRAMITE");
         accTram_boton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 accTram_botonActionPerformed(evt);
             }
         });
+        jPanel2.add(accTram_boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 203, -1, 30));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 826, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(addTram_button, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(id_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(accTram_boton)
-                        .addGap(44, 44, 44))))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addTram_button)
-                    .addComponent(id_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8)
-                    .addComponent(accTram_boton))
-                .addContainerGap(69, Short.MAX_VALUE))
-        );
+        addTram_button.setBackground(new java.awt.Color(255, 159, 28));
+        addTram_button.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        addTram_button.setForeground(new java.awt.Color(239, 241, 243));
+        addTram_button.setText("AÑADIR TRAMITE");
+        addTram_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addTram_buttonActionPerformed(evt);
+            }
+        });
+        jPanel2.add(addTram_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 200, 170, 30));
+
+        jSeparator1.setForeground(new java.awt.Color(34, 56, 67));
+        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 150, 20));
 
         jTabbedPane1.addTab("TRAMITES DEL EXPEDIENTE", jPanel2);
 
-        atras_button.setText("REGRESAR");
-        atras_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                atras_buttonActionPerformed(evt);
-            }
-        });
+        bg.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 830, 400));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(atras_button)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(5, 5, 5)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
-                .addComponent(atras_button)
-                .addGap(30, 30, 30))
+            .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -352,8 +347,9 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_addDoc_bottonActionPerformed
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
-        poblarDocsTable();
-        poblarTramTable();
+        if (!expediente.getListaTramites().esVacia()) {
+            poblarTramTable();   
+        }
     }//GEN-LAST:event_formWindowGainedFocus
     /**
      * @param args the command line arguments
@@ -396,6 +392,8 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
     private javax.swing.JButton addDoc_botton;
     private javax.swing.JButton addTram_button;
     private javax.swing.JButton atras_button;
+    private javax.swing.JPanel bg;
+    private javax.swing.JLabel dni_label;
     private javax.swing.JTable docsTabla;
     private javax.swing.JLabel email_label;
     private javax.swing.JLabel id_label;
@@ -406,6 +404,7 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel nombres_label;
     private javax.swing.JLabel prioridad_label;
