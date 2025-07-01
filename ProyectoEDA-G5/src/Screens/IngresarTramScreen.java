@@ -38,122 +38,120 @@ public class IngresarTramScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        desc_txtField = new javax.swing.JTextField();
-        listo_boton = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        nombre_txtLabel = new javax.swing.JLabel();
         regresar_boton = new javax.swing.JButton();
         dni_label = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        dependencias_comboBox = new javax.swing.JComboBox<>();
-        nombre_txtLabel = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         dia_txtField = new javax.swing.JTextField();
-        mes_txtField = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
         annio_txtField = new javax.swing.JTextField();
+        mes_txtField = new javax.swing.JTextField();
+        listo_boton = new javax.swing.JButton();
+        dependencias_comboBox = new javax.swing.JComboBox<>();
+        desc_txtField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(850, 500));
         setPreferredSize(new java.awt.Dimension(850, 500));
         setResizable(false);
         setSize(new java.awt.Dimension(850, 500));
 
-        jLabel1.setText("FECHA DE INICIO (DD/MM/AAAA):");
+        jPanel1.setBackground(new java.awt.Color(239, 241, 243));
+        jPanel1.setForeground(new java.awt.Color(34, 56, 67));
+        jPanel1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jPanel1.setMinimumSize(new java.awt.Dimension(850, 500));
+        jPanel1.setPreferredSize(new java.awt.Dimension(850, 500));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setText("DESCRIPCION:");
+        nombre_txtLabel.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        nombre_txtLabel.setForeground(new java.awt.Color(34, 56, 67));
+        nombre_txtLabel.setText("NOMBRE: ");
+        jPanel1.add(nombre_txtLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 95, -1));
 
-        listo_boton.setText("LISTO");
-        listo_boton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                listo_botonActionPerformed(evt);
-            }
-        });
-
+        regresar_boton.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        regresar_boton.setForeground(new java.awt.Color(34, 56, 67));
         regresar_boton.setText("REGRESAR");
         regresar_boton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 regresar_botonActionPerformed(evt);
             }
         });
+        jPanel1.add(regresar_boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, -1, -1));
 
+        dni_label.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        dni_label.setForeground(new java.awt.Color(34, 56, 67));
         dni_label.setText("DNI: ########");
+        jPanel1.add(dni_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 95, -1));
 
+        jLabel4.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(34, 56, 67));
         jLabel4.setText("DEPENDENCIA:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 105, -1));
 
+        jLabel1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(34, 56, 67));
+        jLabel1.setText("FECHA DE INICIO (DD/MM/AAAA):");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, -1));
+
+        dia_txtField.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        dia_txtField.setForeground(new java.awt.Color(34, 56, 67));
+        dia_txtField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dia_txtFieldActionPerformed(evt);
+            }
+        });
+        jPanel1.add(dia_txtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, 40, -1));
+
+        jLabel2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(34, 56, 67));
+        jLabel2.setText("DESCRIPCION:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 186, -1));
+
+        annio_txtField.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        annio_txtField.setForeground(new java.awt.Color(34, 56, 67));
+        jPanel1.add(annio_txtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 180, 40, -1));
+
+        mes_txtField.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        mes_txtField.setForeground(new java.awt.Color(34, 56, 67));
+        jPanel1.add(mes_txtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 180, 40, -1));
+
+        listo_boton.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        listo_boton.setForeground(new java.awt.Color(34, 56, 67));
+        listo_boton.setText("LISTO");
+        listo_boton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listo_botonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(listo_boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 450, -1, -1));
+
+        dependencias_comboBox.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        dependencias_comboBox.setForeground(new java.awt.Color(34, 56, 67));
         dependencias_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DUSAR", "Facultad de Ingeniería", "Facultad de Derecho", "Facultad de Psicología", "Facultad de Ciencias Empresariales y Económicas", "Facultad de Comunicación", "Instituto de Investigación Científica", "Oficina de Innovación y Calidad Educativa", "Centro de Empleabilidad", "Centro de Idiomas", "Departamento de Orientación Psicopedagógica" }));
         dependencias_comboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dependencias_comboBoxActionPerformed(evt);
             }
         });
+        jPanel1.add(dependencias_comboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 280, -1, -1));
 
-        nombre_txtLabel.setText("NOMBRE: ");
-
-        dia_txtField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dia_txtFieldActionPerformed(evt);
-            }
-        });
+        desc_txtField.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        desc_txtField.setForeground(new java.awt.Color(34, 56, 67));
+        jPanel1.add(desc_txtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, 294, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(regresar_boton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(listo_boton)
-                .addGap(39, 39, 39))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(dni_label, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
-                            .addComponent(nombre_txtLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(dia_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(mes_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(annio_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(dependencias_comboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(desc_txtField))))
-                .addContainerGap(215, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(dni_label)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(nombre_txtLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(dia_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mes_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(annio_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(desc_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(dependencias_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(listo_boton)
-                    .addComponent(regresar_boton))
-                .addGap(21, 21, 21))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -278,6 +276,7 @@ public class IngresarTramScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JButton listo_boton;
     private javax.swing.JTextField mes_txtField;
     private javax.swing.JLabel nombre_txtLabel;

@@ -162,9 +162,9 @@ private boolean alertaMostrada = false;
         });
         background.add(dni_txtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 330, 120, 30));
 
-        buscarExp_boton.setBackground(new java.awt.Color(239, 241, 243));
+        buscarExp_boton.setBackground(new java.awt.Color(255, 159, 28));
         buscarExp_boton.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        buscarExp_boton.setForeground(new java.awt.Color(34, 56, 67));
+        buscarExp_boton.setForeground(new java.awt.Color(239, 241, 243));
         buscarExp_boton.setText("BUSCAR EXPEDIENTE");
         buscarExp_boton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -173,9 +173,9 @@ private boolean alertaMostrada = false;
         });
         background.add(buscarExp_boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 330, 180, 30));
 
-        ingresarExp_boton.setBackground(new java.awt.Color(239, 241, 243));
+        ingresarExp_boton.setBackground(new java.awt.Color(255, 159, 28));
         ingresarExp_boton.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        ingresarExp_boton.setForeground(new java.awt.Color(34, 56, 67));
+        ingresarExp_boton.setForeground(new java.awt.Color(239, 241, 243));
         ingresarExp_boton.setText("INGRESAR EXPEDIENTE");
         ingresarExp_boton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
