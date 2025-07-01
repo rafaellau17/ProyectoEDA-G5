@@ -64,7 +64,7 @@ public class LoginScreen extends javax.swing.JFrame {
         iniSesion_boton.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         iniSesion_boton.setForeground(new java.awt.Color(34, 56, 67));
         iniSesion_boton.setText("INICIAR SESION");
-        iniSesion_boton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        iniSesion_boton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         iniSesion_boton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 iniSesion_botonActionPerformed(evt);
@@ -77,7 +77,7 @@ public class LoginScreen extends javax.swing.JFrame {
 
         user_txtField.setBackground(new java.awt.Color(239, 241, 243));
         user_txtField.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        user_txtField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        user_txtField.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         user_txtField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 user_txtFieldActionPerformed(evt);
@@ -92,7 +92,7 @@ public class LoginScreen extends javax.swing.JFrame {
         salir_boton.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         salir_boton.setForeground(new java.awt.Color(34, 56, 67));
         salir_boton.setText("SALIR");
-        salir_boton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        salir_boton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         salir_boton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 salir_botonActionPerformed(evt);
@@ -153,7 +153,9 @@ public class LoginScreen extends javax.swing.JFrame {
         jPanel2.setBackground(java.awt.Color.white);
 
         jLabel3.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("UNIVERSIDAD DE LIMA");
+        jLabel3.setToolTipText("");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);

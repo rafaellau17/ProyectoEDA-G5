@@ -5,6 +5,7 @@
 package Screens;
 
 import DataClasses.DataExpediente;
+import DataManagers.ListaExpedientesManager;
 import static DataManagers.ListaExpedientesManager.agregarExpediente;
 import javax.swing.JOptionPane;
 
@@ -47,10 +48,10 @@ public class IngresarExpScreen extends javax.swing.JFrame {
         email_txtField = new javax.swing.JTextField();
         tipoExterno_radioBoton = new javax.swing.JRadioButton();
         tipoULIMA_radioBoton = new javax.swing.JRadioButton();
-        listo_boton = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
         cancel_boton = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
+        listo_boton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ingresar Expediente");
@@ -58,7 +59,6 @@ public class IngresarExpScreen extends javax.swing.JFrame {
         setIconImages(null);
         setLocationByPlatform(true);
         setMinimumSize(new java.awt.Dimension(600, 500));
-        setPreferredSize(new java.awt.Dimension(600, 500));
         setResizable(false);
         setSize(new java.awt.Dimension(600, 500));
 
@@ -160,21 +160,6 @@ public class IngresarExpScreen extends javax.swing.JFrame {
         tipoULIMA_radioBoton.setText("Usuario ULIMA");
         jPanel1.add(tipoULIMA_radioBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 330, 112, -1));
 
-        listo_boton.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        listo_boton.setForeground(new java.awt.Color(34, 56, 67));
-        listo_boton.setText("LISTO");
-        listo_boton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                listo_botonActionPerformed(evt);
-            }
-        });
-        jPanel1.add(listo_boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 410, 140, -1));
-
-        background.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 500));
-
-        jPanel2.setBackground(new java.awt.Color(34, 56, 67));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
         cancel_boton.setBackground(new java.awt.Color(239, 241, 243));
         cancel_boton.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         cancel_boton.setForeground(new java.awt.Color(34, 56, 67));
@@ -184,10 +169,25 @@ public class IngresarExpScreen extends javax.swing.JFrame {
                 cancel_botonActionPerformed(evt);
             }
         });
-        jPanel2.add(cancel_boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 140, -1));
+        jPanel1.add(cancel_boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 420, 140, -1));
+
+        background.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 500));
+
+        jPanel2.setBackground(new java.awt.Color(34, 56, 67));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel4.setBackground(new java.awt.Color(239, 241, 243));
         jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 20, 500));
+
+        listo_boton.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        listo_boton.setForeground(new java.awt.Color(34, 56, 67));
+        listo_boton.setText("LISTO");
+        listo_boton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listo_botonActionPerformed(evt);
+            }
+        });
+        jPanel2.add(listo_boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, 140, -1));
 
         background.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 0, 210, 500));
 
@@ -221,7 +221,7 @@ public class IngresarExpScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_tipoExterno_radioBotonActionPerformed
 
     private void cancel_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_botonActionPerformed
-        int btnRegresar = JOptionPane.showConfirmDialog(rootPane, "Estás seguro de regresar?\nPerderás todo tu progreso.", "Advertencia", 0);
+        int btnRegresar = JOptionPane.showConfirmDialog(rootPane, "¿Desea regresar?\nTodo su progreso se perderá.", "Confirmación", 0);
         if (btnRegresar == 0) {
             ScreensManager.irAtras(this);        
         }
@@ -272,6 +272,9 @@ public class IngresarExpScreen extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "DNI no es válido.", "Error", JOptionPane.WARNING_MESSAGE);
             dni_txtField.setText("");
         }
+        if (ListaExpedientesManager.buscarExpediente(Integer.parseInt(dni_txtField.getText().trim())) != null) {
+                JOptionPane.showMessageDialog(rootPane, "El DNI ya fue ingresado anteriormente.\nRevisar lista de expedientes.", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+        }        
         else {
             try {
                 int dni = Integer.parseInt(dni_txtField.getText().trim());

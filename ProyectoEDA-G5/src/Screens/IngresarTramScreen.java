@@ -9,6 +9,10 @@ import DataClasses.DataTramite;
 import DataClasses.Fecha;
 import DataManagers.ExpedienteManager;
 import java.util.Calendar;
+import static java.util.Calendar.DATE;
+import static java.util.Calendar.MONTH;
+import static java.util.Calendar.YEAR;
+import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
 import tda.Pila;
 
@@ -202,8 +206,28 @@ public class IngresarTramScreen extends javax.swing.JFrame {
             return;
         }
         
+        
+        Calendar calendar = new GregorianCalendar();
+        int cal1 = calendar.get(YEAR);
+        int cal2 = calendar.get(MONTH);
+        int cal3 = calendar.get(DATE);        
+        
+        // Fecha ingresada no puede ser mayor a la actual (dia de hoy)
+        if (annio == cal1) {
+            if (mes > cal2) {
+                JOptionPane.showMessageDialog(this, "Ingrese una fecha valida antes de la fecha actual.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;              
+            }
+            else {
+                if (dia > cal3) {
+                JOptionPane.showMessageDialog(this, "Ingrese una fecha valida antes de la fecha actual.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;              
+                }
+            }
+        }
+        
         // Validar rangos de fecha
-        if (dia < 1 || dia > 31 || mes < 1 || mes > 12 || annio < 1900 || annio > 2025) {
+        if (dia < 1 || dia > 31 || mes < 1 || mes > 12 || annio < 1900 || annio > cal1) {
             JOptionPane.showMessageDialog(this, "Ingrese una fecha valida en formato DD/MM/AAAA.", "Error", JOptionPane.ERROR_MESSAGE);
             return;   
         }
