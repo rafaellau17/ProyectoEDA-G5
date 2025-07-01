@@ -32,11 +32,23 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
         email_label.setText("EMAIL: : "+expediente.getEmail());
         
         
-        modelo_1 = new DefaultTableModel();
+        modelo_1 = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+            return false;
+            }
+        };
+
         modelo_1.addColumn("NRO");
         modelo_1.addColumn("NOMBRE DEL DOCUMENTO");
         
-        modelo_2 = new DefaultTableModel();
+        modelo_2 = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+            return false;
+            }
+        };
+        
         modelo_2.addColumn("ID");
         modelo_2.addColumn("DESCRIPCION");
         modelo_2.addColumn("FECHA DE INICIO");
@@ -179,6 +191,7 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        docsTabla.setCellSelectionEnabled(true);
         jScrollPane3.setViewportView(docsTabla);
 
         jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 20, 310, 280));
@@ -248,6 +261,7 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tramitesTabla.setCellSelectionEnabled(true);
         jScrollPane1.setViewportView(tramitesTabla);
 
         jScrollPane2.setViewportView(jScrollPane1);
@@ -342,7 +356,6 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
         String nombre_doc = JOptionPane.showInputDialog(this, "Ingrese el nombre del documento");
         Documento aux = new Documento(nombre_doc);
         ExpedienteManager.agregarDocumento(expediente, aux);
-        JOptionPane.showMessageDialog(this, "Documento ingresado");
         poblarDocsTable();
     }//GEN-LAST:event_addDoc_bottonActionPerformed
 

@@ -273,7 +273,8 @@ public class IngresarExpScreen extends javax.swing.JFrame {
             dni_txtField.setText("");
         }
         if (ListaExpedientesManager.buscarExpediente(Integer.parseInt(dni_txtField.getText().trim())) != null) {
-                JOptionPane.showMessageDialog(rootPane, "El DNI ya fue ingresado anteriormente.\nRevisar lista de expedientes.", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "El DNI ya fue ingresado anteriormente.\nRevisar lista de expedientes.", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+            dni_txtField.setText("");
         }        
         else {
             try {

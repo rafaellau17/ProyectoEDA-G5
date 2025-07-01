@@ -33,7 +33,20 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
         initComponents();
         this.tramite = tram;
         id_label.setText("ID: "+ tramite.getId());
-        fechaIni_label.setText("FECHA INICIAL: "+tramite.getFechaIni().toString());
+        
+        
+        String dia = String.valueOf(tramite.getFechaIni().getDia());
+        int dia_len = String.valueOf(dia).length();
+        if (dia_len == 1) {
+            dia = "0" + dia;
+        }
+        String mes = String.valueOf(tramite.getFechaIni().getMes());
+        int mes_len = String.valueOf(mes).length();
+        if (mes_len==1) {
+            mes = "0"+mes;
+        }
+        String annio = String.valueOf(tramite.getFechaIni().getAnnio());
+        fechaIni_label.setText("FECHA INICIAL: " + dia + "/" + mes + "/" + annio);
 
         desc_label.setText("DESCRIPCION: "+tramite.getDescripcion());
         
@@ -51,11 +64,23 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
             fechaFin_label.setText("FECHA FIN: NA" );
         }        
         
-        modelo_1 = new DefaultTableModel();
+        modelo_1 = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+            return false;
+            }
+        };
+        
         modelo_1.addColumn("NRO");
         modelo_1.addColumn("DOCUMENTO");
         
-        modelo_2 = new DefaultTableModel();
+        modelo_2 = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+            return false;
+            }
+        };        
+        
         modelo_2.addColumn("NRO");
         modelo_2.addColumn("HISTORIAL DE DEPENDENCIAS");
         
@@ -87,7 +112,7 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
         int cont = 1;
         while(!aux.esVacia()){
             String dependencia = aux.desencolar();
-            depend_label.setText("ULTIMA DEPENDENCIA: "+dependencia);
+            depend_label.setText(dependencia);
             modelo_2.addRow(new Object[]{cont, dependencia});
             cont++;
             pila.apilar(dependencia);
@@ -144,6 +169,7 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
         fechaIni_label = new javax.swing.JLabel();
         fechaFin_label = new javax.swing.JLabel();
         id_label = new javax.swing.JLabel();
+        depend_label1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -250,8 +276,8 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
 
         depend_label.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         depend_label.setForeground(new java.awt.Color(239, 241, 243));
-        depend_label.setText("ULTIMA DEPENDENCIA: ");
-        jPanel3.add(depend_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 280, -1));
+        depend_label.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jPanel3.add(depend_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 280, 20));
 
         terminado_label.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         terminado_label.setForeground(new java.awt.Color(239, 241, 243));
@@ -267,17 +293,23 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
         fechaIni_label.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         fechaIni_label.setForeground(new java.awt.Color(239, 241, 243));
         fechaIni_label.setText("FECHA DE INICIO:");
-        jPanel3.add(fechaIni_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 280, -1));
+        jPanel3.add(fechaIni_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 280, -1));
 
         fechaFin_label.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         fechaFin_label.setForeground(new java.awt.Color(239, 241, 243));
         fechaFin_label.setText("FECHA DE FIN:");
-        jPanel3.add(fechaFin_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 280, -1));
+        jPanel3.add(fechaFin_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 280, -1));
 
         id_label.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         id_label.setForeground(new java.awt.Color(239, 241, 243));
         id_label.setText("ID: ");
-        jPanel3.add(id_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 100, -1));
+        jPanel3.add(id_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 100, -1));
+
+        depend_label1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        depend_label1.setForeground(new java.awt.Color(239, 241, 243));
+        depend_label1.setText("ULTIMA DEPENDENCIA:");
+        depend_label1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jPanel3.add(depend_label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 280, 30));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 380));
 
@@ -378,6 +410,7 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarDepend_boton;
     private javax.swing.JLabel depend_label;
+    private javax.swing.JLabel depend_label1;
     private javax.swing.JTable dependenciasTable;
     private javax.swing.JLabel desc_label;
     private javax.swing.JTable documentosTable;
