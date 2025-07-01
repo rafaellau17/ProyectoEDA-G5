@@ -43,6 +43,8 @@ private boolean alertaMostrada = false;
         modelo.addColumn("TIPO");
         modelo.addColumn("PRIORIDAD");
         this.tablaExp.setModel(modelo);
+        this.tablaExp.getColumnModel().getColumn(0).setPreferredWidth(60);
+
         if (!listaExpedientes.esVacia()) {
             Poblar();
         }
@@ -168,7 +170,8 @@ private boolean alertaMostrada = false;
 
             }
         ));
-        tablaExp.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        tablaExp.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_NEXT_COLUMN);
+        tablaExp.setAutoscrolls(false);
         tablaExp.setCellSelectionEnabled(true);
         tablaExp.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tablaExp.setFillsViewportHeight(true);
@@ -250,9 +253,6 @@ private boolean alertaMostrada = false;
 
     private void buscarExp_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarExp_botonActionPerformed
         try {
-            int dni = Integer.parseInt(dni_txtField.getText().trim());
-            DataExpediente exp;
-            exp = buscarExpediente(dni);
 
             if (dni_txtField.getText().length() != 8) {
                 JOptionPane.showMessageDialog(rootPane, "DNI no es válido.", "Error", JOptionPane.WARNING_MESSAGE);
@@ -260,6 +260,10 @@ private boolean alertaMostrada = false;
                 return;
             }            
             
+            int dni = Integer.parseInt(dni_txtField.getText().trim());
+            DataExpediente exp;
+            exp = buscarExpediente(dni);
+
             if (exp != null) {
                 dni_txtField.setText("");
                 ExpedienteBuscadoScreen exBuscado_pantalla = new ExpedienteBuscadoScreen(exp);

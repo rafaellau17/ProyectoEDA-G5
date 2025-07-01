@@ -35,6 +35,20 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
         fechaIni_label.setText("FECHA INICIAL: "+tramite.getFechaIni().toString());
 
         desc_label.setText("DESCRIPCION: "+tramite.getDescripcion());
+
+        if (tramite.isTerminado()) {
+            terminado_label.setText("TERMINADO: TRAMITE TERMINADO");
+        }
+        else{
+            terminado_label.setText("TERMINADO: TRAMITE NO TERMINADO");
+        }
+        
+        if (tramite.getFechaFin()!=null) {
+            fechaFin_label.setText("FECHA FIN: " +tramite.getFechaFin().toString());
+        }
+        else{
+            fechaFin_label.setText("FECHA FIN: NA" );
+        }
         
         modelo_1 = new DefaultTableModel();
         modelo_1.addColumn("NRO");
@@ -42,13 +56,25 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
         
         modelo_2 = new DefaultTableModel();
         modelo_2.addColumn("NRO");
-        modelo_2.addColumn("HISTORIAL DE DEPENDENCIAS");
+        modelo_2.addColumn("DEPENDENCIA");
         
         this.documentosTable.setModel(modelo_1);
         this.dependenciasTable.setModel(modelo_2);        
+        
+        this.documentosTable.getColumnModel().getColumn(0).setPreferredWidth(60);
+        this.dependenciasTable.getColumnModel().getColumn(0).setPreferredWidth(60);               
+        this.documentosTable.getColumnModel().getColumn(1).setPreferredWidth(260);
+        this.dependenciasTable.getColumnModel().getColumn(1).setPreferredWidth(260);         
+    
+        if (!TramiteManager.mostrarDependencias(tramite).esVacia()) {
+            poblarDependenciasTable();
+        }
+        if (!TramiteManager.mostrarDocumentos(tramite).esVacia()) {
+            poblarDocumentosTable();
+        }    
     }
     
-    public void poblarDependenciasTable(){
+    private void poblarDependenciasTable(){
         int filas = this.dependenciasTable.getRowCount();
         for(int i=0;i<filas;i++)
         {
@@ -73,7 +99,7 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
         }
     }
     
-    public void poblarDocumentosTable(){
+    private void poblarDocumentosTable(){
         int filas = this.documentosTable.getRowCount();
         for(int i=0;i<filas;i++)
         {
@@ -113,18 +139,22 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
         terminado_label = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         agregarDepend_boton = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        documentosTable = new javax.swing.JTable();
-        jScrollPane4 = new javax.swing.JScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         dependenciasTable = new javax.swing.JTable();
-        mostrar_boton = new javax.swing.JToggleButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        documentosTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
         setResizable(false);
         setSize(new java.awt.Dimension(850, 500));
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         fechaIni_label.setText("FECHA DE INICIO:");
 
@@ -159,44 +189,47 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
             }
         });
 
-        documentosTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        documentosTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        jScrollPane2.setViewportView(documentosTable);
-
-        jScrollPane3.setViewportView(jScrollPane2);
-
+        dependenciasTable.setAutoCreateRowSorter(true);
         dependenciasTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1", "Title 2"
             }
-        ));
-        dependenciasTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        jScrollPane1.setViewportView(dependenciasTable);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
 
-        jScrollPane4.setViewportView(jScrollPane1);
-
-        mostrar_boton.setText("ACTUALIZAR");
-        mostrar_boton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mostrar_botonActionPerformed(evt);
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
+        dependenciasTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        dependenciasTable.setShowVerticalLines(true);
+        jScrollPane1.setViewportView(dependenciasTable);
+
+        documentosTable.setAutoCreateRowSorter(true);
+        documentosTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2"
+            }
+        ));
+        documentosTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        documentosTable.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        documentosTable.setShowGrid(false);
+        documentosTable.setShowVerticalLines(true);
+        jScrollPane2.setViewportView(documentosTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -204,44 +237,39 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(desc_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(terminado_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(depend_label, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+                        .addComponent(fechaFin_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(fechaIni_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(finTram_boton, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(556, 556, 556)
-                        .addComponent(finTram_boton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(desc_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(terminado_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(depend_label, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
-                                    .addComponent(fechaFin_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(fechaIni_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(47, 47, 47)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(mostrar_boton))
-                        .addGap(54, 54, 54)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(agregarDepend_boton, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
-                .addContainerGap(43, Short.MAX_VALUE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(agregarDepend_boton)
+                                .addGap(67, 67, 67)))))
+                .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(37, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(agregarDepend_boton)
-                            .addComponent(mostrar_boton)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
+                        .addComponent(agregarDepend_boton))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(fechaIni_label)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(fechaFin_label)
@@ -250,9 +278,8 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(terminado_label)
                         .addGap(28, 28, 28)
-                        .addComponent(desc_label, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                        .addComponent(desc_label, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(finTram_boton))
@@ -264,15 +291,17 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void finTram_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finTram_botonActionPerformed
-        int response = JOptionPane.showConfirmDialog(rootPane, "¿Desea finalizar el tramite?", "Confirmacion", JOptionPane.YES_NO_OPTION);
+        int response = JOptionPane.showConfirmDialog(rootPane, "¿Desea finalizar el tramite?", "Confirmación", JOptionPane.YES_NO_OPTION);
         if (response == JOptionPane.YES_OPTION) {
             tramite.setTerminado(true);
             Calendar calendar = new GregorianCalendar();
             int aux = calendar.get(YEAR);
-            int aux2 = calendar.get(MONTH);
+            int aux2 = calendar.get(MONTH)+1;
             int aux3 = calendar.get(DATE);
             Fecha fechafin = new Fecha(aux3, aux2, aux);
             tramite.setFechaFin(fechafin);
+            terminado_label.setText("TERMINADO: TRAMITE TERMINADO");
+            fechaFin_label.setText("FECHA FIN: " +fechafin);        
         }
         
     }//GEN-LAST:event_finTram_botonActionPerformed
@@ -282,7 +311,7 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void agregarDepend_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarDepend_botonActionPerformed
-        String dependencias[] = {"DUSAR", "Facultad de Ingeniería", "Facultad de Derecho", "Facultad de Psicología", "Facultad de Ciencias Empresariales y Económicas", "Facultad de Comunicación", "Instituto de Investigación Científica", "Oficina de Innovación y Calidad Educativa", "Centro de Empleabilidad", "Centro de Idiomas", "Departamento de Orientación Psicopedagógica"};
+        String dependencias[] = {"DUSAR", "Facultad de Ingeniería", "Facultad de Derecho", "Facultad de Psicología", "Facultad de C.E. y E.", "Facultad de Comunicación", "Instituto de Investigación Científica", "Oficina de Innovación y Calidad Educativa", "Centro de Empleabilidad", "Centro de Idiomas", "Departamento de Orientación Psicopedagógica"};
         JComboBox combobox = new JComboBox(dependencias);
         
         int input = JOptionPane.showConfirmDialog(this, combobox, "Seleccione una dependencia", JOptionPane.DEFAULT_OPTION);
@@ -295,23 +324,10 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_agregarDepend_botonActionPerformed
 
-    private void mostrar_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrar_botonActionPerformed
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         poblarDependenciasTable();
         poblarDocumentosTable();
-        if (tramite.isTerminado()) {
-            terminado_label.setText("TERMINADO: TRAMITE TERMINADO");
-        }
-        else{
-            terminado_label.setText("TERMINADO: TRAMITE NO TERMINADO");
-        }
-        
-        if (tramite.getFechaFin()!=null) {
-            fechaFin_label.setText("FECHA FIN: " +tramite.getFechaFin().toString());
-        }
-        else{
-            fechaFin_label.setText("FECHA FIN: NA" );
-        }
-    }//GEN-LAST:event_mostrar_botonActionPerformed
+    }//GEN-LAST:event_formWindowGainedFocus
     /**
      * @param args the command line arguments
      */
@@ -342,7 +358,8 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                DataTramite aux = new DataTramite(null, "", null);
+                Fecha aux2 = new Fecha(00, 00, 2000);
+                DataTramite aux = new DataTramite(aux2, "", null);
                 new TramiteBuscadoScreen(aux).setVisible(true);
             }
         });
@@ -361,9 +378,6 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JToggleButton mostrar_boton;
     private javax.swing.JLabel terminado_label;
     // End of variables declaration//GEN-END:variables
 }
