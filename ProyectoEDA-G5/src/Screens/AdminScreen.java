@@ -118,17 +118,23 @@ private boolean alertaMostrada = false;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        fin_sesion_boton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        background = new javax.swing.JPanel();
+        dni_txtLabel = new javax.swing.JLabel();
         dni_txtField = new javax.swing.JTextField();
         buscarExp_boton = new javax.swing.JButton();
+        ingresarExp_boton = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        bienvenidoUser_label = new javax.swing.JLabel();
+        fin_sesion_boton = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jScrollPane2 = new javax.swing.JScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaExp = new javax.swing.JTable();
-        ingresarExp_boton = new javax.swing.JButton();
-        bienvenidoUser_label = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Admin");
+        setPreferredSize(new java.awt.Dimension(850, 500));
+        setResizable(false);
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
                 formWindowGainedFocus(evt);
@@ -137,27 +143,93 @@ private boolean alertaMostrada = false;
             }
         });
 
-        fin_sesion_boton.setText("CERRAR SESION");
-        fin_sesion_boton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fin_sesion_botonActionPerformed(evt);
-            }
-        });
+        background.setBackground(new java.awt.Color(239, 241, 243));
+        background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("DNI: ");
+        dni_txtLabel.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        dni_txtLabel.setForeground(new java.awt.Color(34, 56, 67));
+        dni_txtLabel.setText("DNI: ");
+        background.add(dni_txtLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 340, 40, -1));
 
+        dni_txtField.setBackground(new java.awt.Color(239, 241, 243));
+        dni_txtField.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        dni_txtField.setForeground(new java.awt.Color(153, 153, 153));
+        dni_txtField.setText("Ingrese su DNI");
+        dni_txtField.setBorder(null);
         dni_txtField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dni_txtFieldActionPerformed(evt);
             }
         });
+        background.add(dni_txtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 330, 120, 30));
 
+        buscarExp_boton.setBackground(new java.awt.Color(239, 241, 243));
+        buscarExp_boton.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        buscarExp_boton.setForeground(new java.awt.Color(34, 56, 67));
         buscarExp_boton.setText("BUSCAR EXPEDIENTE");
         buscarExp_boton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarExp_botonActionPerformed(evt);
             }
         });
+        background.add(buscarExp_boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 330, 180, 30));
+
+        ingresarExp_boton.setBackground(new java.awt.Color(239, 241, 243));
+        ingresarExp_boton.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        ingresarExp_boton.setForeground(new java.awt.Color(34, 56, 67));
+        ingresarExp_boton.setText("INGRESAR EXPEDIENTE");
+        ingresarExp_boton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ingresarExp_botonActionPerformed(evt);
+            }
+        });
+        background.add(ingresarExp_boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 330, -1, 30));
+
+        jPanel1.setBackground(new java.awt.Color(255, 159, 28));
+
+        bienvenidoUser_label.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        bienvenidoUser_label.setForeground(new java.awt.Color(239, 241, 243));
+        bienvenidoUser_label.setText("<html>BIENVENIDO,\nadmin");
+
+        fin_sesion_boton.setBackground(new java.awt.Color(239, 241, 243));
+        fin_sesion_boton.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        fin_sesion_boton.setForeground(new java.awt.Color(34, 56, 67));
+        fin_sesion_boton.setText("CERRAR SESION");
+        fin_sesion_boton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 102, 0), 1, true));
+        fin_sesion_boton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fin_sesion_botonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(bienvenidoUser_label, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(fin_sesion_boton, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(bienvenidoUser_label, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 339, Short.MAX_VALUE)
+                .addComponent(fin_sesion_boton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44))
+        );
+
+        background.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 500));
+
+        jSeparator1.setForeground(new java.awt.Color(34, 56, 67));
+        background.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 360, 120, 20));
 
         tablaExp.setAutoCreateRowSorter(true);
         tablaExp.setModel(new javax.swing.table.DefaultTableModel(
@@ -178,61 +250,19 @@ private boolean alertaMostrada = false;
         tablaExp.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tablaExp);
 
-        ingresarExp_boton.setText("INGRESAR EXPEDIENTE");
-        ingresarExp_boton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ingresarExp_botonActionPerformed(evt);
-            }
-        });
+        jScrollPane2.setViewportView(jScrollPane1);
 
-        bienvenidoUser_label.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        bienvenidoUser_label.setText("BIENVENIDO, admin");
+        background.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 600, 290));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(9, 9, 9)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(fin_sesion_boton)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(bienvenidoUser_label)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(dni_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buscarExp_boton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(ingresarExp_boton))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 674, Short.MAX_VALUE))
-                        .addGap(41, 41, 41))))
+            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(bienvenidoUser_label)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ingresarExp_boton)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(dni_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(buscarExp_boton, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
-                .addComponent(fin_sesion_boton)
-                .addGap(26, 26, 26))
+            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -329,13 +359,17 @@ private boolean alertaMostrada = false;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel background;
     private javax.swing.JLabel bienvenidoUser_label;
     private javax.swing.JButton buscarExp_boton;
     private javax.swing.JTextField dni_txtField;
+    private javax.swing.JLabel dni_txtLabel;
     private javax.swing.JButton fin_sesion_boton;
     private javax.swing.JButton ingresarExp_boton;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable tablaExp;
     // End of variables declaration//GEN-END:variables
 }

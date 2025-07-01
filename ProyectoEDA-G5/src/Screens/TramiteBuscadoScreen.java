@@ -304,7 +304,7 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
         else{
             terminado_label.setText("TERMINADO: TRAMITE NO TERMINADO");
         }
-        
+
         if (tramite.getFechaFin()!=null) {
             fechaFin_label.setText("FECHA FIN: " +tramite.getFechaFin().toString());
         }
