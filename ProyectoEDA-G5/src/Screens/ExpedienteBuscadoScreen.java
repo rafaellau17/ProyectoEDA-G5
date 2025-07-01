@@ -44,7 +44,12 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
         this.docsTabla.setModel(modelo_1);
         this.tramitesTabla.setModel(modelo_2);     
         
+        this.docsTabla.getColumnModel().getColumn(0).setPreferredWidth(60);
+        this.docsTabla.getColumnModel().getColumn(1).setPreferredWidth(230);
         
+        if (!expediente.getListaTramites().esVacia()) {
+            poblarTramTable();   
+        }    
     }
     
     private void poblarDocsTable(){
@@ -124,6 +129,8 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Expediente Buscado");
         setLocationByPlatform(true);
         setMinimumSize(new java.awt.Dimension(850, 550));
         setPreferredSize(new java.awt.Dimension(850, 550));
@@ -163,17 +170,23 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
 
         docsTabla.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         docsTabla.setForeground(new java.awt.Color(34, 56, 67));
+        docsTabla.setAutoCreateRowSorter(true);
         docsTabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1", "Title 2"
             }
         ));
+        docsTabla.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        docsTabla.setAutoscrolls(false);
+        docsTabla.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        docsTabla.setFillsViewportHeight(true);
+        docsTabla.setShowVerticalLines(true);
         jScrollPane3.setViewportView(docsTabla);
 
         jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 20, 310, 280));
@@ -266,7 +279,7 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
         accTram_boton.setText("ACCEDER A TRAMITE");
         accTram_boton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                accTram_botonActionPerformed(evt);
+                id_txtFieldActionPerformed(evt);
             }
         });
         jPanel2.add(accTram_boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 203, -1, 30));
@@ -334,16 +347,20 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_accTram_botonActionPerformed
 
     private void addDoc_bottonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDoc_bottonActionPerformed
-        String nombre_doc = JOptionPane.showInputDialog(this, "Ingrese el nombre del documento");
+        String nombre_doc = JOptionPane.showInputDialog(this, "Ingrese el nombre del documento: ");
         Documento aux = new Documento(nombre_doc);
         ExpedienteManager.agregarDocumento(expediente, aux);
-        JOptionPane.showMessageDialog(this, "Documento ingresado");
         poblarDocsTable();
     }//GEN-LAST:event_addDoc_bottonActionPerformed
 
+    private void id_txtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_id_txtFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_id_txtFieldActionPerformed
+
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
-        poblarDocsTable();
-        poblarTramTable();
+        if (!expediente.getListaTramites().esVacia()) {
+            poblarTramTable();   
+        }
     }//GEN-LAST:event_formWindowGainedFocus
     /**
      * @param args the command line arguments
