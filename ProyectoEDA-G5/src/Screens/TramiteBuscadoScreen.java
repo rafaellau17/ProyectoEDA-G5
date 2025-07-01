@@ -32,6 +32,7 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
     public TramiteBuscadoScreen(DataTramite tram) {
         initComponents();
         this.tramite = tram;
+        id_label.setText("ID: "+ tramite.getId());
         fechaIni_label.setText("FECHA INICIAL: "+tramite.getFechaIni().toString());
 
         desc_label.setText("DESCRIPCION: "+tramite.getDescripcion());
@@ -125,20 +126,25 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
     private void initComponents() {
 
         finTramPopUp_OptionPane = new javax.swing.JOptionPane();
-        fechaIni_label = new javax.swing.JLabel();
-        fechaFin_label = new javax.swing.JLabel();
-        desc_label = new javax.swing.JLabel();
-        depend_label = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         finTram_boton = new javax.swing.JButton();
-        terminado_label = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        dependenciasTable = new javax.swing.JTable();
         agregarDepend_boton = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jScrollPane2 = new javax.swing.JScrollPane();
         documentosTable = new javax.swing.JTable();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        dependenciasTable = new javax.swing.JTable();
+        jPanel3 = new javax.swing.JPanel();
+        depend_label = new javax.swing.JLabel();
+        terminado_label = new javax.swing.JLabel();
+        desc_label = new javax.swing.JLabel();
+        fechaIni_label = new javax.swing.JLabel();
+        fechaFin_label = new javax.swing.JLabel();
+        id_label = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -152,58 +158,35 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
             }
         });
 
-        fechaIni_label.setText("FECHA DE INICIO:");
+        jPanel1.setBackground(new java.awt.Color(239, 241, 243));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        fechaFin_label.setText("FECHA DE FIN:");
-
-        desc_label.setText("DESCRIPCION:");
-        desc_label.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-
-        depend_label.setText("ULTIMA DEPENDENCIA: ");
-
+        finTram_boton.setBackground(new java.awt.Color(255, 159, 28));
+        finTram_boton.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        finTram_boton.setForeground(new java.awt.Color(239, 241, 243));
         finTram_boton.setText("FINALIZAR TRAMITE");
         finTram_boton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 finTram_botonActionPerformed(evt);
             }
         });
+        jPanel1.add(finTram_boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 450, 170, 40));
 
-        terminado_label.setText("TERMINADO:");
-
+        jButton1.setBackground(new java.awt.Color(255, 159, 28));
+        jButton1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(239, 241, 243));
         jButton1.setText("REGRESAR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 460, 140, 40));
 
-        agregarDepend_boton.setText("AGREGAR \nDEPENDENCIA");
-        agregarDepend_boton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        agregarDepend_boton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                agregarDepend_botonActionPerformed(evt);
-            }
-        });
+        jPanel2.setBackground(new java.awt.Color(255, 159, 28));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        documentosTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        documentosTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        documentosTable.setAutoscrolls(false);
-        documentosTable.setFillsViewportHeight(true);
-        documentosTable.setShowVerticalLines(true);
-        jScrollPane2.setViewportView(documentosTable);
-
-        jScrollPane3.setViewportView(jScrollPane2);
-
+        dependenciasTable.setBackground(new java.awt.Color(239, 241, 243));
         dependenciasTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -224,60 +207,93 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
 
         jScrollPane4.setViewportView(jScrollPane1);
 
+        jPanel2.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 260, 300));
+
+        agregarDepend_boton.setBackground(new java.awt.Color(239, 241, 243));
+        agregarDepend_boton.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        agregarDepend_boton.setForeground(new java.awt.Color(255, 159, 28));
+        agregarDepend_boton.setText("AGREGAR \nDEPENDENCIA");
+        agregarDepend_boton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        agregarDepend_boton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarDepend_botonActionPerformed(evt);
+            }
+        });
+        jPanel2.add(agregarDepend_boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 330, 210, 30));
+
+        documentosTable.setBackground(new java.awt.Color(239, 241, 243));
+        documentosTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        documentosTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        documentosTable.setAutoscrolls(false);
+        documentosTable.setFillsViewportHeight(true);
+        documentosTable.setShowVerticalLines(true);
+        jScrollPane2.setViewportView(documentosTable);
+
+        jScrollPane3.setViewportView(jScrollPane2);
+
+        jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 240, 300));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 600, 380));
+
+        jPanel3.setBackground(new java.awt.Color(34, 56, 67));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        depend_label.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        depend_label.setForeground(new java.awt.Color(239, 241, 243));
+        depend_label.setText("ULTIMA DEPENDENCIA: ");
+        jPanel3.add(depend_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 280, -1));
+
+        terminado_label.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        terminado_label.setForeground(new java.awt.Color(239, 241, 243));
+        terminado_label.setText("TERMINADO:");
+        jPanel3.add(terminado_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 280, -1));
+
+        desc_label.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        desc_label.setForeground(new java.awt.Color(239, 241, 243));
+        desc_label.setText("DESCRIPCION:");
+        desc_label.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jPanel3.add(desc_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 280, 100));
+
+        fechaIni_label.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        fechaIni_label.setForeground(new java.awt.Color(239, 241, 243));
+        fechaIni_label.setText("FECHA DE INICIO:");
+        jPanel3.add(fechaIni_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 280, -1));
+
+        fechaFin_label.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        fechaFin_label.setForeground(new java.awt.Color(239, 241, 243));
+        fechaFin_label.setText("FECHA DE FIN:");
+        jPanel3.add(fechaFin_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 280, -1));
+
+        id_label.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        id_label.setForeground(new java.awt.Color(239, 241, 243));
+        id_label.setText("ID: ");
+        jPanel3.add(id_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 100, -1));
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 380));
+
+        jSeparator1.setBackground(new java.awt.Color(34, 56, 67));
+        jSeparator1.setForeground(new java.awt.Color(34, 56, 67));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 380, 920, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(556, 556, 556)
-                        .addComponent(finTram_boton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(desc_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(terminado_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(depend_label, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
-                            .addComponent(fechaFin_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(fechaIni_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(47, 47, 47)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(54, 54, 54)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(agregarDepend_boton, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
-                .addContainerGap(37, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(59, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(agregarDepend_boton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(fechaIni_label)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(fechaFin_label)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(depend_label)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(terminado_label)
-                        .addGap(28, 28, 28)
-                        .addComponent(desc_label, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(finTram_boton))
-                .addGap(29, 29, 29))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 526, Short.MAX_VALUE)
         );
 
         pack();
@@ -369,11 +385,16 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
     private javax.swing.JLabel fechaIni_label;
     private javax.swing.JOptionPane finTramPopUp_OptionPane;
     private javax.swing.JButton finTram_boton;
+    private javax.swing.JLabel id_label;
     private javax.swing.JButton jButton1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel terminado_label;
     // End of variables declaration//GEN-END:variables
 }

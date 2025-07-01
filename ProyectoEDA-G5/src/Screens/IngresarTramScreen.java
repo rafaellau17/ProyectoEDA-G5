@@ -44,7 +44,6 @@ public class IngresarTramScreen extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         nombre_txtLabel = new javax.swing.JLabel();
-        regresar_boton = new javax.swing.JButton();
         dni_label = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -52,9 +51,14 @@ public class IngresarTramScreen extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         annio_txtField = new javax.swing.JTextField();
         mes_txtField = new javax.swing.JTextField();
-        listo_boton = new javax.swing.JButton();
         dependencias_comboBox = new javax.swing.JComboBox<>();
-        desc_txtField = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
+        listo_boton = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        desc_txtArea = new javax.swing.JTextArea();
+        regresar_boton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(850, 500));
@@ -62,7 +66,7 @@ public class IngresarTramScreen extends javax.swing.JFrame {
         setResizable(false);
         setSize(new java.awt.Dimension(850, 500));
 
-        jPanel1.setBackground(new java.awt.Color(239, 241, 243));
+        jPanel1.setBackground(new java.awt.Color(255, 159, 28));
         jPanel1.setForeground(new java.awt.Color(34, 56, 67));
         jPanel1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jPanel1.setMinimumSize(new java.awt.Dimension(850, 500));
@@ -72,33 +76,24 @@ public class IngresarTramScreen extends javax.swing.JFrame {
         nombre_txtLabel.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         nombre_txtLabel.setForeground(new java.awt.Color(34, 56, 67));
         nombre_txtLabel.setText("NOMBRE: ");
-        jPanel1.add(nombre_txtLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 95, -1));
-
-        regresar_boton.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        regresar_boton.setForeground(new java.awt.Color(34, 56, 67));
-        regresar_boton.setText("REGRESAR");
-        regresar_boton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                regresar_botonActionPerformed(evt);
-            }
-        });
-        jPanel1.add(regresar_boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, -1, -1));
+        jPanel1.add(nombre_txtLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 160, -1));
 
         dni_label.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         dni_label.setForeground(new java.awt.Color(34, 56, 67));
         dni_label.setText("DNI: ########");
-        jPanel1.add(dni_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 95, -1));
+        jPanel1.add(dni_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 130, -1));
 
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(34, 56, 67));
         jLabel4.setText("DEPENDENCIA:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 105, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 105, -1));
 
         jLabel1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(34, 56, 67));
         jLabel1.setText("FECHA DE INICIO (DD/MM/AAAA):");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
 
+        dia_txtField.setBackground(new java.awt.Color(239, 241, 243));
         dia_txtField.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         dia_txtField.setForeground(new java.awt.Color(34, 56, 67));
         dia_txtField.addActionListener(new java.awt.event.ActionListener() {
@@ -106,31 +101,24 @@ public class IngresarTramScreen extends javax.swing.JFrame {
                 dia_txtFieldActionPerformed(evt);
             }
         });
-        jPanel1.add(dia_txtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, 40, -1));
+        jPanel1.add(dia_txtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, 40, -1));
 
         jLabel2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(34, 56, 67));
         jLabel2.setText("DESCRIPCION:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 186, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 186, -1));
 
+        annio_txtField.setBackground(new java.awt.Color(239, 241, 243));
         annio_txtField.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         annio_txtField.setForeground(new java.awt.Color(34, 56, 67));
-        jPanel1.add(annio_txtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 180, 40, -1));
+        jPanel1.add(annio_txtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 150, 40, -1));
 
+        mes_txtField.setBackground(new java.awt.Color(239, 241, 243));
         mes_txtField.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         mes_txtField.setForeground(new java.awt.Color(34, 56, 67));
-        jPanel1.add(mes_txtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 180, 40, -1));
+        jPanel1.add(mes_txtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 150, 40, -1));
 
-        listo_boton.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        listo_boton.setForeground(new java.awt.Color(34, 56, 67));
-        listo_boton.setText("LISTO");
-        listo_boton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                listo_botonActionPerformed(evt);
-            }
-        });
-        jPanel1.add(listo_boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 450, -1, -1));
-
+        dependencias_comboBox.setBackground(new java.awt.Color(239, 241, 243));
         dependencias_comboBox.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         dependencias_comboBox.setForeground(new java.awt.Color(34, 56, 67));
         dependencias_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DUSAR", "Facultad de Ingeniería", "Facultad de Derecho", "Facultad de Psicología", "Facultad de Ciencias Empresariales y Económicas", "Facultad de Comunicación", "Instituto de Investigación Científica", "Oficina de Innovación y Calidad Educativa", "Centro de Empleabilidad", "Centro de Idiomas", "Departamento de Orientación Psicopedagógica" }));
@@ -139,11 +127,63 @@ public class IngresarTramScreen extends javax.swing.JFrame {
                 dependencias_comboBoxActionPerformed(evt);
             }
         });
-        jPanel1.add(dependencias_comboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 280, -1, -1));
+        jPanel1.add(dependencias_comboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, -1, -1));
 
-        desc_txtField.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        desc_txtField.setForeground(new java.awt.Color(34, 56, 67));
-        jPanel1.add(desc_txtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, 294, -1));
+        jPanel2.setBackground(new java.awt.Color(34, 56, 67));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        listo_boton.setBackground(new java.awt.Color(239, 241, 243));
+        listo_boton.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        listo_boton.setForeground(new java.awt.Color(34, 56, 67));
+        listo_boton.setText("LISTO");
+        listo_boton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listo_botonActionPerformed(evt);
+            }
+        });
+        jPanel2.add(listo_boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, 130, -1));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, 210, 510));
+
+        jPanel3.setBackground(new java.awt.Color(239, 241, 243));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 510, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 0, 10, 510));
+
+        jLabel3.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(239, 241, 243));
+        jLabel3.setText("INGRESAR TRAMITE");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
+
+        desc_txtArea.setBackground(new java.awt.Color(239, 241, 243));
+        desc_txtArea.setColumns(20);
+        desc_txtArea.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        desc_txtArea.setForeground(new java.awt.Color(34, 56, 67));
+        desc_txtArea.setRows(5);
+        jScrollPane1.setViewportView(desc_txtArea);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, 330, -1));
+
+        regresar_boton.setBackground(new java.awt.Color(239, 241, 243));
+        regresar_boton.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        regresar_boton.setForeground(new java.awt.Color(34, 56, 67));
+        regresar_boton.setText("CANCELAR");
+        regresar_boton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                regresar_botonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(regresar_boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 410, 130, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -153,9 +193,7 @@ public class IngresarTramScreen extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
         );
 
         pack();
@@ -181,7 +219,7 @@ public class IngresarTramScreen extends javax.swing.JFrame {
         String diaStr = dia_txtField.getText().trim();
         String mesStr = mes_txtField.getText().trim();
         String annioStr = annio_txtField.getText().trim();
-        String desc = desc_txtField.getText().trim();
+        String desc = desc_txtArea.getText().trim();
         String depend = dependencias_comboBox.getSelectedItem().toString();
         Pila<String> aux = new Pila<>();
         aux.apilar(depend);
@@ -294,13 +332,17 @@ public class IngresarTramScreen extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField annio_txtField;
     private javax.swing.JComboBox<String> dependencias_comboBox;
-    private javax.swing.JTextField desc_txtField;
+    private javax.swing.JTextArea desc_txtArea;
     private javax.swing.JTextField dia_txtField;
     private javax.swing.JLabel dni_label;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton listo_boton;
     private javax.swing.JTextField mes_txtField;
     private javax.swing.JLabel nombre_txtLabel;
