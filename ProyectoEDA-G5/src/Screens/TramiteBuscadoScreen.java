@@ -139,7 +139,6 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
         terminado_label = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         agregarDepend_boton = new javax.swing.JButton();
-        mostrar_boton = new javax.swing.JToggleButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         dependenciasTable = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -149,6 +148,13 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
         setLocationByPlatform(true);
         setResizable(false);
         setSize(new java.awt.Dimension(850, 500));
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         fechaIni_label.setText("FECHA DE INICIO:");
 
@@ -183,13 +189,6 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
             }
         });
 
-        mostrar_boton.setText("ACTUALIZAR");
-        mostrar_boton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mostrar_botonActionPerformed(evt);
-            }
-        });
-
         dependenciasTable.setAutoCreateRowSorter(true);
         dependenciasTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -213,7 +212,6 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
         dependenciasTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         dependenciasTable.setShowVerticalLines(true);
         jScrollPane1.setViewportView(dependenciasTable);
-        dependenciasTable.getAccessibleContext().setAccessibleParent(null);
 
         documentosTable.setAutoCreateRowSorter(true);
         documentosTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -232,7 +230,6 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
         documentosTable.setShowGrid(false);
         documentosTable.setShowVerticalLines(true);
         jScrollPane2.setViewportView(documentosTable);
-        documentosTable.getAccessibleContext().setAccessibleParent(null);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -252,13 +249,8 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(finTram_boton, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(mostrar_boton)
-                                .addGap(241, 241, 241)))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -276,9 +268,7 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(agregarDepend_boton)
-                            .addComponent(mostrar_boton)))
+                        .addComponent(agregarDepend_boton))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(fechaIni_label)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -306,10 +296,12 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
             tramite.setTerminado(true);
             Calendar calendar = new GregorianCalendar();
             int aux = calendar.get(YEAR);
-            int aux2 = calendar.get(MONTH);
+            int aux2 = calendar.get(MONTH)+1;
             int aux3 = calendar.get(DATE);
             Fecha fechafin = new Fecha(aux3, aux2, aux);
             tramite.setFechaFin(fechafin);
+            terminado_label.setText("TERMINADO: TRAMITE TERMINADO");
+            fechaFin_label.setText("FECHA FIN: " +fechafin);        
         }
         
     }//GEN-LAST:event_finTram_botonActionPerformed
@@ -332,23 +324,10 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_agregarDepend_botonActionPerformed
 
-    private void mostrar_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrar_botonActionPerformed
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         poblarDependenciasTable();
         poblarDocumentosTable();
-        if (tramite.isTerminado()) {
-            terminado_label.setText("TERMINADO: TRAMITE TERMINADO");
-        }
-        else{
-            terminado_label.setText("TERMINADO: TRAMITE NO TERMINADO");
-        }
-        
-        if (tramite.getFechaFin()!=null) {
-            fechaFin_label.setText("FECHA FIN: " +tramite.getFechaFin().toString());
-        }
-        else{
-            fechaFin_label.setText("FECHA FIN: NA" );
-        }
-    }//GEN-LAST:event_mostrar_botonActionPerformed
+    }//GEN-LAST:event_formWindowGainedFocus
     /**
      * @param args the command line arguments
      */
@@ -399,7 +378,6 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JToggleButton mostrar_boton;
     private javax.swing.JLabel terminado_label;
     // End of variables declaration//GEN-END:variables
 }

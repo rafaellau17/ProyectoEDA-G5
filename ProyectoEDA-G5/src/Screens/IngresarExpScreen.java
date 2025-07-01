@@ -5,6 +5,7 @@
 package Screens;
 
 import DataClasses.DataExpediente;
+import DataManagers.ListaExpedientesManager;
 import static DataManagers.ListaExpedientesManager.agregarExpediente;
 import javax.swing.JOptionPane;
 
@@ -157,7 +158,7 @@ public class IngresarExpScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_tipoExterno_radioBotonActionPerformed
 
     private void cancel_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_botonActionPerformed
-        int btnRegresar = JOptionPane.showConfirmDialog(rootPane, "Estás seguro de regresar?\nPerderás todo tu progreso.", "Advertencia", 0);
+        int btnRegresar = JOptionPane.showConfirmDialog(rootPane, "¿Desea regresar?\nTodo su progreso se perderá.", "Confirmación", 0);
         if (btnRegresar == 0) {
             ScreensManager.irAtras(this);        
         }
@@ -207,6 +208,9 @@ public class IngresarExpScreen extends javax.swing.JFrame {
         if (dni_txtField.getText().length() != 8) {
             JOptionPane.showMessageDialog(rootPane, "DNI no es válido.", "Error", JOptionPane.WARNING_MESSAGE);
             dni_txtField.setText("");
+        }
+        if (ListaExpedientesManager.buscarExpediente(Integer.parseInt(dni_txtField.getText().trim())) != null) {
+                JOptionPane.showMessageDialog(rootPane, "El DNI ya fue ingresado anteriormente.\nRevisar lista de expedientes.", "Aviso", JOptionPane.INFORMATION_MESSAGE);
         }
         else {
             try {

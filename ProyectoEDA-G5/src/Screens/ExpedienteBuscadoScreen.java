@@ -124,6 +124,7 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
         atras_button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Expediente Buscado");
         setLocationByPlatform(true);
         setMinimumSize(new java.awt.Dimension(850, 500));
         setResizable(false);
