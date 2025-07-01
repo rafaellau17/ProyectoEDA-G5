@@ -128,7 +128,7 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         setLocationByPlatform(true);
         setMinimumSize(new java.awt.Dimension(850, 550));
         setPreferredSize(new java.awt.Dimension(850, 550));
@@ -264,6 +264,7 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
         id_txtField.setForeground(new java.awt.Color(34, 56, 67));
         id_txtField.setBorder(null);
         jPanel2.add(id_txtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 150, 30));
+
         accTram_boton.setBackground(new java.awt.Color(255, 159, 28));
         accTram_boton.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         accTram_boton.setForeground(new java.awt.Color(239, 241, 243));
