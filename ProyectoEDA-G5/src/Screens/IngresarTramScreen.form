@@ -217,20 +217,8 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="43" green="38" red="22" type="rgb"/>
             </Property>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="11">
-                <StringItem index="0" value="DUSAR"/>
-                <StringItem index="1" value="Facultad de Ingenier&#xed;a"/>
-                <StringItem index="2" value="Facultad de Derecho"/>
-                <StringItem index="3" value="Facultad de Psicolog&#xed;a"/>
-                <StringItem index="4" value="Facultad de Ciencias Empresariales y Econ&#xf3;micas"/>
-                <StringItem index="5" value="Facultad de Comunicaci&#xf3;n"/>
-                <StringItem index="6" value="Instituto de Investigaci&#xf3;n Cient&#xed;fica"/>
-                <StringItem index="7" value="Oficina de Innovaci&#xf3;n y Calidad Educativa"/>
-                <StringItem index="8" value="Centro de Empleabilidad"/>
-                <StringItem index="9" value="Centro de Idiomas"/>
-                <StringItem index="10" value="Departamento de Orientaci&#xf3;n Psicopedag&#xf3;gica"/>
-              </StringArray>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection component="dependencias_comboBox" name="model" type="property"/>
             </Property>
           </Properties>
           <Events>
@@ -332,7 +320,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="260" y="240" width="330" height="-1"/>
+              <AbsoluteConstraints x="260" y="240" width="340" height="-1"/>
             </Constraint>
           </Constraints>
 

@@ -4,7 +4,6 @@
  */
 package DataClasses;
 
-import java.util.Scanner;
 
 /**
  *

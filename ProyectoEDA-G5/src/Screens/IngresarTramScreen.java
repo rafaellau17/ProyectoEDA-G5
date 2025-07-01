@@ -6,14 +6,19 @@ package Screens;
 
 import DataClasses.DataExpediente;
 import DataClasses.DataTramite;
+import DataClasses.Dependencia;
 import DataClasses.Fecha;
 import DataManagers.ExpedienteManager;
+import DataManagers.ListaDependenciasManager;
 import java.util.Calendar;
 import static java.util.Calendar.DATE;
 import static java.util.Calendar.MONTH;
 import static java.util.Calendar.YEAR;
 import java.util.GregorianCalendar;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import tda.Lista;
+import tda.Nodo;
 import tda.Pila;
 
 /**
@@ -28,9 +33,21 @@ public class IngresarTramScreen extends javax.swing.JFrame {
     private DataExpediente expediente;
     public IngresarTramScreen(DataExpediente exp) {
         initComponents();
+        ListaDependenciasManager.iniciarDependencias();
+        
         this.expediente = exp;
         dni_label.setText("DNI: "+expediente.getDni());
         nombre_txtLabel.setText("NOMBRES: "+expediente.getNombres());
+        
+        Lista<Dependencia> aux_depend = ListaDependenciasManager.getListaDependenciasGlobal();
+        Nodo<Dependencia> aux_nodo = aux_depend.getCabeza();
+        JComboBox<String> aux = new JComboBox();
+        while (aux_nodo != null) {
+            aux.addItem(aux_nodo.getItem().getNombre());
+            aux_nodo = aux_nodo.getSgteNodo();
+        }
+        
+        dependencias_comboBox.setModel(aux.getModel());
     }
 
     /**
@@ -126,7 +143,7 @@ public class IngresarTramScreen extends javax.swing.JFrame {
         dependencias_comboBox.setBackground(new java.awt.Color(239, 241, 243));
         dependencias_comboBox.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         dependencias_comboBox.setForeground(new java.awt.Color(34, 56, 67));
-        dependencias_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DUSAR", "Facultad de Ingeniería", "Facultad de Derecho", "Facultad de Psicología", "Facultad de Ciencias Empresariales y Económicas", "Facultad de Comunicación", "Instituto de Investigación Científica", "Oficina de Innovación y Calidad Educativa", "Centro de Empleabilidad", "Centro de Idiomas", "Departamento de Orientación Psicopedagógica" }));
+        dependencias_comboBox.setModel(dependencias_comboBox.getModel());
         dependencias_comboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dependencias_comboBoxActionPerformed(evt);
@@ -177,7 +194,7 @@ public class IngresarTramScreen extends javax.swing.JFrame {
         desc_txtArea.setRows(5);
         jScrollPane1.setViewportView(desc_txtArea);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, 330, -1));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, 340, -1));
 
         regresar_boton.setBackground(new java.awt.Color(239, 241, 243));
         regresar_boton.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -275,9 +292,13 @@ public class IngresarTramScreen extends javax.swing.JFrame {
             return;
         }
         
+        // Validar si se pone otra dependencia
+        
+        
         // Realizar el ingreso del tramite
         Fecha fechaIni = new Fecha(dia, mes, annio);
-        DataTramite tramite = new DataTramite(fechaIni, desc, depend);
+        int numTramites = expediente.getListaTramites().longitud()+1;
+        DataTramite tramite = new DataTramite(fechaIni, desc, depend, numTramites);
         ExpedienteManager.agregarTramite(expediente, tramite);
         
         JOptionPane.showMessageDialog(this, "Tramite ingresado correctamente.");

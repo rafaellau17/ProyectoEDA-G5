@@ -118,6 +118,15 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
         bg = new javax.swing.JPanel();
         atras_button = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tramitesTabla = new javax.swing.JTable();
+        jLabel8 = new javax.swing.JLabel();
+        id_txtField = new javax.swing.JTextField();
+        accTram_boton = new javax.swing.JButton();
+        addTram_button = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         docsTabla = new javax.swing.JTable();
@@ -129,15 +138,6 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
         tipo_label = new javax.swing.JLabel();
         telefono_label = new javax.swing.JLabel();
         email_label = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tramitesTabla = new javax.swing.JTable();
-        jLabel8 = new javax.swing.JLabel();
-        id_txtField = new javax.swing.JTextField();
-        accTram_boton = new javax.swing.JButton();
-        addTram_button = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -174,76 +174,6 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
         jTabbedPane1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jTabbedPane1.setForeground(new java.awt.Color(34, 56, 67));
         jTabbedPane1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-
-        jPanel1.setBackground(new java.awt.Color(239, 241, 243));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        docsTabla.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        docsTabla.setForeground(new java.awt.Color(34, 56, 67));
-        docsTabla.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        docsTabla.setCellSelectionEnabled(true);
-        jScrollPane3.setViewportView(docsTabla);
-
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 20, 310, 280));
-
-        addDoc_botton.setBackground(new java.awt.Color(255, 159, 28));
-        addDoc_botton.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        addDoc_botton.setForeground(new java.awt.Color(239, 241, 243));
-        addDoc_botton.setText("AGREGAR DOCUMENTO");
-        addDoc_botton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addDoc_bottonActionPerformed(evt);
-            }
-        });
-        jPanel1.add(addDoc_botton, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 310, -1, 30));
-        addDoc_botton.getAccessibleContext().setAccessibleName("");
-
-        prioridad_label.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        prioridad_label.setForeground(new java.awt.Color(34, 56, 67));
-        prioridad_label.setText("PRIORIDAD:");
-        jPanel1.add(prioridad_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 190, -1));
-
-        id_label.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        id_label.setForeground(new java.awt.Color(34, 56, 67));
-        id_label.setText("ID:");
-        jPanel1.add(id_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 160, -1));
-
-        dni_label.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        dni_label.setForeground(new java.awt.Color(34, 56, 67));
-        dni_label.setText("DNI: ");
-        jPanel1.add(dni_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 170, -1));
-
-        nombres_label.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        nombres_label.setForeground(new java.awt.Color(34, 56, 67));
-        nombres_label.setText("NOMBRES:");
-        jPanel1.add(nombres_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 270, -1));
-
-        tipo_label.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tipo_label.setForeground(new java.awt.Color(34, 56, 67));
-        tipo_label.setText("TIPO: ");
-        jPanel1.add(tipo_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 230, -1));
-
-        telefono_label.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        telefono_label.setForeground(new java.awt.Color(34, 56, 67));
-        telefono_label.setText("TELEFONO: ");
-        jPanel1.add(telefono_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 230, -1));
-
-        email_label.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        email_label.setForeground(new java.awt.Color(34, 56, 67));
-        email_label.setText("EMAIL:");
-        jPanel1.add(email_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 210, -1));
-
-        jTabbedPane1.addTab("DATOS DEL EXPEDIENTE", jPanel1);
 
         jPanel2.setBackground(new java.awt.Color(239, 241, 243));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -306,6 +236,76 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("TRAMITES DEL EXPEDIENTE", jPanel2);
 
+        jPanel1.setBackground(new java.awt.Color(239, 241, 243));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        docsTabla.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        docsTabla.setForeground(new java.awt.Color(34, 56, 67));
+        docsTabla.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        docsTabla.setCellSelectionEnabled(true);
+        jScrollPane3.setViewportView(docsTabla);
+
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 20, 310, 280));
+
+        addDoc_botton.setBackground(new java.awt.Color(255, 159, 28));
+        addDoc_botton.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        addDoc_botton.setForeground(new java.awt.Color(239, 241, 243));
+        addDoc_botton.setText("AGREGAR DOCUMENTO REF");
+        addDoc_botton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addDoc_bottonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(addDoc_botton, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 310, 220, 30));
+        addDoc_botton.getAccessibleContext().setAccessibleName("");
+
+        prioridad_label.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        prioridad_label.setForeground(new java.awt.Color(34, 56, 67));
+        prioridad_label.setText("PRIORIDAD:");
+        jPanel1.add(prioridad_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 190, -1));
+
+        id_label.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        id_label.setForeground(new java.awt.Color(34, 56, 67));
+        id_label.setText("ID:");
+        jPanel1.add(id_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 160, -1));
+
+        dni_label.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        dni_label.setForeground(new java.awt.Color(34, 56, 67));
+        dni_label.setText("DNI: ");
+        jPanel1.add(dni_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 170, -1));
+
+        nombres_label.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        nombres_label.setForeground(new java.awt.Color(34, 56, 67));
+        nombres_label.setText("NOMBRES:");
+        jPanel1.add(nombres_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 270, -1));
+
+        tipo_label.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        tipo_label.setForeground(new java.awt.Color(34, 56, 67));
+        tipo_label.setText("TIPO: ");
+        jPanel1.add(tipo_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 230, -1));
+
+        telefono_label.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        telefono_label.setForeground(new java.awt.Color(34, 56, 67));
+        telefono_label.setText("TELEFONO: ");
+        jPanel1.add(telefono_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 230, -1));
+
+        email_label.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        email_label.setForeground(new java.awt.Color(34, 56, 67));
+        email_label.setText("EMAIL:");
+        jPanel1.add(email_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 210, -1));
+
+        jTabbedPane1.addTab("DATOS DEL EXPEDIENTE", jPanel1);
+
         bg.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 830, 400));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -314,11 +314,13 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();

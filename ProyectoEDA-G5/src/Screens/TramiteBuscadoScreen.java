@@ -340,7 +340,7 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
             int aux = calendar.get(YEAR);
             int aux2 = calendar.get(MONTH);
             int aux3 = calendar.get(DATE);
-            Fecha fechafin = new Fecha(aux3, aux2, aux);
+            Fecha fechafin = new Fecha(aux3, aux2+1, aux);
             tramite.setFechaFin(fechafin);
             terminado_label.setText("TERMINADO: TRAMITE TERMINADO");
             fechaFin_label.setText("FECHA FIN: " +fechafin);       
@@ -353,13 +353,19 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void agregarDepend_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarDepend_botonActionPerformed
-        String dependencias[] = {"DUSAR", "Facultad de Ingeniería", "Facultad de Derecho", "Facultad de Psicología", "Facultad de Ciencias Empresariales y Económicas", "Facultad de Comunicación", "Instituto de Investigación Científica", "Oficina de Innovación y Calidad Educativa", "Centro de Empleabilidad", "Centro de Idiomas", "Departamento de Orientación Psicopedagógica"};
+        String dependencias[] = {"Otro","DUSAR", "Facultad de Ingeniería", "Facultad de Derecho", "Facultad de Psicología", "Facultad de Ciencias Empresariales y Económicas", "Facultad de Comunicación", "Instituto de Investigación Científica", "Oficina de Innovación y Calidad Educativa", "Centro de Empleabilidad", "Centro de Idiomas", "Departamento de Orientación Psicopedagógica"};
         JComboBox combobox = new JComboBox(dependencias);
         
         int input = JOptionPane.showConfirmDialog(this, combobox, "Seleccione una dependencia", JOptionPane.DEFAULT_OPTION);
         
         if(input == JOptionPane.OK_OPTION){
             String str = (String)combobox.getSelectedItem();
+            if (str.equals("Otro")) {
+                JOptionPane.showInputDialog(this, "Ingrese el nombre de la dependencia a crear");
+                //agregar dependencia
+            }
+            
+
             TramiteManager.ingresarDependencia(tramite, str);
             poblarDependenciasTable();
             poblarDocumentosTable();
@@ -401,7 +407,7 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Fecha aux2 = new Fecha(00, 00, 2000);
-                DataTramite aux = new DataTramite(aux2, "", null);
+                DataTramite aux = new DataTramite(aux2, "", null, 0);
                 new TramiteBuscadoScreen(aux).setVisible(true);
             }
         });

@@ -13,7 +13,6 @@ import tda.Pila;
  */
 public class DataTramite {
     //atributos
-    private static int contadorId = 1;
     private int id;
     private Fecha fechaIni;
     private Fecha fechaFin;
@@ -23,15 +22,14 @@ public class DataTramite {
     private boolean terminado;
     
     //constructores
-    public DataTramite(Fecha fechaIni, String descripcion, String dependencia) {
+    public DataTramite(Fecha fechaIni, String descripcion, String dependencia, int id) {
         this.fechaIni = fechaIni;
         this.fechaFin = null;
         this.descripcion = descripcion;
         this.documentos = new Cola();
         this.dependencias.apilar(dependencia);
         this.terminado = false;
-        this.id = contadorId;
-        contadorId++;
+        this.id = id;
     }
     
     //getters y setters
