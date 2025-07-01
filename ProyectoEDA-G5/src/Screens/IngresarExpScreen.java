@@ -31,42 +31,64 @@ public class IngresarExpScreen extends javax.swing.JFrame {
     private void initComponents() {
 
         botonGroup_tipo = new javax.swing.ButtonGroup();
+        jPanel3 = new javax.swing.JPanel();
+        background = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         prioridad_comboBox = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         dni_txtField = new javax.swing.JTextField();
-        nombres_txtField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        telefono_txtField = new javax.swing.JTextField();
-        email_txtField = new javax.swing.JTextField();
+        nombres_txtField = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        telefono_txtField = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        tipoULIMA_radioBoton = new javax.swing.JRadioButton();
+        email_txtField = new javax.swing.JTextField();
         tipoExterno_radioBoton = new javax.swing.JRadioButton();
+        tipoULIMA_radioBoton = new javax.swing.JRadioButton();
         listo_boton = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
         cancel_boton = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ingresar Expediente");
         setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Yellow"));
         setIconImages(null);
         setLocationByPlatform(true);
-        setMinimumSize(new java.awt.Dimension(850, 500));
-        setPreferredSize(new java.awt.Dimension(850, 500));
+        setMinimumSize(new java.awt.Dimension(600, 500));
+        setPreferredSize(new java.awt.Dimension(600, 500));
         setResizable(false);
-        setSize(new java.awt.Dimension(850, 500));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setSize(new java.awt.Dimension(600, 500));
 
+        background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setBackground(new java.awt.Color(255, 159, 28));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel7.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(239, 241, 243));
+        jLabel7.setText("INGRESAR EXPEDIENTE");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 280, -1));
+
+        jLabel1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(34, 56, 67));
         jLabel1.setText("PRIORIDAD:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 83, 22));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 80, 22));
 
+        prioridad_comboBox.setBackground(new java.awt.Color(239, 241, 243));
+        prioridad_comboBox.setForeground(new java.awt.Color(34, 56, 67));
         prioridad_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
-        getContentPane().add(prioridad_comboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, -1, 22));
+        jPanel1.add(prioridad_comboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(34, 56, 67));
         jLabel2.setText("DNI: ");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 37, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 37, -1));
 
+        dni_txtField.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        dni_txtField.setForeground(new java.awt.Color(34, 56, 67));
         dni_txtField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 dni_txtFieldFocusLost(evt);
@@ -77,12 +99,24 @@ public class IngresarExpScreen extends javax.swing.JFrame {
                 dni_txtFieldActionPerformed(evt);
             }
         });
-        getContentPane().add(dni_txtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 170, -1));
-        getContentPane().add(nombres_txtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 170, -1));
+        jPanel1.add(dni_txtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 170, -1));
 
+        jLabel3.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(34, 56, 67));
         jLabel3.setText("NOMBRES:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
 
+        nombres_txtField.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        nombres_txtField.setForeground(new java.awt.Color(34, 56, 67));
+        jPanel1.add(nombres_txtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 170, -1));
+
+        jLabel4.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(34, 56, 67));
+        jLabel4.setText("TELEFONO:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
+
+        telefono_txtField.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        telefono_txtField.setForeground(new java.awt.Color(34, 56, 67));
         telefono_txtField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 telefono_txtFieldFocusLost(evt);
@@ -93,52 +127,82 @@ public class IngresarExpScreen extends javax.swing.JFrame {
                 telefono_txtFieldActionPerformed(evt);
             }
         });
-        getContentPane().add(telefono_txtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 170, -1));
+        jPanel1.add(telefono_txtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, 170, -1));
 
+        jLabel5.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(34, 56, 67));
+        jLabel5.setText("EMAIL:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, -1));
+
+        email_txtField.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        email_txtField.setForeground(new java.awt.Color(34, 56, 67));
         email_txtField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 email_txtFieldActionPerformed(evt);
             }
         });
-        getContentPane().add(email_txtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, 170, -1));
-
-        jLabel4.setText("TELEFONO:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, -1));
-
-        jLabel5.setText("EMAIL:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, -1, -1));
-
-        jLabel7.setText("INGRESAR EXPEDIENTE");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 146, -1));
-
-        botonGroup_tipo.add(tipoULIMA_radioBoton);
-        tipoULIMA_radioBoton.setText("Usuario ULIMA");
-        getContentPane().add(tipoULIMA_radioBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 112, -1));
+        jPanel1.add(email_txtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 170, -1));
 
         botonGroup_tipo.add(tipoExterno_radioBoton);
+        tipoExterno_radioBoton.setFont(new java.awt.Font("Verdana", 2, 12)); // NOI18N
+        tipoExterno_radioBoton.setForeground(new java.awt.Color(34, 56, 67));
         tipoExterno_radioBoton.setText("Usuario Externo");
         tipoExterno_radioBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tipoExterno_radioBotonActionPerformed(evt);
             }
         });
-        getContentPane().add(tipoExterno_radioBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, 112, -1));
+        jPanel1.add(tipoExterno_radioBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 140, -1));
 
+        botonGroup_tipo.add(tipoULIMA_radioBoton);
+        tipoULIMA_radioBoton.setFont(new java.awt.Font("Verdana", 2, 12)); // NOI18N
+        tipoULIMA_radioBoton.setForeground(new java.awt.Color(34, 56, 67));
+        tipoULIMA_radioBoton.setText("Usuario ULIMA");
+        jPanel1.add(tipoULIMA_radioBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 330, 112, -1));
+
+        listo_boton.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        listo_boton.setForeground(new java.awt.Color(34, 56, 67));
         listo_boton.setText("LISTO");
         listo_boton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 listo_botonActionPerformed(evt);
             }
         });
-        getContentPane().add(listo_boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 400, -1, -1));
+        jPanel1.add(listo_boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 410, 140, -1));
 
+        background.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 500));
+
+        jPanel2.setBackground(new java.awt.Color(34, 56, 67));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        cancel_boton.setBackground(new java.awt.Color(239, 241, 243));
+        cancel_boton.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        cancel_boton.setForeground(new java.awt.Color(34, 56, 67));
         cancel_boton.setText("CANCELAR");
         cancel_boton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancel_botonActionPerformed(evt);
             }
         });
-        getContentPane().add(cancel_boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, -1, -1));
+        jPanel2.add(cancel_boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 140, -1));
+
+        jPanel4.setBackground(new java.awt.Color(239, 241, 243));
+        jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 20, 500));
+
+        background.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 0, 210, 500));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         pack();
         setLocationRelativeTo(null);
@@ -271,6 +335,7 @@ public class IngresarExpScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel background;
     private javax.swing.ButtonGroup botonGroup_tipo;
     private javax.swing.JButton cancel_boton;
     private javax.swing.JTextField dni_txtField;
@@ -281,6 +346,10 @@ public class IngresarExpScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JButton listo_boton;
     private javax.swing.JTextField nombres_txtField;
     private javax.swing.JComboBox<String> prioridad_comboBox;

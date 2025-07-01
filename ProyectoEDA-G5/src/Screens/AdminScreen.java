@@ -153,8 +153,7 @@ private boolean alertaMostrada = false;
 
         dni_txtField.setBackground(new java.awt.Color(239, 241, 243));
         dni_txtField.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        dni_txtField.setForeground(new java.awt.Color(153, 153, 153));
-        dni_txtField.setText("Ingrese su DNI");
+        dni_txtField.setForeground(new java.awt.Color(34, 56, 67));
         dni_txtField.setBorder(null);
         dni_txtField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
