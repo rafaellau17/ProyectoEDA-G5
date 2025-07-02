@@ -10,6 +10,7 @@ import DataClasses.Dependencia;
 import DataClasses.Fecha;
 import DataManagers.ExpedienteManager;
 import DataManagers.ListaDependenciasManager;
+import static java.lang.String.valueOf;
 import java.util.Calendar;
 import static java.util.Calendar.DATE;
 import static java.util.Calendar.MONTH;
@@ -39,15 +40,19 @@ public class IngresarTramScreen extends javax.swing.JFrame {
         dni_label.setText("DNI: "+expediente.getDni());
         nombre_txtLabel.setText("NOMBRES: "+expediente.getNombres());
         
+        Calendar calendar = new GregorianCalendar();
+        dia_txtField.setText(String.valueOf( calendar.get(DATE)));
+        mes_txtField.setText(String.valueOf(calendar.get(MONTH)+1));
+        annio_txtField.setText(String.valueOf(calendar.get(YEAR)));
+        
         Lista<Dependencia> aux_depend = ListaDependenciasManager.getListaDependenciasGlobal();
         Nodo<Dependencia> aux_nodo = aux_depend.getCabeza();
-        String modelo[] = new String[aux_depend.longitud()];
-        for (int i = 0; i < aux_depend.longitud(); i++) {
-            modelo[i] = aux_nodo.getItem().getNombre();
+        JComboBox<String> aux = new JComboBox();
+        while (aux_nodo != null) {
+            aux.addItem(aux_nodo.getItem().getNombre());
             aux_nodo = aux_nodo.getSgteNodo();
         }
         
-        JComboBox aux = new JComboBox(modelo);
         dependencias_comboBox.setModel(aux.getModel());
     }
 
@@ -298,7 +303,9 @@ public class IngresarTramScreen extends javax.swing.JFrame {
         
         // Realizar el ingreso del tramite
         Fecha fechaIni = new Fecha(dia, mes, annio);
-        DataTramite tramite = new DataTramite(fechaIni, desc, depend);
+        int numTramites = expediente.getListaTramites().longitud()+1;
+        Dependencia dependInicial = new Dependencia(depend);
+        DataTramite tramite = new DataTramite(fechaIni, desc, dependInicial, numTramites);
         ExpedienteManager.agregarTramite(expediente, tramite);
         
         JOptionPane.showMessageDialog(this, "Tramite ingresado correctamente.");

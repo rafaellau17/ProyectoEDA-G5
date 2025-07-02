@@ -5,6 +5,7 @@
 package DataManagers;
 
 import DataClasses.DataTramite;
+import DataClasses.Dependencia;
 import DataClasses.Documento;
 import tda.*;
 /**
@@ -22,15 +23,16 @@ public class TramiteManager {
         Documento doc = new Documento(dependencia+".doc");
         ingresarDocumento(tramite, doc);
         
-        Pila<String> pila_aux = tramite.getDependencias();
-        pila_aux.apilar(dependencia);
+        Pila<Dependencia> pila_aux = tramite.getDependencias();
+        Dependencia dependAux = new Dependencia(dependencia);
+        pila_aux.apilar(dependAux);
     }
     
     public static Cola<Documento> mostrarDocumentos(DataTramite tramite) {
         return tramite.getDocumentos();
     }
     
-    public static Pila<String> mostrarDependencias(DataTramite tramite){
+    public static Pila<Dependencia> mostrarDependencias(DataTramite tramite){
         return tramite.getDependencias();
     }
 }
