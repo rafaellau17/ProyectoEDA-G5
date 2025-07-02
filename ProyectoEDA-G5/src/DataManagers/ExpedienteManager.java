@@ -7,7 +7,6 @@ package DataManagers;
 import DataClasses.DataTramite;
 import DataClasses.DataExpediente;
 import DataClasses.Documento;
-import DataClasses.Fecha;
 import tda.*;
 
 /**
@@ -18,7 +17,8 @@ public class ExpedienteManager {
     
     public static void agregarTramite(DataExpediente expediente, DataTramite tramiteNuevo) {
         Lista<DataTramite> lista = expediente.getListaTramites();
-            lista.agregar(tramiteNuevo);
+        lista.agregar(tramiteNuevo);
+        expediente.aumentarContadorTramites();
     }
     
     public static DataTramite buscarTramite(DataExpediente expediente, int id) {

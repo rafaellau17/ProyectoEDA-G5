@@ -13,7 +13,7 @@ import tda.Nodo;
  * @author n04101
  */
 public class ListaDependenciasManager {
-    private static Lista<Dependencia> listaDependenciasGlobal = new Lista<>();
+    public static Lista<Dependencia> listaDependenciasGlobal = new Lista<>();
     
     public static void iniciarDependencias(){
         listaDependenciasGlobal.agregar(new Dependencia("Otro"));

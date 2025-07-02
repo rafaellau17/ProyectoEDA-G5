@@ -4,8 +4,6 @@
  */
 package Screens;
 
-import DataClasses.DataExpediente;
-import static DataManagers.ListaExpedientesManager.agregarExpediente;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,10 +18,6 @@ public class LoginScreen extends javax.swing.JFrame {
      */
     public LoginScreen() {
         initComponents();
-        DataExpediente aux = new DataExpediente(1, 10216303, "Juan Torres", "ULIMA", 951963655, "juan@gmail.com");
-        DataExpediente aux2 = new DataExpediente(2, 20235843, "Pepe Valdivia", "EXTERNO", 957340583, "pepe@hotmail.com");
-        agregarExpediente(aux);
-        agregarExpediente(aux2);
     }
 
     /**

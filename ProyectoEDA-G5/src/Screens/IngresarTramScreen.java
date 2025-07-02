@@ -10,6 +10,7 @@ import DataClasses.Dependencia;
 import DataClasses.Fecha;
 import DataManagers.ExpedienteManager;
 import DataManagers.ListaDependenciasManager;
+import static java.lang.String.valueOf;
 import java.util.Calendar;
 import static java.util.Calendar.DATE;
 import static java.util.Calendar.MONTH;
@@ -38,6 +39,11 @@ public class IngresarTramScreen extends javax.swing.JFrame {
         this.expediente = exp;
         dni_label.setText("DNI: "+expediente.getDni());
         nombre_txtLabel.setText("NOMBRES: "+expediente.getNombres());
+        
+        Calendar calendar = new GregorianCalendar();
+        dia_txtField.setText(String.valueOf( calendar.get(DATE)));
+        mes_txtField.setText(String.valueOf(calendar.get(MONTH)+1));
+        annio_txtField.setText(String.valueOf(calendar.get(YEAR)));
         
         Lista<Dependencia> aux_depend = ListaDependenciasManager.getListaDependenciasGlobal();
         Nodo<Dependencia> aux_nodo = aux_depend.getCabeza();
@@ -298,7 +304,8 @@ public class IngresarTramScreen extends javax.swing.JFrame {
         // Realizar el ingreso del tramite
         Fecha fechaIni = new Fecha(dia, mes, annio);
         int numTramites = expediente.getListaTramites().longitud()+1;
-        DataTramite tramite = new DataTramite(fechaIni, desc, depend, numTramites);
+        Dependencia dependInicial = new Dependencia(depend);
+        DataTramite tramite = new DataTramite(fechaIni, desc, dependInicial, numTramites);
         ExpedienteManager.agregarTramite(expediente, tramite);
         
         JOptionPane.showMessageDialog(this, "Tramite ingresado correctamente.");

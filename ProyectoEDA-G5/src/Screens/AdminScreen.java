@@ -42,8 +42,9 @@ private boolean alertaMostrada = false;
         modelo.addColumn("DNI");
         modelo.addColumn("TIPO");
         modelo.addColumn("PRIORIDAD");
+        modelo.addColumn("N° DE TRÁMITES");
         this.tablaExp.setModel(modelo);
-        this.tablaExp.getColumnModel().getColumn(0).setPreferredWidth(60);
+        this.tablaExp.getColumnModel().getColumn(0).setPreferredWidth(50);
         
         if (!listaExpedientes.esVacia()) {
             Poblar();
@@ -77,22 +78,20 @@ private boolean alertaMostrada = false;
 
     private void Poblar()
     {
-        int filas = this.tablaExp.getRowCount();
-        for(int i=0;i<filas;i++)
-        {
-            modelo.removeRow(0);
-        }
+        modelo.setRowCount(0);
         
        NodoDoble<DataExpediente> nodoAux = listaExpedientes.getCabeza();
-       String[] datos = new String[5];
+       String[] datos = new String[6];
        
        for(int i = 0; i < listaExpedientes.longitud(); i++)
        {
-           datos[0] = String.valueOf(nodoAux.getItem().getId());
-           datos[1] = String.valueOf(nodoAux.getItem().getNombres());
-           datos[2] = String.valueOf(nodoAux.getItem().getDni());
-           datos[3] = String.valueOf(nodoAux.getItem().getTipo());
-           datos[4] = String.valueOf(nodoAux.getItem().getPrioridad());
+           DataExpediente expAux = nodoAux.getItem();
+           datos[0] = String.valueOf(expAux.getId());
+           datos[1] = String.valueOf(expAux.getNombres());
+           datos[2] = String.valueOf(expAux.getDni());
+           datos[3] = String.valueOf(expAux.getTipo());
+           datos[4] = String.valueOf(expAux.getPrioridad());
+           datos[5] = String.valueOf(expAux.getContadorTramites());
            modelo.addRow(datos);
            nodoAux = nodoAux.getSgteNodo();
        }
@@ -276,6 +275,7 @@ private boolean alertaMostrada = false;
 
     private void ingresarExp_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarExp_botonActionPerformed
         IngresarExpScreen ingresarExp_pantalla = new IngresarExpScreen();
+        dni_txtField.setText("");
         ScreensManager.nuevaPantalla(this, ingresarExp_pantalla);
     }//GEN-LAST:event_ingresarExp_botonActionPerformed
 

@@ -23,6 +23,7 @@ public class DataExpediente {
     private String email;
     private Cola<Documento> docsRef;
     private Lista<DataTramite> listaTramites;
+    private int contadorTramites;
     
     //constructores
     public DataExpediente(int prioridad, int dni, String nombres, String tipo, int telefono, String email) {
@@ -32,6 +33,7 @@ public class DataExpediente {
         this.tipo = tipo;
         this.telefono = telefono;
         this.email = email;
+        this.contadorTramites = 0;
         docsRef = new Cola();
         listaTramites = new Lista();
         this.id = contadorId;
@@ -77,6 +79,14 @@ public class DataExpediente {
 
     public Lista<DataTramite> getListaTramites() {
         return listaTramites;
+    }
+
+    public int getContadorTramites() {
+        return contadorTramites;
+    }
+        
+    public void aumentarContadorTramites() {
+        this.contadorTramites++;
     }
     
     

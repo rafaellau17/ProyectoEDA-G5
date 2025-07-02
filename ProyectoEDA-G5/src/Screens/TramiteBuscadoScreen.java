@@ -5,8 +5,10 @@
 package Screens;
 
 import DataClasses.DataTramite;
+import DataClasses.Dependencia;
 import DataClasses.Documento;
 import DataClasses.Fecha;
+import DataManagers.ListaDependenciasManager;
 import DataManagers.TramiteManager;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -16,6 +18,8 @@ import tda.Pila;
 import java.util.Calendar;
 import static java.util.Calendar.*;
 import java.util.GregorianCalendar;
+import tda.Lista;
+import tda.Nodo;
 
 /**
  *
@@ -101,21 +105,21 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
             modelo_2.removeRow(0);
         }
         
-        Pila<String> pila = TramiteManager.mostrarDependencias(tramite);
-        Pila<String> aux = new Pila<>();
+        Pila<Dependencia> pila = TramiteManager.mostrarDependencias(tramite);
+        Pila<Dependencia> aux = new Pila<>();
         
         while(!pila.esVacia()){
-            String dependencia = pila.desencolar();
-            aux.apilar(dependencia);
+            Dependencia dependAux = pila.desencolar();
+            aux.apilar(dependAux);
         }
         
         int cont = 1;
         while(!aux.esVacia()){
-            String dependencia = aux.desencolar();
-            depend_label.setText(dependencia);
-            modelo_2.addRow(new Object[]{cont, dependencia});
+            Dependencia dependNuevoAux = aux.desencolar();
+            depend_label.setText(dependNuevoAux.getNombre());
+            modelo_2.addRow(new Object[]{cont, dependNuevoAux.getNombre()});
             cont++;
-            pila.apilar(dependencia);
+            pila.apilar(dependNuevoAux);
         }
     }
     
@@ -353,20 +357,27 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void agregarDepend_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarDepend_botonActionPerformed
-        String dependencias[] = {"Otro","DUSAR", "Facultad de Ingeniería", "Facultad de Derecho", "Facultad de Psicología", "Facultad de Ciencias Empresariales y Económicas", "Facultad de Comunicación", "Instituto de Investigación Científica", "Oficina de Innovación y Calidad Educativa", "Centro de Empleabilidad", "Centro de Idiomas", "Departamento de Orientación Psicopedagógica"};
-        JComboBox combobox = new JComboBox(dependencias);
+        Lista<Dependencia> aux_depend = ListaDependenciasManager.getListaDependenciasGlobal();
+        Nodo<Dependencia> aux_nodo = aux_depend.getCabeza();
+        JComboBox combobox = new JComboBox();
+        while (aux_nodo != null) {
+            combobox.addItem(aux_nodo.getItem().getNombre());
+            aux_nodo = aux_nodo.getSgteNodo();
+        }
         
         int input = JOptionPane.showConfirmDialog(this, combobox, "Seleccione una dependencia", JOptionPane.DEFAULT_OPTION);
         
         if(input == JOptionPane.OK_OPTION){
             String str = (String)combobox.getSelectedItem();
             if (str.equals("Otro")) {
-                JOptionPane.showInputDialog(this, "Ingrese el nombre de la dependencia a crear");
-                //agregar dependencia
+                String nuevaDepend = JOptionPane.showInputDialog(this, "Ingrese el nombre de la dependencia a crear");
+                // AGREGAR DEPENDENCIA NUEVA A GLOBAL
+                TramiteManager.ingresarDependencia(tramite, nuevaDepend);            
+            }
+            else {
+                TramiteManager.ingresarDependencia(tramite, str);
             }
             
-
-            TramiteManager.ingresarDependencia(tramite, str);
             poblarDependenciasTable();
             poblarDocumentosTable();
         }
