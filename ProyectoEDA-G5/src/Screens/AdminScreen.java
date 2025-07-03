@@ -11,6 +11,7 @@ import tda.NodoDoble;
 import static DataManagers.ListaExpedientesManager.*;
 import DataManagers.ListaTramitesPendientes;
 import java.awt.event.WindowEvent;
+import static java.lang.String.valueOf;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
@@ -237,8 +238,7 @@ private boolean alertaMostrada = false;
         ));
         tablaExp.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_NEXT_COLUMN);
         tablaExp.setAutoscrolls(false);
-        tablaExp.setColumnSelectionAllowed(false);
-        tablaExp.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tablaExp.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         tablaExp.setFillsViewportHeight(true);
         tablaExp.setShowGrid(false);
         tablaExp.setShowVerticalLines(true);
@@ -320,7 +320,19 @@ private boolean alertaMostrada = false;
 
     private void tablaExpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaExpMouseClicked
         int indice = tablaExp.getSelectedRow();
-        System.out.println(indice);
+        
+        if (indice == -1) {
+            return;
+        }
+        
+        int dniAux = Integer.parseInt((String) modelo.getValueAt(indice, 2));
+        DataExpediente exp;
+        exp = buscarExpediente(dniAux);
+        if (exp != null) {
+                dni_txtField.setText("");
+                ExpedienteBuscadoScreen exBuscado_pantalla = new ExpedienteBuscadoScreen(exp);
+                ScreensManager.nuevaPantalla(this, exBuscado_pantalla);
+        }
     }//GEN-LAST:event_tablaExpMouseClicked
 
     private boolean isDialogEvent(WindowEvent evt) {

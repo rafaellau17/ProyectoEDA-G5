@@ -52,12 +52,12 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
         modelo_2.addColumn("ID");
         modelo_2.addColumn("DESCRIPCION");
         modelo_2.addColumn("FECHA DE INICIO");
+        modelo_2.addColumn("ESTADO");
         
         this.docsTabla.setModel(modelo_1);
         this.tramitesTabla.setModel(modelo_2);     
         
         this.docsTabla.getColumnModel().getColumn(0).setPreferredWidth(60);
-        this.docsTabla.getColumnModel().getColumn(1).setPreferredWidth(230);
         
         if (!expediente.getListaTramites().esVacia()) {
             poblarTramTable();   
@@ -102,7 +102,14 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
 
         for (int i = 0; i < lista.longitud(); i++) {
             DataTramite temp = aux.getItem();
-            modelo_2.addRow(new Object[] {temp.getId(), temp.getDescripcion(), temp.getFechaIni()});
+            String estadoAux;
+            if (temp.isTerminado()) {
+                estadoAux = "Terminado";
+            }
+            else {
+                estadoAux = "No Terminado";
+            }
+            modelo_2.addRow(new Object[] {temp.getId(), temp.getDescripcion(), temp.getFechaIni(), estadoAux});
             aux = aux.getSgteNodo();
         }
     }
@@ -140,7 +147,7 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
         email_label = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setLocationByPlatform(true);
         setMinimumSize(new java.awt.Dimension(850, 550));
         setPreferredSize(new java.awt.Dimension(850, 550));
@@ -191,7 +198,13 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tramitesTabla.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_NEXT_COLUMN);
         tramitesTabla.setCellSelectionEnabled(true);
+        tramitesTabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tramitesTablaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tramitesTabla);
 
         jScrollPane2.setViewportView(jScrollPane1);
@@ -366,6 +379,22 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
             poblarTramTable();   
         }
     }//GEN-LAST:event_formWindowGainedFocus
+
+    private void tramitesTablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tramitesTablaMouseClicked
+        int indice = tramitesTabla.getSelectedRow();
+        
+        if (indice == -1) {
+            return;
+        }
+        
+        int idAux = (int) modelo_2.getValueAt(indice, 0);
+        DataTramite tramite = ExpedienteManager.buscarTramite(expediente, idAux);
+        if (tramite != null) {
+            id_txtField.setText("");
+            TramiteBuscadoScreen tramiteBuscado_pantalla = new TramiteBuscadoScreen(tramite);
+            ScreensManager.nuevaPantalla(this, tramiteBuscado_pantalla);
+        }
+    }//GEN-LAST:event_tramitesTablaMouseClicked
     /**
      * @param args the command line arguments
      */
