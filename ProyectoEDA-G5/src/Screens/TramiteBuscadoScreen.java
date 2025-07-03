@@ -242,7 +242,7 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
         agregarDepend_boton.setBackground(new java.awt.Color(239, 241, 243));
         agregarDepend_boton.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         agregarDepend_boton.setForeground(new java.awt.Color(255, 159, 28));
-        agregarDepend_boton.setText("AGREGAR \nDEPENDENCIA");
+        agregarDepend_boton.setText("AGREGAR  DEPENDENCIA");
         agregarDepend_boton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         agregarDepend_boton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -371,8 +371,16 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
             String str = (String)combobox.getSelectedItem();
             if (str.equals("Otro")) {
                 String nuevaDepend = JOptionPane.showInputDialog(this, "Ingrese el nombre de la dependencia a crear");
-                // AGREGAR DEPENDENCIA NUEVA A GLOBAL
-                TramiteManager.ingresarDependencia(tramite, nuevaDepend);            
+                if (nuevaDepend == null) {
+                    return;
+                }
+                else if (nuevaDepend.isBlank()) {
+                    JOptionPane.showMessageDialog(this, "Nombre de dependencia no puede estar vacío.", "Error", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+                else {
+                    TramiteManager.ingresarDependencia(tramite, nuevaDepend);            
+                }
             }
             else {
                 TramiteManager.ingresarDependencia(tramite, str);

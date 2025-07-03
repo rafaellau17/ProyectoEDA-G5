@@ -268,38 +268,44 @@ public class IngresarExpScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_dni_txtFieldActionPerformed
 
     private void dni_txtFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dni_txtFieldFocusLost
-        if (dni_txtField.getText().length() != 8) {
+        String dniTexto = dni_txtField.getText().trim();
+
+        if (dniTexto.length() != 8) {
             JOptionPane.showMessageDialog(rootPane, "DNI no es válido.", "Error", JOptionPane.WARNING_MESSAGE);
             dni_txtField.setText("");
+            return;
         }
-        if (ListaExpedientesManager.buscarExpediente(Integer.parseInt(dni_txtField.getText().trim())) != null) {
-            JOptionPane.showMessageDialog(rootPane, "El DNI ya fue ingresado anteriormente.\nRevisar lista de expedientes.", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-            dni_txtField.setText("");
-        }        
-        else {
-            try {
-                int dni = Integer.parseInt(dni_txtField.getText().trim());
-            }
-            catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(rootPane, "DNI no es válido.", "Error", JOptionPane.WARNING_MESSAGE);
+
+        try {
+            int dni = Integer.parseInt(dniTexto);
+
+            if (ListaExpedientesManager.buscarExpediente(dni) != null) {
+                JOptionPane.showMessageDialog(rootPane, "El DNI ya fue ingresado anteriormente.\nRevisar lista de expedientes.", "Aviso", JOptionPane.INFORMATION_MESSAGE);
                 dni_txtField.setText("");
+                return;
             }
+        }
+        
+        catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(rootPane, "DNI no es válido.", "Error", JOptionPane.WARNING_MESSAGE);
+            dni_txtField.setText("");
         }
     }//GEN-LAST:event_dni_txtFieldFocusLost
 
     private void telefono_txtFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_telefono_txtFieldFocusLost
-        if (telefono_txtField.getText().length() != 9) {
+        if (telefono_txtField.getText().trim().length() != 9) {
             JOptionPane.showMessageDialog(rootPane, "Telefono no es válido.", "Error", JOptionPane.WARNING_MESSAGE);
             telefono_txtField.setText("");
+            return;
         }
-        else {
-            try {
-                int telefono = Integer.parseInt(telefono_txtField.getText().trim());
-            }
-            catch (NumberFormatException ex) {
+        
+        try {
+            int telefono = Integer.parseInt(telefono_txtField.getText().trim());
+        }
+        
+        catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(rootPane, "Telefono no es válido.", "Error", JOptionPane.WARNING_MESSAGE);
                 telefono_txtField.setText("");
-            }
         }
     }//GEN-LAST:event_telefono_txtFieldFocusLost
 

@@ -11,6 +11,7 @@ import tda.NodoDoble;
 import static DataManagers.ListaExpedientesManager.*;
 import DataManagers.ListaTramitesPendientes;
 import java.awt.event.WindowEvent;
+import static java.lang.String.valueOf;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
@@ -156,11 +157,6 @@ private boolean alertaMostrada = false;
         dni_txtField.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         dni_txtField.setForeground(new java.awt.Color(34, 56, 67));
         dni_txtField.setBorder(null);
-        dni_txtField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dni_txtFieldActionPerformed(evt);
-            }
-        });
         background.add(dni_txtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 330, 120, 30));
 
         buscarExp_boton.setBackground(new java.awt.Color(255, 159, 28));
@@ -240,14 +236,19 @@ private boolean alertaMostrada = false;
 
             }
         ));
-        tablaExp.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        tablaExp.setCellSelectionEnabled(true);
-        tablaExp.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tablaExp.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_NEXT_COLUMN);
+        tablaExp.setAutoscrolls(false);
+        tablaExp.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         tablaExp.setFillsViewportHeight(true);
         tablaExp.setShowGrid(false);
         tablaExp.setShowVerticalLines(true);
         tablaExp.getTableHeader().setResizingAllowed(false);
         tablaExp.getTableHeader().setReorderingAllowed(false);
+        tablaExp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaExpMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaExp);
 
         jScrollPane2.setViewportView(jScrollPane1);
@@ -317,9 +318,22 @@ private boolean alertaMostrada = false;
         }
     }//GEN-LAST:event_formWindowGainedFocus
 
-    private void dni_txtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dni_txtFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dni_txtFieldActionPerformed
+    private void tablaExpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaExpMouseClicked
+        int indice = tablaExp.getSelectedRow();
+        
+        if (indice == -1) {
+            return;
+        }
+        
+        int dniAux = Integer.parseInt((String) modelo.getValueAt(indice, 2));
+        DataExpediente exp;
+        exp = buscarExpediente(dniAux);
+        if (exp != null) {
+                dni_txtField.setText("");
+                ExpedienteBuscadoScreen exBuscado_pantalla = new ExpedienteBuscadoScreen(exp);
+                ScreensManager.nuevaPantalla(this, exBuscado_pantalla);
+        }
+    }//GEN-LAST:event_tablaExpMouseClicked
 
     private boolean isDialogEvent(WindowEvent evt) {
         return evt.getOppositeWindow() instanceof javax.swing.JDialog;
