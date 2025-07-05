@@ -4,6 +4,7 @@
  */
 package DataManagers;
 
+import DataClasses.DataListaDependencias;
 import DataClasses.Dependencia;
 import tda.Lista;
 import tda.Nodo;
@@ -12,39 +13,38 @@ import tda.Nodo;
  *
  * @author n04101
  */
-public class ListaDependenciasManager {
-    public static Lista<Dependencia> listaDependenciasGlobal = new Lista<>();
-    
-    public static void iniciarDependencias(){
-        listaDependenciasGlobal.agregar(new Dependencia("Otro"));
-        listaDependenciasGlobal.agregar(new Dependencia("DUSAR"));
-        listaDependenciasGlobal.agregar(new Dependencia("Facultad de Ingeniería"));
-        listaDependenciasGlobal.agregar(new Dependencia("Facultad de Derecho"));
-        listaDependenciasGlobal.agregar(new Dependencia("Facultad de Psicología"));
-        listaDependenciasGlobal.agregar(new Dependencia("Facultad de Ciencias Empresariales y Económicas"));
-        listaDependenciasGlobal.agregar(new Dependencia("Facultad de Comunicación"));
-        listaDependenciasGlobal.agregar(new Dependencia("Instituto de Investigación Científica"));
-        listaDependenciasGlobal.agregar(new Dependencia("Oficina de Innovación y Calidad Educativa"));
-        listaDependenciasGlobal.agregar(new Dependencia("Centro de Empleabilidad"));
-        listaDependenciasGlobal.agregar(new Dependencia("Centro de Idiomas"));
-        listaDependenciasGlobal.agregar(new Dependencia("Departamento de Orientación Psicopedagógica"));
+public class ListaDependenciasManager {    
+    public static void agregarDependencia(Dependencia dependencia){
+        DataListaDependencias.listaDependenciasGlobal.agregar(dependencia);
     }
     
-    public static boolean agregarDependencia(Dependencia dependencia){
+    public static void inicializar(){
+        DataListaDependencias.listaDependenciasGlobal.agregar(new Dependencia("Otro"));
+        DataListaDependencias.listaDependenciasGlobal.agregar(new Dependencia("DUSAR"));
+        DataListaDependencias.listaDependenciasGlobal.agregar(new Dependencia("Facultad de Ingeniería"));
+        DataListaDependencias.listaDependenciasGlobal.agregar(new Dependencia("Facultad de Derecho"));
+        DataListaDependencias.listaDependenciasGlobal.agregar(new Dependencia("Facultad de Psicología"));
+        DataListaDependencias.listaDependenciasGlobal.agregar(new Dependencia("Facultad de Ciencias Empresariales y Económicas"));
+        DataListaDependencias.listaDependenciasGlobal.agregar(new Dependencia("Facultad de Comunicación"));
+        DataListaDependencias.listaDependenciasGlobal.agregar(new Dependencia("Instituto de Investigación Científica"));
+        DataListaDependencias.listaDependenciasGlobal.agregar(new Dependencia("Oficina de Innovación y Calidad Educativa"));
+        DataListaDependencias.listaDependenciasGlobal.agregar(new Dependencia("Centro de Empleabilidad"));
+        DataListaDependencias.listaDependenciasGlobal.agregar(new Dependencia("Centro de Idiomas"));
+        DataListaDependencias.listaDependenciasGlobal.agregar(new Dependencia("Departamento de Orientación Psicopedagógica"));
+    }
+    
+    public static boolean duplicado(Dependencia dependencia){
         //verificar que no se repita en la lista
-        Nodo<Dependencia> aux = listaDependenciasGlobal.getCabeza();
+        Lista<Dependencia> lista = DataListaDependencias.listaDependenciasGlobal;
+        Nodo<Dependencia> aux = lista.getCabeza();
         while(aux!=null){
             //si la nueva dependencia es igual a alguna dependencia
             if (dependencia.getNombre().equalsIgnoreCase(aux.getItem().getNombre())) {
-                return false;
+                return true;
             }
+            aux = aux.getSgteNodo();
         }
-        
-        listaDependenciasGlobal.agregar(dependencia);
-        return true;
+        return false;
     }
-
-    public static Lista<Dependencia> getListaDependenciasGlobal() {
-        return listaDependenciasGlobal;
-    }    
+    
 }

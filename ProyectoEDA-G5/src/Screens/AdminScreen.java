@@ -238,7 +238,7 @@ private boolean alertaMostrada = false;
         ));
         tablaExp.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_NEXT_COLUMN);
         tablaExp.setAutoscrolls(false);
-        tablaExp.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        tablaExp.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tablaExp.setFillsViewportHeight(true);
         tablaExp.setShowGrid(false);
         tablaExp.setShowVerticalLines(true);
