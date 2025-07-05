@@ -21,7 +21,6 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import tda.Lista;
 import tda.Nodo;
-import tda.Pila;
 
 /**
  *
@@ -35,8 +34,6 @@ public class IngresarTramScreen extends javax.swing.JFrame {
     private DataExpediente expediente;
     public IngresarTramScreen(DataExpediente exp) {
         initComponents();
-        ListaDependenciasManager.inicializar();
-        
         this.expediente = exp;
         dni_label.setText("DNI: "+expediente.getDni());
         nombre_txtLabel.setText("NOMBRES: "+expediente.getNombres());
@@ -258,8 +255,6 @@ public class IngresarTramScreen extends javax.swing.JFrame {
         String annioStr = annio_txtField.getText().trim();
         String desc = desc_txtArea.getText().trim();
         String depend = dependencias_comboBox.getSelectedItem().toString();
-        Pila<String> aux = new Pila<>();
-        aux.apilar(depend);
         
 
         // Evitar campos vacios
@@ -324,8 +319,9 @@ public class IngresarTramScreen extends javax.swing.JFrame {
                 boolean duplicado = ListaDependenciasManager.duplicado(depend_nueva);
                 if (!duplicado) {
                     ListaDependenciasManager.agregarDependencia(depend_nueva);
-                    JOptionPane.showMessageDialog(this, "Se agregó la dependencia global.");
                     actualizarDepends();
+                    dependencias_comboBox.setSelectedItem(dependencias_comboBox.getItemCount()-1);
+                    JOptionPane.showMessageDialog(this, "Se agregó la dependencia global.");
                     return;
                     
                     //se agrego la dependencia correctamente

@@ -4,6 +4,7 @@
  */
 package Screens;
 
+import DataManagers.ListaDependenciasManager;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,6 +19,7 @@ public class LoginScreen extends javax.swing.JFrame {
      */
     public LoginScreen() {
         initComponents();
+        ListaDependenciasManager.inicializar();
     }
 
     /**

@@ -19,6 +19,9 @@ public class ListaDependenciasManager {
     }
     
     public static void inicializar(){
+        if (DataListaDependencias.listaDependenciasGlobal.longitud()>0) {
+            return;
+        }
         DataListaDependencias.listaDependenciasGlobal.agregar(new Dependencia("Otro"));
         DataListaDependencias.listaDependenciasGlobal.agregar(new Dependencia("DUSAR"));
         DataListaDependencias.listaDependenciasGlobal.agregar(new Dependencia("Facultad de Ingeniería"));
@@ -32,7 +35,7 @@ public class ListaDependenciasManager {
         DataListaDependencias.listaDependenciasGlobal.agregar(new Dependencia("Centro de Idiomas"));
         DataListaDependencias.listaDependenciasGlobal.agregar(new Dependencia("Departamento de Orientación Psicopedagógica"));
     }
-    
+
     public static boolean duplicado(Dependencia dependencia){
         //verificar que no se repita en la lista
         Lista<Dependencia> lista = DataListaDependencias.listaDependenciasGlobal;
@@ -46,5 +49,5 @@ public class ListaDependenciasManager {
         }
         return false;
     }
-    
+
 }
