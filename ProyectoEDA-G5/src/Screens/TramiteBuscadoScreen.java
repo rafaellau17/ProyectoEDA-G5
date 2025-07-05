@@ -4,6 +4,7 @@
  */
 package Screens;
 
+import DataClasses.DataListaDependencias;
 import DataClasses.DataTramite;
 import DataClasses.Dependencia;
 import DataClasses.Documento;
@@ -357,7 +358,7 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void agregarDepend_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarDepend_botonActionPerformed
-        Lista<Dependencia> aux_depend = ListaDependenciasManager.getListaDependenciasGlobal();
+        Lista<Dependencia> aux_depend = DataListaDependencias.listaDependenciasGlobal;
         Nodo<Dependencia> aux_nodo = aux_depend.getCabeza();
         JComboBox combobox = new JComboBox();
         while (aux_nodo != null) {

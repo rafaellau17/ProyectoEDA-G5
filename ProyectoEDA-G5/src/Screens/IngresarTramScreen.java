@@ -5,6 +5,7 @@
 package Screens;
 
 import DataClasses.DataExpediente;
+import DataClasses.DataListaDependencias;
 import DataClasses.DataTramite;
 import DataClasses.Dependencia;
 import DataClasses.Fecha;
@@ -34,7 +35,7 @@ public class IngresarTramScreen extends javax.swing.JFrame {
     private DataExpediente expediente;
     public IngresarTramScreen(DataExpediente exp) {
         initComponents();
-        ListaDependenciasManager.iniciarDependencias();
+        ListaDependenciasManager.inicializar();
         
         this.expediente = exp;
         dni_label.setText("DNI: "+expediente.getDni());
@@ -45,15 +46,8 @@ public class IngresarTramScreen extends javax.swing.JFrame {
         mes_txtField.setText(String.valueOf(calendar.get(MONTH)+1));
         annio_txtField.setText(String.valueOf(calendar.get(YEAR)));
         
-        Lista<Dependencia> aux_depend = ListaDependenciasManager.getListaDependenciasGlobal();
-        Nodo<Dependencia> aux_nodo = aux_depend.getCabeza();
-        JComboBox<String> aux = new JComboBox();
-        while (aux_nodo != null) {
-            aux.addItem(aux_nodo.getItem().getNombre());
-            aux_nodo = aux_nodo.getSgteNodo();
-        }
+        actualizarDepends();
         
-        dependencias_comboBox.setModel(aux.getModel());
     }
 
     /**
@@ -228,6 +222,21 @@ public class IngresarTramScreen extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    public void actualizarDepends(){
+        Lista<Dependencia> lista = DataListaDependencias.listaDependenciasGlobal;
+        Nodo<Dependencia> aux_nodo = lista.getCabeza();
+        JComboBox<String> aux = new JComboBox();
+        
+        //vaciar modelo
+        aux.removeAllItems();
+        //volver a llenar
+        while (aux_nodo != null) {
+            aux.addItem(aux_nodo.getItem().getNombre());
+            aux_nodo = aux_nodo.getSgteNodo();
+        }
+        
+        dependencias_comboBox.setModel(aux.getModel());
+    }
     private void regresar_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresar_botonActionPerformed
 
         int response = JOptionPane.showConfirmDialog(rootPane, "¿Desea regresar? Todo su progreso se perderá", "Confirmacion", JOptionPane.YES_NO_OPTION);
@@ -298,9 +307,35 @@ public class IngresarTramScreen extends javax.swing.JFrame {
             return;
         }
         
+        
         // Validar si se pone otra dependencia
-        
-        
+        if (depend.equals("Otro")) {
+            String nom_depend = JOptionPane.showInputDialog(this, "Ingrese el nombre de la nueva dependencia.");
+            
+            if (nom_depend == null) {
+                return;
+            }
+            else if (nom_depend.isBlank()) {
+                    JOptionPane.showMessageDialog(this, "Nombre de dependencia no puede estar vacío.", "Error", JOptionPane.WARNING_MESSAGE);
+                    return;
+            }
+            else{
+                Dependencia depend_nueva = new Dependencia(nom_depend);
+                boolean duplicado = ListaDependenciasManager.duplicado(depend_nueva);
+                if (!duplicado) {
+                    ListaDependenciasManager.agregarDependencia(depend_nueva);
+                    JOptionPane.showMessageDialog(this, "Se agregó la dependencia global.");
+                    actualizarDepends();
+                    return;
+                    
+                    //se agrego la dependencia correctamente
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, "La dependencia ingresada ya existe!", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            }
+        }
         // Realizar el ingreso del tramite
         Fecha fechaIni = new Fecha(dia, mes, annio);
         int numTramites = expediente.getListaTramites().longitud()+1;
