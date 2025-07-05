@@ -22,5 +22,9 @@ public class Dependencia {
         return nombre;
     }
 
-    
+    @Override
+    public String toString() {
+        return nombre;
+    }
+
 }

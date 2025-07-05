@@ -12,6 +12,10 @@ public class Pila<T> {
     public boolean esVacia(){
         return cima == null;
     }
+
+    public Nodo<T> getCima() {
+        return cima;
+    }
     
     /*
     apilar o push. Agrega un nuevo item a la pila en la cima de la misma fila)

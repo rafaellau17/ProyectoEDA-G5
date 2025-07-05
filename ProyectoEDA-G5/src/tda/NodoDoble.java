@@ -25,7 +25,7 @@ public class NodoDoble<T> {
         this.item = item;
     }
 
-    public NodoDoble getSgteNodo() {
+    public NodoDoble<T> getSgteNodo() {
         return sgteNodo;
     }
 

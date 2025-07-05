@@ -35,7 +35,7 @@ public class ListaTramitesPendientes {
                 Nodo<DataTramite> nodoTramite = listaTramites.getCabeza();
                 
                 // Recorrer la lista simple de tramites
-                do {
+                while (nodoTramite != null) {
                     DataTramite tramite = nodoTramite.getItem();
                     
                     // Anadir a la lista los tramites pendientes
@@ -43,9 +43,9 @@ public class ListaTramitesPendientes {
                         listaPendientes.agregar(tramite);
                     }
                     nodoTramite = nodoTramite.getSgteNodo();
-                } while (nodoTramite != listaTramites.getCabeza());
+                }
             }
-
+            
             nodoExpediente = nodoExpediente.getSgteNodo();
         }
     }
