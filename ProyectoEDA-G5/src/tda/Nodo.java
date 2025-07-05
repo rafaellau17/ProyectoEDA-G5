@@ -3,13 +3,13 @@ package tda;
 public class Nodo<T> {
     // ATRIBUTOS
     private T item; // Datos
-    private Nodo sgteNodo;       // Puntero
+    private Nodo<T> sgteNodo;       // Puntero
     // METODOS
     public Nodo(){
         this.item = null;
         this.sgteNodo = null;
     }
-    public Nodo(T item, Nodo sgteNodo){
+    public Nodo(T item, Nodo<T> sgteNodo){
         this.item = item;
         this.sgteNodo = sgteNodo;
     }
@@ -22,11 +22,11 @@ public class Nodo<T> {
         this.item = item;
     }
 
-    public Nodo getSgteNodo() {
+    public Nodo<T> getSgteNodo() {
         return sgteNodo;
     }
 
-    public void setSgteNodo(Nodo sgteNodo) {
+    public void setSgteNodo(Nodo<T> sgteNodo) {
         this.sgteNodo = sgteNodo;
     }
     

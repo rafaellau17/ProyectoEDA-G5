@@ -5,7 +5,9 @@
 package Screens;
 
 import DataClasses.DataTramite;
+import DataClasses.Dependencia;
 import DataManagers.ListaTramitesPendientes;
+import tda.Pila;
 
 /**
  *
@@ -31,8 +33,15 @@ public class AlertaPendientesDialog extends javax.swing.JDialog {
         sb.append("ID: ").append(tramiteMasAntiguo.getId()).append("\n");
         sb.append("Fecha de inicio: ").append(tramiteMasAntiguo.getFechaIni()).append("\n");
         sb.append("Descripcion: ").append(tramiteMasAntiguo.getDescripcion()).append("\n");
-        sb.append("Dependencia: ").append(tramiteMasAntiguo.getDependencias().desencolar()).append("\n");
-
+        
+        Pila<Dependencia> dependencias = tramiteMasAntiguo.getDependencias();
+        if (!dependencias.esVacia()) {
+            Dependencia depActual = dependencias.getCima().getItem();
+            sb.append("Dependencia actual: ").append(depActual.getNombre()).append("\n");
+        } else {
+            sb.append("Dependencia actual: No registrada\n");
+        }
+        
         txtInfoTramite.setText(sb.toString());
     }
 

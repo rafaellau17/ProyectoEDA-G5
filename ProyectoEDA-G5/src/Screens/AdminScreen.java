@@ -59,7 +59,7 @@ private boolean alertaMostrada = false;
             alertaTimer.stop();
         }
         
-        alertaTimer = new Timer(30000, e -> {
+        alertaTimer = new Timer(5000, e -> {
             if (!alertaMostrada) {
                 ListaTramitesPendientes.actualizarTramitesPendientes();
                 
