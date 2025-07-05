@@ -65,12 +65,8 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
     }
     
     private void poblarDocsTable(){
-        int filas = this.docsTabla.getRowCount();
-        for(int i=0;i<filas;i++)
-        {
-            modelo_1.removeRow(0);
-        }
-        
+        modelo_1.setRowCount(0);
+     
         Cola<Documento> cola = ExpedienteManager.mostrarDocumentos(expediente);
         Cola<Documento> aux = new Cola<>();
         String[] datos = new String[2];
@@ -91,11 +87,8 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
     }
     
     private void poblarTramTable(){
-        int filas = this.tramitesTabla.getRowCount();
-        for(int i=0;i<filas;i++)
-        {
-            modelo_2.removeRow(0);
-        }
+        modelo_2.setRowCount(0);
+
         
         Lista<DataTramite> lista = ExpedienteManager.mostrarTramites(expediente);
         Nodo<DataTramite> aux = lista.getCabeza();
