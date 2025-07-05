@@ -201,7 +201,7 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
                 finTram_botonActionPerformed(evt);
             }
         });
-        jPanel1.add(finTram_boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 450, 170, 40));
+        jPanel1.add(finTram_boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 430, 170, 40));
 
         jButton1.setBackground(new java.awt.Color(255, 159, 28));
         jButton1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -212,7 +212,7 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 460, 140, 40));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, 140, 40));
 
         jPanel2.setBackground(new java.awt.Color(255, 159, 28));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -330,7 +330,7 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 526, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -389,7 +389,11 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
                     }
                 }
             }
-            else {
+            else if(depend_label.getText().equalsIgnoreCase(str)){
+                JOptionPane.showMessageDialog(this, "No se puede ingresar la misma dependencia consecutivamente", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            
+            else {                
                 TramiteManager.ingresarDependencia(tramite, str);
             }
             
