@@ -380,7 +380,13 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
                     return;
                 }
                 else {
-                    TramiteManager.ingresarDependencia(tramite, nuevaDepend);            
+                    Dependencia depend_nueva = new Dependencia(nuevaDepend);
+                    boolean duplicado = ListaDependenciasManager.duplicado(depend_nueva);
+                    if (!duplicado) {
+                        ListaDependenciasManager.agregarDependencia(depend_nueva);
+                        JOptionPane.showMessageDialog(this, "Se agregó la dependencia global.");
+                        TramiteManager.ingresarDependencia(tramite, nuevaDepend); 
+                    }
                 }
             }
             else {

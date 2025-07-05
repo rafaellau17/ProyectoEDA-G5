@@ -225,17 +225,17 @@ public class IngresarTramScreen extends javax.swing.JFrame {
     public void actualizarDepends(){
         Lista<Dependencia> lista = DataListaDependencias.listaDependenciasGlobal;
         Nodo<Dependencia> aux_nodo = lista.getCabeza();
-        JComboBox<String> aux = new JComboBox();
+        //JComboBox<String> aux = new JComboBox();
         
         //vaciar modelo
-        aux.removeAllItems();
+        dependencias_comboBox.removeAllItems();
         //volver a llenar
         while (aux_nodo != null) {
-            aux.addItem(aux_nodo.getItem().getNombre());
+            dependencias_comboBox.addItem(aux_nodo.getItem().getNombre());
             aux_nodo = aux_nodo.getSgteNodo();
         }
         
-        dependencias_comboBox.setModel(aux.getModel());
+        //dependencias_comboBox.setModel(aux.getModel());
     }
     private void regresar_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresar_botonActionPerformed
 
