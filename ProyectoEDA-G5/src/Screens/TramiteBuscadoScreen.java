@@ -11,6 +11,7 @@ import DataClasses.Documento;
 import DataClasses.Fecha;
 import DataManagers.ListaDependenciasManager;
 import DataManagers.TramiteManager;
+import static java.lang.Integer.valueOf;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.*;
@@ -345,14 +346,28 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
         int response = JOptionPane.showConfirmDialog(rootPane, "¿Desea finalizar el tramite?", "Confirmacion", JOptionPane.YES_NO_OPTION);
         if (response == JOptionPane.YES_OPTION) {
             tramite.setTerminado(true);
+            TramiteManager.actualizarFechaFinUltimaDependencia(tramite);
             Calendar calendar = new GregorianCalendar();
             int aux = calendar.get(YEAR);
-            int aux2 = calendar.get(MONTH);
+            int aux2 = calendar.get(MONTH)+1;
             int aux3 = calendar.get(DATE);
-            Fecha fechafin = new Fecha(aux3, aux2+1, aux);
+            Fecha fechafin = new Fecha(aux3, aux2, aux);
             tramite.setFechaFin(fechafin);
             terminado_label.setText("TERMINADO: TRAMITE TERMINADO");
-            fechaFin_label.setText("FECHA FIN: " +fechafin);       
+                        
+            String dia = String.valueOf(aux3);
+            int dia_len = String.valueOf(aux3).length();
+            if (dia_len == 1) {
+                dia = "0" + dia;
+            }
+            String mes = String.valueOf(aux2);
+            int mes_len = String.valueOf(aux3).length();
+            if (mes_len==1) {
+                mes = "0"+mes;
+            }
+            
+            String annio = String.valueOf(aux);            
+            fechaFin_label.setText("FECHA FIN: "+ dia + "/" + mes + "/" + annio);       
         }
         
     }//GEN-LAST:event_finTram_botonActionPerformed
@@ -362,6 +377,10 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void agregarDepend_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarDepend_botonActionPerformed
+        if (tramite.isTerminado()) {
+            JOptionPane.showMessageDialog(this, "Tramite ya ha sido finalizado.", "Error", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         Lista<Dependencia> aux_depend = DataListaDependencias.listaDependenciasGlobal;
         Nodo<Dependencia> aux_nodo = aux_depend.getCabeza();
         JComboBox combobox = new JComboBox();

@@ -53,7 +53,6 @@ public class TramiteManager {
             ultimaDepend.setFechaFin(FechaFinAux);
             pila_aux.apilar(ultimaDepend);   
         }
-     
     }
     
     
