@@ -4,8 +4,6 @@
  */
 package DataClasses;
 
-import java.util.Scanner;
-
 /**
  *
  * @author MARIEL
@@ -36,7 +34,6 @@ public class Fecha {
     }
     
     //getters y setters
-
     public int getDia() {
         return dia;
     }
@@ -60,6 +57,6 @@ public class Fecha {
     public void setAnnio(int annio) {
         this.annio = annio;
     }
-    
+
     
 }

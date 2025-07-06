@@ -11,13 +11,11 @@ import DataClasses.Dependencia;
 import DataClasses.Fecha;
 import DataManagers.ExpedienteManager;
 import DataManagers.ListaDependenciasManager;
-import static java.lang.String.valueOf;
 import java.util.Calendar;
 import static java.util.Calendar.DATE;
 import static java.util.Calendar.MONTH;
 import static java.util.Calendar.YEAR;
 import java.util.GregorianCalendar;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import tda.Lista;
 import tda.Nodo;
@@ -315,7 +313,7 @@ public class IngresarTramScreen extends javax.swing.JFrame {
                     return;
             }
             else{
-                Dependencia depend_nueva = new Dependencia(nom_depend);
+                Dependencia depend_nueva = new Dependencia(nom_depend, null);
                 boolean duplicado = ListaDependenciasManager.duplicado(depend_nueva);
                 if (!duplicado) {
                     ListaDependenciasManager.agregarDependencia(depend_nueva);
@@ -335,7 +333,7 @@ public class IngresarTramScreen extends javax.swing.JFrame {
         // Realizar el ingreso del tramite
         Fecha fechaIni = new Fecha(dia, mes, annio);
         int numTramites = expediente.getListaTramites().longitud()+1;
-        Dependencia dependInicial = new Dependencia(depend);
+        Dependencia dependInicial = new Dependencia(depend, fechaIni);
         DataTramite tramite = new DataTramite(fechaIni, desc, dependInicial, numTramites);
         ExpedienteManager.agregarTramite(expediente, tramite);
         
