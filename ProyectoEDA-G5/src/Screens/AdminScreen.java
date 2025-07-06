@@ -265,6 +265,7 @@ private boolean alertaMostrada = false;
     }// </editor-fold>//GEN-END:initComponents
 
     private void fin_sesion_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fin_sesion_botonActionPerformed
+        alertaTimer.stop();
         ScreensManager.irAtras(this);
     }//GEN-LAST:event_fin_sesion_botonActionPerformed
 

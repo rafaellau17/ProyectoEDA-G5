@@ -362,7 +362,7 @@ public class ExpedienteBuscadoScreen extends javax.swing.JFrame {
 
     private void addDoc_bottonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDoc_bottonActionPerformed
         String nombre_doc = JOptionPane.showInputDialog(this, "Ingrese el nombre del documento");
-        if (nombre_doc.isEmpty()) {
+        if (nombre_doc == null || nombre_doc.isEmpty() | nombre_doc.isBlank()) {
             return;
         }
         Documento aux = new Documento(nombre_doc.trim());
