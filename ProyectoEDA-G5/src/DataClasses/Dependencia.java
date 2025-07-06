@@ -11,10 +11,14 @@ package DataClasses;
 public class Dependencia {
     //atributos
     private String nombre;
+    private Fecha fechaIni;
+    private Fecha fechaFin;
     
     //constructor
-    public Dependencia(String nombre) {
+    public Dependencia(String nombre, Fecha fechaIni) {
         this.nombre = nombre;
+        this.fechaIni = fechaIni;
+        this.fechaFin = null;
     }
     
     //getter y setter
@@ -22,9 +26,17 @@ public class Dependencia {
         return nombre;
     }
 
-    @Override
-    public String toString() {
-        return nombre;
+    public Fecha getFechaIni() {
+        return fechaIni;
     }
 
+    public Fecha getFechaFin() {
+        return fechaFin;
+    }
+
+    public void setFechaFin(Fecha fechaFin) {
+        this.fechaFin = fechaFin;
+    }
+    
+    
 }

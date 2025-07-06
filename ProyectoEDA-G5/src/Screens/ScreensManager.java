@@ -21,7 +21,7 @@ public class ScreensManager {
     
     public static void irAtras(JFrame currentScreen){
         currentScreen.dispose();
-        pila.desencolar().setVisible(true);
+        pila.desapilar().setVisible(true);
     }
     
 }

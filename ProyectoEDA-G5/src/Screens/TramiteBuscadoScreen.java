@@ -87,15 +87,16 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
         };        
         
         modelo_2.addColumn("NRO");
-        modelo_2.addColumn("HISTORIAL DE DEPENDENCIAS");
+        modelo_2.addColumn("DEPENDENCIA");
+        modelo_2.addColumn("FEC. INICIO");
+        modelo_2.addColumn("FEC. FIN");
         
         this.documentosTable.setModel(modelo_1);
         this.dependenciasTable.setModel(modelo_2);        
         
-        this.documentosTable.getColumnModel().getColumn(0).setPreferredWidth(60);
-        this.dependenciasTable.getColumnModel().getColumn(0).setPreferredWidth(60);               
-        this.documentosTable.getColumnModel().getColumn(1).setPreferredWidth(260);
-        this.dependenciasTable.getColumnModel().getColumn(1).setPreferredWidth(260);           
+        this.documentosTable.getColumnModel().getColumn(0).setPreferredWidth(50);
+        this.documentosTable.getColumnModel().getColumn(1).setPreferredWidth(270);
+        this.dependenciasTable.getColumnModel().getColumn(0).setPreferredWidth(50);                    
     
     }
     
@@ -110,15 +111,15 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
         Pila<Dependencia> aux = new Pila<>();
         
         while(!pila.esVacia()){
-            Dependencia dependAux = pila.desencolar();
+            Dependencia dependAux = pila.desapilar();
             aux.apilar(dependAux);
         }
         
         int cont = 1;
         while(!aux.esVacia()){
-            Dependencia dependNuevoAux = aux.desencolar();
+            Dependencia dependNuevoAux = aux.desapilar();
             depend_label.setText(dependNuevoAux.getNombre());
-            modelo_2.addRow(new Object[]{cont, dependNuevoAux.getNombre()});
+            modelo_2.addRow(new Object[]{cont, dependNuevoAux.getNombre(), dependNuevoAux.getFechaIni(), dependNuevoAux.getFechaFin()});
             cont++;
             pila.apilar(dependNuevoAux);
         }
@@ -201,7 +202,7 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
                 finTram_botonActionPerformed(evt);
             }
         });
-        jPanel1.add(finTram_boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 430, 170, 40));
+        jPanel1.add(finTram_boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 390, 170, 40));
 
         jButton1.setBackground(new java.awt.Color(255, 159, 28));
         jButton1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -212,10 +213,12 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, 140, 40));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 140, 40));
 
         jPanel2.setBackground(new java.awt.Color(255, 159, 28));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jScrollPane4.setColumnHeaderView(dependenciasTable);
 
         dependenciasTable.setBackground(new java.awt.Color(239, 241, 243));
         dependenciasTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -229,16 +232,15 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        dependenciasTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        dependenciasTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_NEXT_COLUMN);
         dependenciasTable.setAutoscrolls(false);
-        dependenciasTable.setColumnSelectionAllowed(true);
         dependenciasTable.setFillsViewportHeight(true);
         dependenciasTable.setShowVerticalLines(true);
         jScrollPane1.setViewportView(dependenciasTable);
 
         jScrollPane4.setViewportView(jScrollPane1);
 
-        jPanel2.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 260, 300));
+        jPanel2.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 430, 300));
 
         agregarDepend_boton.setBackground(new java.awt.Color(239, 241, 243));
         agregarDepend_boton.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
@@ -250,7 +252,7 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
                 agregarDepend_botonActionPerformed(evt);
             }
         });
-        jPanel2.add(agregarDepend_boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 330, 210, 30));
+        jPanel2.add(agregarDepend_boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 330, 210, 30));
 
         documentosTable.setBackground(new java.awt.Color(239, 241, 243));
         documentosTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -274,7 +276,7 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
 
         jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 240, 300));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 600, 380));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 750, 380));
 
         jPanel3.setBackground(new java.awt.Color(34, 56, 67));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -320,17 +322,19 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
 
         jSeparator1.setBackground(new java.awt.Color(34, 56, 67));
         jSeparator1.setForeground(new java.awt.Color(34, 56, 67));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 380, 920, 30));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 380, 1070, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1070, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 446, Short.MAX_VALUE)
         );
 
         pack();
@@ -380,11 +384,12 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
                     return;
                 }
                 else {
-                    Dependencia depend_nueva = new Dependencia(nuevaDepend);
+                    Dependencia depend_nueva = new Dependencia(nuevaDepend, null);
                     boolean duplicado = ListaDependenciasManager.duplicado(depend_nueva);
                     if (!duplicado) {
                         ListaDependenciasManager.agregarDependencia(depend_nueva);
                         JOptionPane.showMessageDialog(this, "Se agregó la dependencia global.");
+                        TramiteManager.actualizarFechaFinUltimaDependencia(tramite);
                         TramiteManager.ingresarDependencia(tramite, nuevaDepend); 
                     }
                 }
@@ -393,7 +398,8 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "No se puede ingresar la misma dependencia consecutivamente", "Error", JOptionPane.ERROR_MESSAGE);
             }
             
-            else {                
+            else {
+                TramiteManager.actualizarFechaFinUltimaDependencia(tramite);
                 TramiteManager.ingresarDependencia(tramite, str);
             }
             

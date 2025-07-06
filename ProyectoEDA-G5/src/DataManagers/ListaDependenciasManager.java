@@ -22,18 +22,18 @@ public class ListaDependenciasManager {
         if (DataListaDependencias.listaDependenciasGlobal.longitud()>0) {
             return;
         }
-        DataListaDependencias.listaDependenciasGlobal.agregar(new Dependencia("Otro"));
-        DataListaDependencias.listaDependenciasGlobal.agregar(new Dependencia("DUSAR"));
-        DataListaDependencias.listaDependenciasGlobal.agregar(new Dependencia("Facultad de Ingeniería"));
-        DataListaDependencias.listaDependenciasGlobal.agregar(new Dependencia("Facultad de Derecho"));
-        DataListaDependencias.listaDependenciasGlobal.agregar(new Dependencia("Facultad de Psicología"));
-        DataListaDependencias.listaDependenciasGlobal.agregar(new Dependencia("Facultad de Ciencias Empresariales y Económicas"));
-        DataListaDependencias.listaDependenciasGlobal.agregar(new Dependencia("Facultad de Comunicación"));
-        DataListaDependencias.listaDependenciasGlobal.agregar(new Dependencia("Instituto de Investigación Científica"));
-        DataListaDependencias.listaDependenciasGlobal.agregar(new Dependencia("Oficina de Innovación y Calidad Educativa"));
-        DataListaDependencias.listaDependenciasGlobal.agregar(new Dependencia("Centro de Empleabilidad"));
-        DataListaDependencias.listaDependenciasGlobal.agregar(new Dependencia("Centro de Idiomas"));
-        DataListaDependencias.listaDependenciasGlobal.agregar(new Dependencia("Departamento de Orientación Psicopedagógica"));
+        DataListaDependencias.listaDependenciasGlobal.agregar(new Dependencia("Otro", null));
+        DataListaDependencias.listaDependenciasGlobal.agregar(new Dependencia("DUSAR", null));
+        DataListaDependencias.listaDependenciasGlobal.agregar(new Dependencia("Facultad de Ingeniería", null));
+        DataListaDependencias.listaDependenciasGlobal.agregar(new Dependencia("Facultad de Derecho", null));
+        DataListaDependencias.listaDependenciasGlobal.agregar(new Dependencia("Facultad de Psicología", null));
+        DataListaDependencias.listaDependenciasGlobal.agregar(new Dependencia("Facultad de Ciencias Empresariales y Económicas", null));
+        DataListaDependencias.listaDependenciasGlobal.agregar(new Dependencia("Facultad de Comunicación", null));
+        DataListaDependencias.listaDependenciasGlobal.agregar(new Dependencia("Instituto de Investigación Científica", null));
+        DataListaDependencias.listaDependenciasGlobal.agregar(new Dependencia("Oficina de Innovación y Calidad Educativa", null));
+        DataListaDependencias.listaDependenciasGlobal.agregar(new Dependencia("Centro de Empleabilidad", null));
+        DataListaDependencias.listaDependenciasGlobal.agregar(new Dependencia("Centro de Idiomas", null));
+        DataListaDependencias.listaDependenciasGlobal.agregar(new Dependencia("Departamento de Orientación Psicopedagógica", null));
     }
 
     public static boolean duplicado(Dependencia dependencia){

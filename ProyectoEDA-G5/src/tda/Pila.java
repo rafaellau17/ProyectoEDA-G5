@@ -35,7 +35,7 @@ public class Pila<T> {
     /*
     Desapilar. Eliminina un item de la cima de la pila. Debe redevolver el item que es eliminado.
     */
-    public T desencolar(){
+    public T desapilar(){
         if (esVacia()) { //pila sin elementos
             throw new RuntimeException("La pila esta vacia");
         }
