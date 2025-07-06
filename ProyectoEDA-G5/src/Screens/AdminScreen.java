@@ -6,13 +6,11 @@ package Screens;
 
 import DataClasses.DataExpediente;
 import static DataClasses.DataListaExpedientes.listaExpedientes;
-import DataManagers.ListaDependenciasManager;
 import javax.swing.table.DefaultTableModel;
 import tda.NodoDoble;
 import static DataManagers.ListaExpedientesManager.*;
 import DataManagers.ListaTramitesPendientes;
 import java.awt.event.WindowEvent;
-import static java.lang.String.valueOf;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 

@@ -99,7 +99,7 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
     
     }
     
-    public void poblarDependenciasTable(){
+    private void poblarDependenciasTable(){
         int filas = this.dependenciasTable.getRowCount();
         for(int i=0;i<filas;i++)
         {
@@ -124,7 +124,7 @@ public class TramiteBuscadoScreen extends javax.swing.JFrame {
         }
     }
     
-    public void poblarDocumentosTable(){
+    private void poblarDocumentosTable(){
         int filas = this.documentosTable.getRowCount();
         for(int i=0;i<filas;i++)
         {
