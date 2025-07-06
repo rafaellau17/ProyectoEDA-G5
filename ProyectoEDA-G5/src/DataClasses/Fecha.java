@@ -27,6 +27,11 @@ public class Fecha {
         this.annio = annio;
     }
     
+    //metodos
+    @Override
+    public String toString() {
+        return dia+"/"+mes+"/"+annio;
+    }
     
     //getters y setters
     public int getDia() {
@@ -52,6 +57,6 @@ public class Fecha {
     public void setAnnio(int annio) {
         this.annio = annio;
     }
-    
+
     
 }

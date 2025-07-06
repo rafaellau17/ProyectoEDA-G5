@@ -313,7 +313,7 @@ public class IngresarTramScreen extends javax.swing.JFrame {
                     return;
             }
             else{
-                Dependencia depend_nueva = new Dependencia(nom_depend);
+                Dependencia depend_nueva = new Dependencia(nom_depend, null);
                 boolean duplicado = ListaDependenciasManager.duplicado(depend_nueva);
                 if (!duplicado) {
                     ListaDependenciasManager.agregarDependencia(depend_nueva);
@@ -333,7 +333,7 @@ public class IngresarTramScreen extends javax.swing.JFrame {
         // Realizar el ingreso del tramite
         Fecha fechaIni = new Fecha(dia, mes, annio);
         int numTramites = expediente.getListaTramites().longitud()+1;
-        Dependencia dependInicial = new Dependencia(depend);
+        Dependencia dependInicial = new Dependencia(depend, fechaIni);
         DataTramite tramite = new DataTramite(fechaIni, desc, dependInicial, numTramites);
         ExpedienteManager.agregarTramite(expediente, tramite);
         
