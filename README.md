@@ -1,1 +1,7 @@
 # ProyectoEDA-G5
+
+El presente proyecto consistió en el desarrollo de un sistema de escritorio en Java para la gestión de expedientes y trámites en una oficina administrativa de la Universidad de Lima. Se identificó como principal problemática la dificultad para llevar un control automatizado y eficiente de expedientes activos, lo cual genera desorganización y demoras en la atención de trámites. Ante ello, se propuso una solución orientada a optimizar el registro, almacenamiento y seguimiento de los trámites asociados a usuarios internos y externos.
+
+La solución implementada fue una aplicación que permite registrar expedientes con sus respectivos trámites, controlar su avance a través de dependencias y generar alertas automáticas ante la presencia de trámites pendientes. Para lograrlo, se emplearon estructuras de datos como listas simples, listas circulares, listas dobles y pilas, facilitando una representación lógica eficiente del flujo de información. Asimismo, se diseñó una interfaz gráfica mediante Swing que permitía una interacción intuitiva con el usuario final.
+
+Como resultado, se obtuvo un sistema funcional que almacena y valida correctamente los datos, muestra visualmente los trámites pendientes y mejora los procesos administrativos mediante una estructura modular y reutilizable. El proyecto también fortaleció el dominio de conceptos fundamentales de estructuras de datos aplicadas a entornos reales, la organización del código y el trabajo colaborativo en equipos de desarrollo.
